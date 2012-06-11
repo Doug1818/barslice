@@ -1,11 +1,11 @@
 development: &development
   adapter: postgresql
-  database: barme_development
+  database: barslice_development
 
 production:
   <<: *development
 
 test: &test
   adapter: postgresql
-  database: barme_test
+  database: barslice_test
   min_messages: warning

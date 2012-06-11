@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Barme::Application.load_tasks
+BarSlice::Application.load_tasks
