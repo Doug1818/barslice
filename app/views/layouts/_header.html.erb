@@ -1,13 +1,17 @@
 <header class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
-			<%= link_to "BarSlice logo placeholder", root_path %>
-			<nav>
-				<ul class="nav pull-right">
-					<li><%= link_to "Home", root_path %></li>
-					<li><%= link_to "Help", help_path %></li>
-				</ul>
-			</nav>		
+			<%= link_to "BarSlice logo placeholder", root_path, id: "logo" %>
+			<div id="session">
+				<% if user_signed_in? %>
+			        Signed in as <%= current_user.email %>. Not you?
+			        <%= link_to 'Sign out', destroy_user_session_path, method: "delete" %>
+			    <% else %>
+			        <%= link_to 'Sign up', new_user_registration_path %>
+			         or 
+			        <%= link_to 'Sign in', new_user_session_path %>
+			    <% end %>
+		    </div>
 		</div>
 	</div>
 </header>

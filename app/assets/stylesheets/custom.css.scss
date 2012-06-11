@@ -68,7 +68,7 @@ p {
 	color: white;
 	text-transform: uppercase;
 	letter-spacing: -1px;
-	padding-top: 9px;
+	padding: 10px;
 	font-weight: bold;
 	line-height: 1;
 	
@@ -76,6 +76,19 @@ p {
 		color: white;
 		text-decoration: none;
 	}
+}
+
+#session {
+	float: right;
+	color: white;
+	padding: 10px;
+	line-height: 1;
+	
+	&:hover {
+		color: white;
+		text-decoration: none;
+	}
+
 }
 
 /* footer */
