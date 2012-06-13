@@ -1,4 +1,13 @@
 <div class="center hero-unit">
 	<h1>Welcome to BarSlice</h1>
-	<%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+	<div class="btn-group">
+		<a class="btn dropdown-toggle btn-large btn-primary" data-toggle="dropdown" href="#">
+			Sign up now!
+			<span class="caret"></span>
+		</a>
+		<ul class="dropdown-menu">
+			<li><%= link_to "As user", new_user_registration_path %></li>
+			<li><%= link_to "As bar", new_bar_registration_path %></li>
+		</ul>
+	</div>
 </div>
