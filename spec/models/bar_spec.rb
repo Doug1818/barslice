@@ -38,7 +38,8 @@ describe Bar do
     it { should_not be_valid }
   end
 
-  describe "when phone is not 10 ten digits"
+  describe "when phone is not 10 ten digits" do
   	before { bar.phone = "2"*7 }
   	it { should_not be_valid }
+  end
 end
