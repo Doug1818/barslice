@@ -1,7 +1,8 @@
 BarSlice::Application.routes.draw do
-  devise_for :bars
-
   devise_for :users
+  devise_for :bars
+  resources :bars
+  resources :rooms
 
   root              to: 'static_pages#home'
   match '/help',    to: 'static_pages#help'

@@ -1,0 +1,25 @@
+<h1>New room</h1>
+
+<h2>Form for new room</h2>
+<%= form_for(@room) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+
+		<%= f.label :name, "Room name" %>
+		<%= f.text_field :name %>
+
+		<div>Privacy</div>
+		<div class="radio">
+			<%= f.radio_button :privacy, 1 %> <%= f.label :privacy, "Private" %>
+			<%= f.radio_button :privacy, 2 %> <%= f.label :privacy, "Semi-private" %>
+			<%= f.radio_button :privacy, 3 %> <%= f.label :privacy, "Shared space" %>
+		</div>
+
+		<div>Head count</div>
+		<div style="display:inline;">
+			<%= f.label :min_head_count, "Min" %><%= f.text_field :min_head_count %>
+			<%= f.label :max_head_count, "Max" %><%= f.text_field :max_head_count %>
+		</div>
+	</div>
+	<%= f.submit "Add room", class: "btn btn-large btn-primary" %>
+<% end %>

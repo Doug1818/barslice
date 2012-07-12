@@ -1,5 +1,12 @@
-<div class="center hero-unit">
-	<h1>Welcome to BarSlice</h1>
+<% if bar_signed_in? %>
+	<%= render 'bars/bar' %>
+<% else %>
+	<div class="center hero-unit">
+		<h1>Welcome to BarSlice</h1>
+	</div>
+<% end %>
+
+<!--
 	<div class="btn-group">
 		<a class="btn dropdown-toggle btn-large btn-primary" data-toggle="dropdown" href="#">
 			Sign up now!
@@ -10,4 +17,4 @@
 			<li><%= link_to "As bar", new_bar_registration_path %></li>
 		</ul>
 	</div>
-</div>
+-->
