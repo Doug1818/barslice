@@ -1,25 +1,47 @@
-<h1>New room</h1>
+<h1><%= current_bar.name %>: New room</h1>
 
 <h2>Form for new room</h2>
 <%= form_for(@room) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
 
-		<%= f.label :name, "Room name" %>
-		<%= f.text_field :name %>
+		<div>
+			<%= f.label :name, "Room name" %>
+			<%= f.text_field :name %>
+		</div><br />
 
-		<div>Privacy</div>
-		<div class="radio">
-			<%= f.radio_button :privacy, 1 %> <%= f.label :privacy, "Private" %>
-			<%= f.radio_button :privacy, 2 %> <%= f.label :privacy, "Semi-private" %>
-			<%= f.radio_button :privacy, 3 %> <%= f.label :privacy, "Shared space" %>
-		</div>
+		<div>
+			<%= f.label :privacy %>
+			<%= f.radio_button :privacy, 1 %> Private
+			<%= f.radio_button :privacy, 2 %> Semi-private
+			<%= f.radio_button :privacy, 3 %> Shared space
+		</div> <br />
 
 		<div>Head count</div>
-		<div style="display:inline;">
-			<%= f.label :min_head_count, "Min" %><%= f.text_field :min_head_count %>
-			<%= f.label :max_head_count, "Max" %><%= f.text_field :max_head_count %>
-		</div>
+		<div>
+			Min <%= f.text_field :min_head_count, style: 'width: 50px;' %> 
+			Max <%= f.text_field :max_head_count, style: 'width: 50px;' %>
+		</div> <br />
+
+		<div>
+			<%= f.label :min_spend, "Spend minimum" %>
+			<%= f.text_field :min_spend, style: 'width: 50px;' %>
+			<%= f.radio_button :per_person, false %> Total
+			<%= f.radio_button :per_person, true %> Per person
+		</div><br />
+
+		<div>Description</div>
+		<div><%= f.text_area :description, style: 'height: 100px; width:300px' %></div><br />
+
+		<div>Availability</div>
+		Monday <%= f.time_select :mon1 %><%= f.time_select :mon2 %>
+
+		<div>Restrictions</div><br />
+
+		<div>Add pictures</div><br />
+
+		<div><%= f.hidden_field :bar_id, current_bar.id %></div>
+
 	</div>
 	<%= f.submit "Add room", class: "btn btn-large btn-primary" %>
 <% end %>

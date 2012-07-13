@@ -10,7 +10,7 @@ class Bar < ActiveRecord::Base
   # attr_accessible :title, :body
   attr_accessible :name, :address, :neighborhood, :phone
 
-  has_many :rooms
+  has_many :rooms, foreign_key: "bar_id"
 
   before_save { |bar| bar.phone = phone.gsub(/\D/, '') }
 

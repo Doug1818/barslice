@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
-  
+before_filter :authenticate_bar!
+
   def new
     @room = Room.new
   end
@@ -10,8 +11,8 @@ class RoomsController < ApplicationController
       flash[:success] = "Room created!"
       redirect_to root_path
     else
-      @feed_items = []
-      render 'static_pages/home'
+      flash[:error] = "Room not created!"
+      redirect_to new_room_path
     end
   end
 
