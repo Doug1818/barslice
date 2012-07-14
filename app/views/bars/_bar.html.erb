@@ -1,6 +1,6 @@
 <h1><%= current_bar.name %></h1>
 
-<% if current_bar.rooms = [] %>
+<% if current_bar.rooms.count == 0 %>
 	<h2>Please add rooms available to be booked at your bar.</h2>
 	<%= link_to "Add rooms", new_room_path, class: "btn btn-large btn-primary" %>
 <% else %>

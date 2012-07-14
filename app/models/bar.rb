@@ -10,16 +10,14 @@ class Bar < ActiveRecord::Base
   # attr_accessible :title, :body
   attr_accessible :name, :address, :neighborhood, :phone
 
-  has_many :rooms, foreign_key: "bar_id"
+  has_many :rooms
 
   before_save { |bar| bar.phone = phone.gsub(/\D/, '') }
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :address, presence: true, length: { maximum: 150 }
   validates :neighborhood, presence: true # add list validation
-  validates :phone, presence: true#,
-                    #length: { minimum: 10 },
-                    #length: { maximum: 10 }
+  validates :phone, presence: true
 
   NEIGHBORHOODS = ["Alphabet City", "Battery Park", "Chelsea", 
   	"Chinatown", "Civic Center", "East Harlem", "East Village", 
