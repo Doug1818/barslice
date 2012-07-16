@@ -19,8 +19,8 @@
 
 		<strong>Head count</strong>
 		<div>
-			Min <%= f.text_field :min_head_count, style: 'width: 50px;' %> 
-			Max <%= f.text_field :max_head_count, style: 'width: 50px;' %>
+			Minimum: <%= f.text_field :min_head_count, style: 'width: 50px;' %> 
+			Maximum: <%= f.text_field :max_head_count, style: 'width: 50px;' %>
 		</div> <br />
 
 		<div>
@@ -37,25 +37,25 @@
 		<div class="avail">
 			<span>Monday</span>
 			<%= f.select :mon1, 1..12 %><%= f.select :mon1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :mon2, 1..12 %><%= f.select :mon2ap, { "PM" => false, "AM" => true } %>
+			<%= f.select :mon2, 1..12 %><%= f.select :mon2ap, { "AM" => true, "PM" => false } %>
 		    <span>Tuesday</span>
 		    <%= f.select :tues1, 1..12 %><%= f.select :tues1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :tues2, 1..12 %><%= f.select :tues2ap, { "PM" => false, "AM" => true } %>
+			<%= f.select :tues2, 1..12 %><%= f.select :tues2ap, { "AM" => true, "PM" => false } %>
 			<span>Wednesday</span>
 		    <%= f.select :wed1, 1..12 %><%= f.select :wed1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :wed2, 1..12 %><%= f.select :wed2ap, { "PM" => false, "AM" => true } %>
+			<%= f.select :wed2, 1..12 %><%= f.select :wed2ap, { "AM" => true, "PM" => false } %>
 			<span>Thursday</span>
 		    <%= f.select :thurs1, 1..12 %><%= f.select :thurs1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :thurs2, 1..12 %><%= f.select :thurs2ap, { "PM" => false, "AM" => true } %>
+			<%= f.select :thurs2, 1..12 %><%= f.select :thurs2ap, { "AM" => true, "PM" => false } %>
 			<span>Friday</span>
 		    <%= f.select :fri1, 1..12 %><%= f.select :fri1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :fri2, 1..12 %><%= f.select :fri2ap, { "PM" => false, "AM" => true } %>
+			<%= f.select :fri2, 1..12 %><%= f.select :fri2ap, { "AM" => true, "PM" => false } %>
 			<span>Saturday</span>
 		    <%= f.select :sat1, 1..12 %><%= f.select :sat1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :sat2, 1..12 %><%= f.select :sat2ap, { "PM" => false, "AM" => true } %>
+			<%= f.select :sat2, 1..12 %><%= f.select :sat2ap, { "AM" => true, "PM" => false } %>
 			<span>Sunday</span>
 		    <%= f.select :sun1, 1..12 %><%= f.select :sun1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :sun2, 1..12 %><%= f.select :sun2ap, { "PM" => false, "AM" => true } %>
+			<%= f.select :sun2, 1..12 %><%= f.select :sun2ap, { "AM" => true, "PM" => false } %>
 	   </div><br />
 
 		<strong>Restrictions</strong>
@@ -63,6 +63,7 @@
 			<%= f.fields_for :restrictions do |builder| %>
 				<%= render 'restriction_fields', f: builder %>
 			<% end %>
+			<%= link_to_add_fields "Add restriction", f, :restrictions %>
 		</div><br />
 
 		<div><strong>Add pictures</strong></div><br />

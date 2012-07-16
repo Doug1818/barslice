@@ -1,2 +1,11 @@
-Start date: <%= f.text_field :start, class: "datepick", style: "width: 100px" %>
-End date:   <%= f.text_field :end, class: "datepick", style: "width: 100px" %>
+<div class="avail">
+	Start date: <%= f.text_field :start, class: "datepicker", style: "width: 100px" %>
+	End date:   <%= f.text_field :end, class: "datepicker", style: "width: 100px" %>
+	<%= f.hidden_field :_destroy %>
+	<%= link_to "remove", '#', class: "remove_fields" %>
+</div>
+<script type="text/javascript">
+	$(function() {
+		$(".datepicker").datepicker();
+	});
+</script>

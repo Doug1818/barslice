@@ -3,5 +3,5 @@ class Room < ActiveRecord::Base
   	:per_person, :privacy
   belongs_to :bar
   has_many :restrictions
-  accepts_nested_attributes_for :restrictions
+  accepts_nested_attributes_for :restrictions, allow_destroy: true
 end

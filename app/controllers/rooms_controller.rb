@@ -4,7 +4,6 @@ before_filter :authenticate_bar!
   def new
     @room = Room.new
     @room.restrictions.new
-    #3.times { @room.restrictions.build }
   end
 
   def create
