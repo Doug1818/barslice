@@ -37,4 +37,7 @@ BarSlice::Application.configure do
 
   # Doug per devise
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  # Doug per paperclip
+  Paperclip.options[:command_path] = "/opt/local/bin/"
 end

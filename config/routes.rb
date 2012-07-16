@@ -4,6 +4,7 @@ BarSlice::Application.routes.draw do
   resources :bars
   resources :rooms
   resources :restrictions
+  resources :roompics
 
   root              to: 'static_pages#home'
   match '/help',    to: 'static_pages#help'

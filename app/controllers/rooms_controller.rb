@@ -4,6 +4,7 @@ before_filter :authenticate_bar!
   def new
     @room = Room.new
     @room.restrictions.new
+    @room.roompics.new
   end
 
   def create

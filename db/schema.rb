@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120715210526) do
+ActiveRecord::Schema.define(:version => 20120716192331) do
 
   create_table "bars", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(:version => 20120715210526) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "room_id"
+  end
+
+  create_table "roompics", :force => true do |t|
+    t.string   "description"
+    t.integer  "room_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
   end
 
   create_table "rooms", :force => true do |t|

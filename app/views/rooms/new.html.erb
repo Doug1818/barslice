@@ -1,7 +1,7 @@
 <h1><%= current_bar.name %>: New room</h1>
 
 <h2>Form for new room</h2>
-<%= form_for(@room) do |f| %>
+<%= form_for( @room, html: { multipart: true } ) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="field">
 
@@ -66,7 +66,12 @@
 			<%= link_to_add_fields "Add restriction", f, :restrictions %>
 		</div><br />
 
-		<div><strong>Add pictures</strong></div><br />
+		<strong>Add pictures</strong>
+		<div>
+			<%= f.fields_for :roompics do |builder| %>
+				<%= builder.file_field :pic %>
+			<% end %>
+		</div><br />
 
 	</div>
 	<%= f.submit "Add room", class: "btn btn-large btn-primary" %>
