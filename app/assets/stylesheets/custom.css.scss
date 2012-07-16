@@ -59,6 +59,14 @@ p {
 	line-height: 1.7em
 }
 
+strong {
+	font-weight:bold;
+}
+
+.strong {
+	font-weight:bold;	
+}
+
 /* header */
 
 #logo {
@@ -117,3 +125,41 @@ footer {
 		}
 	}
 }
+
+/* forms */
+
+.avail {
+	margin-left: 25px;
+	span {
+		display:block;
+	}
+}
+
+#room_mon1     { width: 60px; margin: 5px;}
+#room_mon1ap   { width: 60px; margin: 5px;}
+#room_mon2     { width: 60px; margin: 5px;}
+#room_mon2ap   { width: 60px; margin: 5px;}
+#room_tues1    { width: 60px; margin: 5px;}
+#room_tues1ap  { width: 60px; margin: 5px;}
+#room_tues2    { width: 60px; margin: 5px;}
+#room_tues2ap  { width: 60px; margin: 5px;}
+#room_wed1     { width: 60px; margin: 5px;}
+#room_wed1ap   { width: 60px; margin: 5px;}
+#room_wed2     { width: 60px; margin: 5px;}
+#room_wed2ap   { width: 60px; margin: 5px;}
+#room_thurs1   { width: 60px; margin: 5px;}
+#room_thurs1ap { width: 60px; margin: 5px;}
+#room_thurs2   { width: 60px; margin: 5px;}
+#room_thurs2ap { width: 60px; margin: 5px;}
+#room_fri1     { width: 60px; margin: 5px;}
+#room_fri1ap   { width: 60px; margin: 5px;}
+#room_fri2     { width: 60px; margin: 5px;}
+#room_fri2ap   { width: 60px; margin: 5px;}
+#room_sat1     { width: 60px; margin: 5px;}
+#room_sat1ap   { width: 60px; margin: 5px;}
+#room_sat2     { width: 60px; margin: 5px;}
+#room_sat2ap   { width: 60px; margin: 5px;}
+#room_sun1     { width: 60px; margin: 5px;}
+#room_sun1ap   { width: 60px; margin: 5px;}
+#room_sun2     { width: 60px; margin: 5px;}
+#room_sun2ap   { width: 60px; margin: 5px;}

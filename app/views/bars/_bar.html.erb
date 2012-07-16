@@ -4,6 +4,19 @@
 	<h2>Please add rooms available to be booked at your bar.</h2>
 	<%= link_to "Add rooms", new_room_path, class: "btn btn-large btn-primary" %>
 <% else %>
-	(List of upcomming events)
-	(Add/edit rooms button)
+	<div>
+		<h2>Your events</h2>
+
+	</div><br />
+
+	<div>
+		<h2>Your rooms</h2>
+		<div>(list details of each room with edit rooms path for each)</div><br />
+		<%= link_to "Add rooms", new_room_path, class: "btn btn-med btn-primary" %>
+	</div><br />
+
+	<div>
+		<h2>Your specials</h2>
+
+	</div>
 <% end %>

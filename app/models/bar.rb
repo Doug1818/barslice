@@ -11,7 +11,7 @@ class Bar < ActiveRecord::Base
   attr_accessible :name, :address, :neighborhood, :phone
 
   has_many :rooms
-
+  
   before_save { |bar| bar.phone = phone.gsub(/\D/, '') }
 
   validates :name, presence: true, length: { maximum: 100 }

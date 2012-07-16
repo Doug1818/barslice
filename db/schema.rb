@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120713151850) do
+ActiveRecord::Schema.define(:version => 20120715210526) do
 
   create_table "bars", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -54,20 +54,34 @@ ActiveRecord::Schema.define(:version => 20120713151850) do
     t.boolean  "per_person"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-    t.time     "mon1"
-    t.time     "mon2"
-    t.time     "tues1"
-    t.time     "tues2"
-    t.time     "wed1"
-    t.time     "wed2"
-    t.time     "thurs1"
-    t.time     "thurs2"
-    t.time     "fri1"
-    t.time     "fri2"
-    t.time     "sat1"
-    t.time     "sat2"
-    t.time     "sun1"
-    t.time     "sun2"
+    t.integer  "mon1"
+    t.boolean  "mon1ap"
+    t.integer  "mon2"
+    t.boolean  "mon2ap"
+    t.integer  "tues1"
+    t.boolean  "tues1ap"
+    t.integer  "tues2"
+    t.boolean  "tues2ap"
+    t.integer  "wed1"
+    t.boolean  "wed1ap"
+    t.integer  "wed2"
+    t.boolean  "wed2ap"
+    t.integer  "thurs1"
+    t.boolean  "thurs1ap"
+    t.integer  "thurs2"
+    t.boolean  "thurs2ap"
+    t.integer  "fri1"
+    t.boolean  "fri1ap"
+    t.integer  "fri2"
+    t.boolean  "fri2ap"
+    t.integer  "sat1"
+    t.boolean  "sat1ap"
+    t.integer  "sat2"
+    t.boolean  "sat2ap"
+    t.integer  "sun1"
+    t.boolean  "sun1ap"
+    t.integer  "sun2"
+    t.boolean  "sun2ap"
   end
 
   create_table "users", :force => true do |t|

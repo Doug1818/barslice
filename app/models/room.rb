@@ -1,5 +1,7 @@
 class Room < ActiveRecord::Base
-  attr_accessible :description, :max_head_count, :min_head_count, :min_spend, :name, :per_person, :privacy, :mon1, :mon2
+  attr_accessible :restrictions_attributes, :name, :description, :max_head_count, :min_head_count, :min_spend, 
+  	:per_person, :privacy
   belongs_to :bar
   has_many :restrictions
+  accepts_nested_attributes_for :restrictions
 end
