@@ -2,12 +2,16 @@
   # http://aws.amazon.com/security-credentials
 
   development:
-  	bucket: barslice
+    bucket: barslice
     access_key_id: AKIAJ5GOOLEVIVUV36ZA
     secret_access_key: 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
 
   test:
-    <<: *development
+    bucket: barslice
+    access_key_id: AKIAJ5GOOLEVIVUV36ZA
+    secret_access_key: 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
 
   production:
-    <<: *development
+    bucket: barslice
+    access_key_id: AKIAJ5GOOLEVIVUV36ZA
+    secret_access_key: 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
