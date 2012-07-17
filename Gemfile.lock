@@ -31,6 +31,15 @@ GEM
     addressable (2.2.7)
     annotate (2.4.1.beta1)
     arel (3.0.2)
+    aws-s3 (0.6.3)
+      builder
+      mime-types
+      xml-simple
+    aws-sdk (1.5.7)
+      httparty (~> 0.7)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.0.0)
     bootstrap-will_paginate (0.0.5)
@@ -89,6 +98,9 @@ GEM
     heroku-api (0.2.10)
       excon (~> 0.15.1)
     hike (1.2.1)
+    httparty (0.8.3)
+      multi_json (~> 1.0)
+      multi_xml
     i18n (0.6.0)
     journey (1.0.3)
     jquery-rails (2.0.0)
@@ -116,6 +128,7 @@ GEM
     method_source (0.7.1)
     mime-types (1.18)
     multi_json (1.3.6)
+    multi_xml (0.5.1)
     netrc (0.7.5)
     nokogiri (1.5.2)
     orm_adapter (0.0.7)
@@ -200,9 +213,11 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    uuidtools (2.1.3)
     warden (1.1.1)
       rack (>= 1.0)
     will_paginate (3.0.1)
+    xml-simple (1.1.1)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -211,6 +226,8 @@ PLATFORMS
 
 DEPENDENCIES
   annotate (~> 2.4.1.beta)
+  aws-s3
+  aws-sdk
   bcrypt-ruby (= 3.0.1)
   bootstrap-sass (= 2.0.0)
   bootstrap-will_paginate (= 0.0.5)

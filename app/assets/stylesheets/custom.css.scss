@@ -135,31 +135,12 @@ footer {
 	}
 }
 
-#room_mon1     { width: 60px; margin: 5px;}
-#room_mon1ap   { width: 60px; margin: 5px;}
-#room_mon2     { width: 60px; margin: 5px;}
-#room_mon2ap   { width: 60px; margin: 5px;}
-#room_tues1    { width: 60px; margin: 5px;}
-#room_tues1ap  { width: 60px; margin: 5px;}
-#room_tues2    { width: 60px; margin: 5px;}
-#room_tues2ap  { width: 60px; margin: 5px;}
-#room_wed1     { width: 60px; margin: 5px;}
-#room_wed1ap   { width: 60px; margin: 5px;}
-#room_wed2     { width: 60px; margin: 5px;}
-#room_wed2ap   { width: 60px; margin: 5px;}
-#room_thurs1   { width: 60px; margin: 5px;}
-#room_thurs1ap { width: 60px; margin: 5px;}
-#room_thurs2   { width: 60px; margin: 5px;}
-#room_thurs2ap { width: 60px; margin: 5px;}
-#room_fri1     { width: 60px; margin: 5px;}
-#room_fri1ap   { width: 60px; margin: 5px;}
-#room_fri2     { width: 60px; margin: 5px;}
-#room_fri2ap   { width: 60px; margin: 5px;}
-#room_sat1     { width: 60px; margin: 5px;}
-#room_sat1ap   { width: 60px; margin: 5px;}
-#room_sat2     { width: 60px; margin: 5px;}
-#room_sat2ap   { width: 60px; margin: 5px;}
-#room_sun1     { width: 60px; margin: 5px;}
-#room_sun1ap   { width: 60px; margin: 5px;}
-#room_sun2     { width: 60px; margin: 5px;}
-#room_sun2ap   { width: 60px; margin: 5px;}
+#room_mon1, #room_mon1ap, #room_mon2, #room_mon2ap, #room_tues1, #room_tues1ap, #room_tues2, 
+#room_tues2ap, #room_wed1, #room_wed1ap, #room_wed2, #room_wed2ap, #room_thurs1, #room_thurs1ap, 
+#room_thurs2, #room_thurs2ap, #room_fri1, #room_fri1ap, #room_fri2, #room_fri2ap, #room_sat1, 
+#room_sat1ap, #room_sat2, #room_sat2ap, #room_sun1, #room_sun1ap, #room_sun2, #room_sun2ap { 
+	width: 50px; 
+	height: 20px; 
+	font-size: .85em; 
+	margin: 5px;
+	}

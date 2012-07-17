@@ -10,6 +10,8 @@ gem 'bootstrap-will_paginate', '0.0.5'
 gem 'devise'
 gem "paperclip", "~> 3.0"
 gem 'kumade'
+gem 'aws-sdk'
+gem 'aws-s3'
 
 group :development do
 	gem 'rspec-rails', '2.9.0'
