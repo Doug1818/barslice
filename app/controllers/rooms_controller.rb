@@ -18,6 +18,9 @@ before_filter :authenticate_bar!
     end
   end
 
+  def destroy
+  end
+
   def show
   end
 
@@ -28,8 +31,5 @@ before_filter :authenticate_bar!
   end
 
   def update
-  end
-
-  def destroy
   end
 end

@@ -11,8 +11,42 @@
 
 	<div>
 		<h2>Your rooms</h2>
-		<div>(list details of each room with edit rooms path for each)
-		</div><br />
+		<ul>
+			<% current_bar.rooms.each do |room| %>
+				<li>
+					<ul>
+						<li>
+							<%= room.name %>
+						</li>
+						<li>
+							<% if room.privacy == 1 %>
+								Private room
+							<% elsif room.privacy == 2 %>
+								Semi-private room
+							<% else %>
+								Shared space
+							<% end %>
+						</li>
+						<li>
+							Capacity <%= room.min_head_count %>-<%= room.max_head_count %>
+						</li>
+						<li>
+							Mimimum spend of $<%= room.min_spend %>
+							<% if room.per_person == true %> per person <% end %>
+						</li>
+						<li>
+							<ul>
+								<%= room.roompics.each do |roompic| %>
+									<li>
+										<%= image_tag roompic.pic.url(:thumb) %>
+									</li>
+								<% end %>
+							</ul>
+						</li>
+					</ul>
+				</li><br />
+			<% end %>
+		</ul><br />
 		<%= link_to "Add rooms", new_room_path, class: "btn btn-med btn-primary" %>
 	</div><br />
 

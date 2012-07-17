@@ -33,7 +33,7 @@
 		<strong>Description</strong>
 		<div><%= f.text_area :description, style: 'height: 100px; width:300px' %></div><br />
 
-		<strong>Availability</strong><br />
+		<strong>Bar hours</strong><br />
 		<div class="avail">
 			<span>Monday</span>
 			<%= f.select :mon1, 1..12 %><%= f.select :mon1ap, { "PM" => false, "AM" => true } %> --
@@ -69,8 +69,9 @@
 		<strong>Add pictures</strong>
 		<div>
 			<%= f.fields_for :roompics do |builder| %>
-				<%= builder.file_field :pic %>
+				<%= render 'roompic_fields', f: builder %>
 			<% end %>
+			<%= link_to_add_fields "Add picture", f, :roompics %>
 		</div><br />
 
 	</div>
