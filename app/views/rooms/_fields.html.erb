@@ -1,0 +1,59 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<%= f.label :name, "Room name", class: "hform strong" %>
+<%= f.text_field :name %>
+
+<%= f.label :privacy, class: "hform strong" %>
+<%= f.radio_button :privacy, 1 %> Private
+<%= f.radio_button :privacy, 2 %> Semi-private
+<%= f.radio_button :privacy, 3 %> Shared space
+
+<div class="hform strong">Head count</div>
+Minimum: <%= f.text_field :min_head_count, style: 'width: 50px;' %> 
+Maximum: <%= f.text_field :max_head_count, style: 'width: 50px;' %>
+
+<div class="hform"><span class="strong">Spend minimum</span> (leave blank if no minimum)</div>
+$ <%= f.text_field :min_spend, style: 'width: 50px;' %>
+<%= f.radio_button :per_person, false %> Total
+<%= f.radio_button :per_person, true %> Per person
+
+<div class="hform strong">Description</div>
+<%= f.text_area :description, placeholder: "Descibe the room itself and any relevant conditions to booking it.", style: 'height: 100px; width:350px' %>
+
+<div class="hform strong">Room hours</div>
+<div class="avail">
+	<span>Monday</span>
+	<%= f.select :mon1, 1..12 %><%= f.select :mon1ap, { "PM" => false, "AM" => true } %> --
+	<%= f.select :mon2, 1..12 %><%= f.select :mon2ap, { "AM" => true, "PM" => false } %>
+    <span>Tuesday</span>
+    <%= f.select :tues1, 1..12 %><%= f.select :tues1ap, { "PM" => false, "AM" => true } %> --
+	<%= f.select :tues2, 1..12 %><%= f.select :tues2ap, { "AM" => true, "PM" => false } %>
+	<span>Wednesday</span>
+    <%= f.select :wed1, 1..12 %><%= f.select :wed1ap, { "PM" => false, "AM" => true } %> --
+	<%= f.select :wed2, 1..12 %><%= f.select :wed2ap, { "AM" => true, "PM" => false } %>
+	<span>Thursday</span>
+    <%= f.select :thurs1, 1..12 %><%= f.select :thurs1ap, { "PM" => false, "AM" => true } %> --
+	<%= f.select :thurs2, 1..12 %><%= f.select :thurs2ap, { "AM" => true, "PM" => false } %>
+	<span>Friday</span>
+    <%= f.select :fri1, 1..12 %><%= f.select :fri1ap, { "PM" => false, "AM" => true } %> --
+	<%= f.select :fri2, 1..12 %><%= f.select :fri2ap, { "AM" => true, "PM" => false } %>
+	<span>Saturday</span>
+    <%= f.select :sat1, 1..12 %><%= f.select :sat1ap, { "PM" => false, "AM" => true } %> --
+	<%= f.select :sat2, 1..12 %><%= f.select :sat2ap, { "AM" => true, "PM" => false } %>
+	<span>Sunday</span>
+    <%= f.select :sun1, 1..12 %><%= f.select :sun1ap, { "PM" => false, "AM" => true } %> --
+	<%= f.select :sun2, 1..12 %><%= f.select :sun2ap, { "AM" => true, "PM" => false } %>
+</div>
+
+<div class="hform strong">Restrictions</div>
+<%= f.fields_for :restrictions do |builder| %>
+	<%= render 'restriction_fields', f: builder %>
+<% end %>
+<%= link_to_add_fields "Add restriction", f, :restrictions %>
+
+<div class="hform strong">Add pictures</div>
+<%= f.fields_for :roompics do |builder| %>
+	<%= render 'roompic_fields', f: builder %>
+<% end %>
+<%= link_to_add_fields "Add picture", f, :roompics %>
+<br /><br /><br />

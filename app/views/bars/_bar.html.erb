@@ -1,57 +1,51 @@
 <h1><%= current_bar.name %></h1>
 
-<% if current_bar.rooms.count == 0 %>
-	<h2>Please add rooms available to be booked at your bar.</h2>
-	<%= link_to "Add rooms", new_room_path, class: "btn btn-large btn-primary" %>
-<% else %>
-	<div>
-		<h2>Your events</h2>
+<div> <h2>Your events</h2> </div><br />
 
-	</div><br />
+<div>
+	<h2>Your rooms</h2>
+		
+	<ul class="rooms">
+		<% current_bar.rooms.each do |room| %>
+			<li>
+				<div class="strong"><%= room.name %></div>
+				<div>
+					<% if room.privacy == 1 %>
+						Private room
+					<% elsif room.privacy == 2 %>
+						Semi-private room
+					<% else %>
+						Shared space
+					<% end %> |
 
-	<div>
-		<h2>Your rooms</h2>
-		<ul>
-			<% current_bar.rooms.each do |room| %>
-				<li>
-					<ul>
-						<li>
-							<%= room.name %>
-						</li>
-						<li>
-							<% if room.privacy == 1 %>
-								Private room
-							<% elsif room.privacy == 2 %>
-								Semi-private room
-							<% else %>
-								Shared space
-							<% end %>
-						</li>
-						<li>
-							Capacity <%= room.min_head_count %>-<%= room.max_head_count %>
-						</li>
-						<li>
-							Mimimum spend of $<%= room.min_spend %>
-							<% if room.per_person == true %> per person <% end %>
-						</li>
-						<li>
-							<ul>
-								<%= room.roompics.each do |roompic| %>
-									<li>
-										<%= image_tag roompic.pic.url(:thumb) %>
-									</li>
-								<% end %>
-							</ul>
-						</li>
-					</ul>
-				</li><br />
-			<% end %>
-		</ul><br />
-		<%= link_to "Add rooms", new_room_path, class: "btn btn-med btn-primary" %>
-	</div><br />
+					Capacity <%= room.min_head_count %>-<%= room.max_head_count %> |
 
-	<div>
-		<h2>Your specials</h2>
+					<% if room.min_spend == nil || 0 %>
+						No minimum spend
+					<% else %>
+						Mimimum spend of $<%= room.min_spend %>
+						<% if room.per_person == true %> per person <% end %>
+					<% end %> 
+				</div>
+				<div>
+					<%= room.description %>
+				</div>
+				<div>
+					<%= room.roompics.each do |roompic| %>
+						<%= image_tag roompic.pic.url(:thumb) %>
+					<% end %>
+				</div>
+				<div>
+					<%= link_to "delete", room, method: :delete, confirm: "You sure?" %> | 
+					<%= link_to "edit", edit_room_path(room) %>
+				</div>
+			</li>
+		<% end %>
+	</ul>
+	<%= link_to "Add room", new_room_path, class: "btn btn-med btn-primary" %>
+</div><br />
 
-	</div>
-<% end %>
+<div>
+	<h2>Your specials</h2>
+
+</div>

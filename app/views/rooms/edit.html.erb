@@ -1,0 +1,8 @@
+<% provide(:title, 'Edit room' ) %>
+
+<h1> Edit <%= @room.name %></h1>
+
+<%= form_for( @room, html: { multipart: true } ) do |f| %>
+	<%= render 'fields', f: f %>
+	<%= f.submit "Update room", class: "btn btn-large btn-primary" %>
+<% end %>

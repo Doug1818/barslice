@@ -1,79 +1,8 @@
-<h1><%= current_bar.name %>: New room</h1>
+<% provide(:title, 'Add room') %>
 
-<h2>Form for new room</h2>
+<h1>Add new room</h1>
+
 <%= form_for( @room, html: { multipart: true } ) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
-	<div class="field">
-
-		<div>
-			<%= f.label :name, "Room name", class: "strong" %>
-			<%= f.text_field :name %>
-		</div><br />
-
-		<div>
-			<%= f.label :privacy, class: "strong" %>
-			<%= f.radio_button :privacy, 1 %> Private
-			<%= f.radio_button :privacy, 2 %> Semi-private
-			<%= f.radio_button :privacy, 3 %> Shared space
-		</div> <br />
-
-		<strong>Head count</strong>
-		<div>
-			Minimum: <%= f.text_field :min_head_count, style: 'width: 50px;' %> 
-			Maximum: <%= f.text_field :max_head_count, style: 'width: 50px;' %>
-		</div> <br />
-
-		<div>
-			<%= f.label :min_spend, "Spend minimum", class: "strong" %>
-			<%= f.text_field :min_spend, style: 'width: 50px;' %>
-			<%= f.radio_button :per_person, false %> Total
-			<%= f.radio_button :per_person, true %> Per person
-		</div><br />
-
-		<strong>Description</strong>
-		<div><%= f.text_area :description, style: 'height: 100px; width:300px' %></div><br />
-
-		<strong>Bar hours</strong><br />
-		<div class="avail">
-			<span>Monday</span>
-			<%= f.select :mon1, 1..12 %><%= f.select :mon1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :mon2, 1..12 %><%= f.select :mon2ap, { "AM" => true, "PM" => false } %>
-		    <span>Tuesday</span>
-		    <%= f.select :tues1, 1..12 %><%= f.select :tues1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :tues2, 1..12 %><%= f.select :tues2ap, { "AM" => true, "PM" => false } %>
-			<span>Wednesday</span>
-		    <%= f.select :wed1, 1..12 %><%= f.select :wed1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :wed2, 1..12 %><%= f.select :wed2ap, { "AM" => true, "PM" => false } %>
-			<span>Thursday</span>
-		    <%= f.select :thurs1, 1..12 %><%= f.select :thurs1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :thurs2, 1..12 %><%= f.select :thurs2ap, { "AM" => true, "PM" => false } %>
-			<span>Friday</span>
-		    <%= f.select :fri1, 1..12 %><%= f.select :fri1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :fri2, 1..12 %><%= f.select :fri2ap, { "AM" => true, "PM" => false } %>
-			<span>Saturday</span>
-		    <%= f.select :sat1, 1..12 %><%= f.select :sat1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :sat2, 1..12 %><%= f.select :sat2ap, { "AM" => true, "PM" => false } %>
-			<span>Sunday</span>
-		    <%= f.select :sun1, 1..12 %><%= f.select :sun1ap, { "PM" => false, "AM" => true } %> --
-			<%= f.select :sun2, 1..12 %><%= f.select :sun2ap, { "AM" => true, "PM" => false } %>
-	   </div><br />
-
-		<strong>Restrictions</strong>
-		<div>
-			<%= f.fields_for :restrictions do |builder| %>
-				<%= render 'restriction_fields', f: builder %>
-			<% end %>
-			<%= link_to_add_fields "Add restriction", f, :restrictions %>
-		</div><br />
-
-		<strong>Add pictures</strong>
-		<div>
-			<%= f.fields_for :roompics do |builder| %>
-				<%= render 'roompic_fields', f: builder %>
-			<% end %>
-			<%= link_to_add_fields "Add picture", f, :roompics %>
-		</div><br />
-
-	</div>
+	<%= render 'fields', f: f %>
 	<%= f.submit "Add room", class: "btn btn-large btn-primary" %>
 <% end %>

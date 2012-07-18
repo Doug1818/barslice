@@ -10,15 +10,19 @@ before_filter :authenticate_bar!
   def create
     @room = current_bar.rooms.build(params[:room])
     if @room.save
-      flash[:success] = "Room created!"
+      flash[:success] = "Room created"
       redirect_to root_path
     else
-      flash[:error] = "Room not created!"
+      flash[:error] = "Room not created"
       redirect_to new_room_path
     end
   end
 
   def destroy
+    @room = current_bar.rooms.find(params[:id])
+    @room.destroy
+    flash[:notice] = "Room deleted"
+    redirect_to root_path
   end
 
   def show
@@ -28,8 +32,16 @@ before_filter :authenticate_bar!
   end
 
   def edit
+    @room = current_bar.rooms.find(params[:id])
   end
 
   def update
+    @room = current_bar.rooms.find(params[:id])
+    if @room.update_attributes(params[:room])
+      flash[:success] = "Room updated"
+      redirect_to root_path
+    else
+      render 'edit'
+    end
   end
 end
