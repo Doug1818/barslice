@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716192331) do
+ActiveRecord::Schema.define(:version => 20120718153907) do
 
   create_table "bars", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -34,6 +34,37 @@ ActiveRecord::Schema.define(:version => 20120716192331) do
 
   add_index "bars", ["email"], :name => "index_bars_on_email", :unique => true
   add_index "bars", ["reset_password_token"], :name => "index_bars_on_reset_password_token", :unique => true
+
+  create_table "hdctranges", :force => true do |t|
+    t.integer  "room_id"
+    t.integer  "min"
+    t.integer  "max"
+    t.boolean  "var_by_day"
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednesday"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturday"
+    t.boolean  "sunday"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "hrsranges", :force => true do |t|
+    t.time     "start"
+    t.time     "end"
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednesday"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturday"
+    t.boolean  "sunday"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "bar_id"
+  end
 
   create_table "restrictions", :force => true do |t|
     t.date     "start"
@@ -58,41 +89,25 @@ ActiveRecord::Schema.define(:version => 20120716192331) do
     t.integer  "bar_id"
     t.string   "name"
     t.integer  "privacy"
-    t.integer  "min_head_count"
-    t.integer  "max_head_count"
     t.text     "description"
-    t.integer  "min_spend"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "spendmins", :force => true do |t|
+    t.integer  "room_id"
+    t.integer  "min"
     t.boolean  "per_person"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.integer  "mon1"
-    t.boolean  "mon1ap"
-    t.integer  "mon2"
-    t.boolean  "mon2ap"
-    t.integer  "tues1"
-    t.boolean  "tues1ap"
-    t.integer  "tues2"
-    t.boolean  "tues2ap"
-    t.integer  "wed1"
-    t.boolean  "wed1ap"
-    t.integer  "wed2"
-    t.boolean  "wed2ap"
-    t.integer  "thurs1"
-    t.boolean  "thurs1ap"
-    t.integer  "thurs2"
-    t.boolean  "thurs2ap"
-    t.integer  "fri1"
-    t.boolean  "fri1ap"
-    t.integer  "fri2"
-    t.boolean  "fri2ap"
-    t.integer  "sat1"
-    t.boolean  "sat1ap"
-    t.integer  "sat2"
-    t.boolean  "sat2ap"
-    t.integer  "sun1"
-    t.boolean  "sun1ap"
-    t.integer  "sun2"
-    t.boolean  "sun2ap"
+    t.boolean  "var_by_day"
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednesday"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturday"
+    t.boolean  "sunday"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

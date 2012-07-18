@@ -11,6 +11,7 @@ class Bar < ActiveRecord::Base
   attr_accessible :name, :address, :neighborhood, :phone
 
   has_many :rooms
+  has_many :hrsranges
   
   before_save { |bar| bar.phone = phone.gsub(/\D/, '') }
 

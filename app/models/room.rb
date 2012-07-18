@@ -7,4 +7,6 @@ class Room < ActiveRecord::Base
   has_many :roompics
   has_many :restrictions
   accepts_nested_attributes_for :roompics, :restrictions, allow_destroy: true
+  has_many :hdctranges
+  has_many :spendmins
 end
