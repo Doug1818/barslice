@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120718153907) do
+ActiveRecord::Schema.define(:version => 20120719042744) do
 
   create_table "bars", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -34,6 +34,20 @@ ActiveRecord::Schema.define(:version => 20120718153907) do
 
   add_index "bars", ["email"], :name => "index_bars_on_email", :unique => true
   add_index "bars", ["reset_password_token"], :name => "index_bars_on_reset_password_token", :unique => true
+
+  create_table "fees", :force => true do |t|
+    t.integer  "room_id"
+    t.integer  "amount"
+    t.boolean  "sunday"
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednesday"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturday"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "hdctranges", :force => true do |t|
     t.integer  "room_id"

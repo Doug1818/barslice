@@ -64,7 +64,9 @@ p {
 	}
 
 .remove {
-	margin-left:15px;
+	/*margin-left:15px;*/
+	float:right;
+	margin:7px 30px 0;
 }
 
 
@@ -182,7 +184,14 @@ footer {
 	}
 }
 
+/* bar info
 
+.barinfo {
+	border:1px solid $grayLighter;
+	padding:10px;
+	float:right;
+}
+ */
 
 
 

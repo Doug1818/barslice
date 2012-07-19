@@ -8,26 +8,32 @@
 <%= f.radio_button :privacy, 2 %> Semi-private
 <%= f.radio_button :privacy, 3 %> Shared space
 
-<div class="hform strong">Head count</div>
+<div class="hform strong">Number of people</div>
 <%= f.fields_for :hdctranges do |builder| %>
 	<%= render 'hdctrange_fields', f: builder %>
 <% end %>
 <%= link_to_add_fields "Add", f, :hdctranges %>
 
-<div class="hform"><span class="strong">Spend minimum</span> (leave blank if no minimum)</div>
+<div class="hform"><span class="strong">Reservation fee</span> (leave blank if no reservation fee)</div>
+<%= f.fields_for :fees do |builder| %>
+	<%= render 'fee_fields', f: builder %>
+<% end %>
+<%= link_to_add_fields "Add", f, :fees %>
+
+<div class="hform"><span class="strong">Spend minimum</span> (leave blank if no spend minimum)</div>
 <%= f.fields_for :spendmins do |builder| %>
 	<%= render 'spendmin_fields', f: builder %>
 <% end %>
 <%= link_to_add_fields "Add", f, :spendmins %>
 
 <div class="hform strong">Description</div>
-<%= f.text_area :description, placeholder: "Descibe the room itself and any relevant conditions to booking it.", style: 'height: 100px; width:350px' %>
+<%= f.text_area :description, placeholder: "Descibe the room itself and any relevant conditions to booking it.", style: 'height: 100px; width:400px' %>
 
 <div class="hform strong">Restrictions</div>
 <%= f.fields_for :restrictions do |builder| %>
 	<%= render 'restriction_fields', f: builder %>
 <% end %>
-<%= link_to_add_fields "Add restriction", f, :restrictions %>
+<%= link_to_add_fields "Add", f, :restrictions %>
 
 <div class="hform strong">Add pictures</div>
 <%= f.fields_for :roompics do |builder| %>

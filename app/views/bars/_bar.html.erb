@@ -35,7 +35,32 @@
 					</ul>					
 				</div>
 				<div>
-					<strong>Spend minimum:</strong>
+					<strong>Reservation fee:</strong><br />
+					<% unless room.fees.any? %>No reservation fee<% end %>
+					<ul>
+						<% room.fees.each do |fee| %>
+							<li>
+								<% if fee.amount.nil? || fee.fee == 0 %>
+									No minimum spend
+								<% else %>
+									$<%= fee.amount %>
+									<% if fee.sunday? && fee.monday? && fee.tuesday? && fee.wednesday? && fee.thursday? && fee.friday? && fee.saturday? %>
+									<% else %> on
+										<% if fee.sunday? %> Sun <% end %>
+										<% if fee.monday? %> Mon <% end %>
+										<% if fee.tuesday? %> Tues <% end %>
+										<% if fee.wednesday? %> Wed <% end %>
+										<% if fee.thursday? %> Thurs <% end %>
+										<% if fee.friday? %> Fri <% end %>
+										<% if fee.saturday? %> Sat <% end %>
+									<% end %>
+								<% end %> 
+							</li>
+						<% end %>
+					</ul>					
+				</div>
+				<div>
+					<strong>Spend minimum:</strong><br />
 					<% unless room.spendmins.any? %>No minimum spend<% end %>
 					<ul>
 						<% room.spendmins.each do |spendmin| %>
