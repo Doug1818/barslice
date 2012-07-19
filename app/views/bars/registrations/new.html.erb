@@ -2,29 +2,37 @@
 
 <h2>Bar sign up</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { multipart: true } ) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :name, "Bar name" %><br />
+  <div><%= f.label :name, "Bar name", class: "hform" %>
   <%= f.text_field :name %></div>  
 
-  <div><%= f.label :email %><br />
+  <div><%= f.label :email, class: "hform" %>
   <%= f.email_field :email %></div>
 
-  <div><%= f.label :password %><br />
+  <div><%= f.label :password, class: "hform" %>
   <%= f.password_field :password %></div>
 
-  <div><%= f.label :password_confirmation %><br />
+  <div><%= f.label :password_confirmation, class: "hform" %>
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.label :address, "Bar address" %><br />
+  <div><%= f.label :address, "Bar address", class: "hform" %>
   <%= f.text_field :address %></div>
 
-  <div><%= f.label :neighborhood %><br />
+  <div><%= f.label :neighborhood, class: "hform" %>
   <%= f.select :neighborhood, Bar::NEIGHBORHOODS %></div>
 
-  <div><%= f.label :phone, "Phone number" %><br />
+  <div><%= f.label :phone, "Phone number", class: "hform" %>
   <%= f.text_field :phone %></div>
+
+  <div class="hform">Bar hours</div>
+  <div>
+    <%= f.fields_for :hrsranges do |builder| %>
+      <%= render 'hrsrange_fields', f: builder %>
+    <% end %>
+    <%= link_to_add_fields "Add", f, :hrsranges %>
+  </div><br /><br />
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>

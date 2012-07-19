@@ -3,6 +3,8 @@ before_filter :authenticate_bar!
 
   def new
     @room = Room.new
+    @room.hdctranges.new
+    @room.spendmins.new
     @room.restrictions.new
     @room.roompics.new
   end

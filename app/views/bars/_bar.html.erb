@@ -4,40 +4,74 @@
 
 <div>
 	<h2>Your rooms</h2>
-		
 	<ul class="rooms">
 		<% current_bar.rooms.each do |room| %>
-			<li>
-				<div class="strong"><%= room.name %></div>
-				<div>
-					<% if room.privacy == 1 %>
-						Private room
-					<% elsif room.privacy == 2 %>
-						Semi-private room
-					<% else %>
-						Shared space
-					<% end %> |
-
-					Capacity <%= room.min_head_count %>-<%= room.max_head_count %> |
-
-					<% if room.min_spend == nil || 0 %>
-						No minimum spend
-					<% else %>
-						Mimimum spend of $<%= room.min_spend %>
-						<% if room.per_person == true %> per person <% end %>
-					<% end %> 
+			<li class="room">
+				<div class="title">
+					<span class="strong"><%= room.name %></span> |
+					<% if room.privacy == 1 %> Private room
+					<% elsif room.privacy == 2 %> Semi-private room
+					<% else %> Shared space
+					<% end %>
 				</div>
 				<div>
+					<strong>Number of people required:</strong><br />
+					<ul>
+						<% room.hdctranges.each do |hdctrange| %>
+							<li>
+								<%= hdctrange.min %>-<%= hdctrange.max %>
+								<% if hdctrange.sunday? && hdctrange.monday? && hdctrange.tuesday? && hdctrange.wednesday? && hdctrange.thursday? && hdctrange.friday? && hdctrange.saturday? %>
+								<% else %> on 
+									<% if hdctrange.sunday? %> Sun <% end %>
+									<% if hdctrange.monday? %> Mon <% end %>
+									<% if hdctrange.tuesday? %> Tues <% end %>
+									<% if hdctrange.wednesday? %> Wed <% end %>
+									<% if hdctrange.thursday? %> Thurs <% end %>
+									<% if hdctrange.friday? %> Fri <% end %>
+									<% if hdctrange.saturday? %> Sat <% end %>
+								<% end %>
+							</li>
+						<% end %>
+					</ul>					
+				</div>
+				<div>
+					<strong>Spend minimum:</strong>
+					<% unless room.spendmins.any? %>No minimum spend<% end %>
+					<ul>
+						<% room.spendmins.each do |spendmin| %>
+							<li>
+								<% if spendmin.min.nil? || spendmin.min == 0 %>
+									No minimum spend
+								<% else %>
+									$<%= spendmin.min %>
+									<% if spendmin.sunday? && spendmin.monday? && spendmin.tuesday? && spendmin.wednesday? && spendmin.thursday? && spendmin.friday? && spendmin.saturday? %>
+									<% else %>
+										<% if spendmin.per_person == true %> per person <% end %> on
+										<% if spendmin.sunday? %> Sun <% end %>
+										<% if spendmin.monday? %> Mon <% end %>
+										<% if spendmin.tuesday? %> Tues <% end %>
+										<% if spendmin.wednesday? %> Wed <% end %>
+										<% if spendmin.thursday? %> Thurs <% end %>
+										<% if spendmin.friday? %> Fri <% end %>
+										<% if spendmin.saturday? %> Sat <% end %>
+									<% end %>
+								<% end %> 
+							</li>
+						<% end %>
+					</ul>					
+				</div>
+				<div>
+					<strong>Description: </strong><br>
 					<%= room.description %>
 				</div>
 				<div>
-					<%= room.roompics.each do |roompic| %>
+					<% room.roompics.each do |roompic| %>
 						<%= image_tag roompic.pic.url(:thumb) %>
 					<% end %>
 				</div>
 				<div>
-					<%= link_to "delete", room, method: :delete, confirm: "You sure?" %> | 
-					<%= link_to "edit", edit_room_path(room) %>
+					<%= link_to "Delete", room, method: :delete, confirm: "You sure?" %> | 
+					<%= link_to "Edit", edit_room_path(room) %>
 				</div>
 			</li>
 		<% end %>

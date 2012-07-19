@@ -8,10 +8,11 @@ class Bar < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
-  attr_accessible :name, :address, :neighborhood, :phone
+  attr_accessible :name, :address, :neighborhood, :phone, :hrsranges_attributes
 
   has_many :rooms
   has_many :hrsranges
+  accepts_nested_attributes_for :hrsranges, allow_destroy: true
   
   before_save { |bar| bar.phone = phone.gsub(/\D/, '') }
 
