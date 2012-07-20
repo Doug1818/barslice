@@ -1,0 +1,21 @@
+<ul class="rooms">
+  <% Bar.all.each do |bar| %>
+    <% bar.rooms.each do |room| %>
+      <li class="room">
+        <div class="title">
+          <span class="strong"><%= bar.name %></span> | <%= room.name %> (
+          <% if room.privacy == 1 %> Private room
+          <% elsif room.privacy == 2 %> Semi-private room
+          <% else %> Shared space
+          <% end %> )
+        </div>
+          <%= render 'shared/deets', bar: bar, room: room %>
+        <div class="nofl">
+          <% room.roompics.each do |roompic| %>
+            <%= link_to image_tag(roompic.pic.url(:thumb)), roompic.pic.url(:large), target: "_blank" %>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

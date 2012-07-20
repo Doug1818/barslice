@@ -5,8 +5,7 @@
 			<div id="session">
 				<% if user_signed_in? %>
 			        <%= current_user.email %> |
-			        <%= link_to 'Sign out', destroy_user_session_path, method: "delete" %> | 
-
+			        <%= link_to 'Sign out', destroy_user_session_path, method: "delete" %>
 		        <% elsif bar_signed_in? %>
 			        <%= current_bar.email %> | 
 			        <span class="dropdown">

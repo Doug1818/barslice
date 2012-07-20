@@ -1,7 +1,5 @@
 <% if bar_signed_in? %>
-	<%= render 'bars/bar' %>
+	<%= render 'bars/home' %>
 <% else %>
-	<div class="center hero-unit">
-		<h1>Welcome to BarSlice</h1>
-	</div>
+	<%= render 'users/home' %>
 <% end %>
