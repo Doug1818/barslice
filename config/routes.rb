@@ -1,6 +1,6 @@
 BarSlice::Application.routes.draw do
   devise_for :users
-  devise_for :bars, :controllers => { :registrations => "registrations" }
+  devise_for :bars, controllers: { registrations: "registrations" }
   resources :rooms
 
   root              to: 'static_pages#home'

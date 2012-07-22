@@ -29,13 +29,13 @@
 <div class="hform strong">Description</div>
 <%= f.text_area :description, placeholder: "Descibe the room itself and any relevant conditions to booking it.", style: 'height: 100px; width:400px' %>
 
-<div class="hform strong">Restrictions</div>
+<div class="hform"><span class="strong">Availability restrictions</span> (leave blank if normal bar hours apply)</div>
 <%= f.fields_for :restrictions do |builder| %>
 	<%= render 'restriction_fields', f: builder %>
 <% end %>
 <%= link_to_add_fields "Add", f, :restrictions %>
 
-<div class="hform strong">Add pictures</div>
+<div class="hform strong">Pictures</div>
 <%= f.fields_for :roompics do |builder| %>
 	<%= render 'roompic_fields', f: builder %>
 <% end %>
