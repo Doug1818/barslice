@@ -4,7 +4,7 @@
 
 	<%= f.hidden_field :_destroy %>
 	<span class='remove'><%= link_to "Remove", '#', class: "remove_fields" %></span>
-	<div>
+	<div><br />
 		<%= f.check_box :sunday %> S		
 		<%= f.check_box :monday %> M
 		<%= f.check_box :tuesday %> T
@@ -12,9 +12,9 @@
 		<%= f.check_box :thursday %> T
 		<%= f.check_box :friday %> F
 		<%= f.check_box :saturday %> S
-	</div>
-	Start time:  <%= f.time_select :start_time, { ampm: true }, class: "time" %>
-	End time: <%= f.time_select :end_time, { ampm: true }, class: "time" %>
+	</div><br />
+	Start time:  <%= f.time_select :start_time, { ampm: true, default: Time.now.change(hour: 21) }, class: "time" %>
+	End time: <%= f.time_select :start_time, { ampm: true, default: Time.now.change(hour: 21) }, class: "time" %>
 </div>
 <script type="text/javascript">
 	$(function() {

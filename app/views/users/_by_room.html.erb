@@ -3,7 +3,8 @@
     <% bar.rooms.each do |room| %>
       <li class="room">
         <div class="title">
-          <span class="strong"><%= bar.name %></span> | <%= room.name %> (
+          <span class="strong"><%= link_to bar.name, bar_path(bar) %></span> | 
+            <%= link_to room.name, room_path(room) %> (
           <% if room.privacy == 1 %> Private room
           <% elsif room.privacy == 2 %> Semi-private room
           <% else %> Shared space

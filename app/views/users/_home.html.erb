@@ -1,17 +1,15 @@
 <div class="center hero-unit">
   <h1>Welcome to BarSlice</h1>
 </div>
-<div class="tabbable">
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">View by room</a></li>
-    <li><a href="#tab2" data-toggle="tab">View by bar</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-      <%= render 'users/by_room' %>
-    </div>
-    <div class="tab-pane" id="tab2">
-      by bar
-    </div>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#tab1" data-toggle="tab">View by room</a></li>
+  <li><a href="#tab2" data-toggle="tab">View by bar</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="tab1">
+    <%= render 'users/by_room' %>
+  </div>
+  <div class="tab-pane" id="tab2">
+    <%= render 'users/by_bar' %>
   </div>
 </div>

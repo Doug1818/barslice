@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-before_filter :authenticate_bar!
+before_filter :authenticate_bar!, only: [:new, :create, :destroy, :edit, :update]
 
   def new
     @room = Room.new
@@ -29,6 +29,7 @@ before_filter :authenticate_bar!
   end
 
   def show
+    @room = Room.find(params[:id])
   end
 
   def index

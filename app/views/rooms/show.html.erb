@@ -1,0 +1,22 @@
+<h1><%= @room.name %> at <%= link_to Bar.find_by_id(@room.bar_id).name, bar_path(@room.bar_id) %></h1>
+<ul class="rooms">
+	<li class="room">
+		<div class="title">
+			<span class="strong"><%= @room.name %></span> |
+			<% if @room.privacy == 1 %> Private room
+			<% elsif @room.privacy == 2 %> Semi-private room
+			<% else %> Shared space
+			<% end %>
+		</div>
+			<%= render 'shared/deets', room: @room %>
+		<div class="nofl">
+			<% @room.roompics.each do |roompic| %>
+				<%= link_to image_tag(roompic.pic.url(:thumb)), roompic.pic.url(:large), target: "_blank" %>
+			<% end %>
+		</div>
+		<div class="nofl">
+			<strong>Description: </strong><br>
+			<%= @room.description.gsub(/\n/, '<br/>').html_safe %>
+		</div>
+	</li>
+<ul>

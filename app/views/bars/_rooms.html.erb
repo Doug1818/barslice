@@ -1,5 +1,5 @@
 <ul class="rooms">
-	<% current_bar.rooms.each do |room| %>
+	<% object.rooms.each do |room| %>
 		<li class="room">
 			<div class="title">
 				<span class="strong"><%= room.name %></span> |
@@ -18,10 +18,12 @@
 				<strong>Description: </strong><br>
 				<%= room.description.gsub(/\n/, '<br/>').html_safe %>
 			</div>
-			<div class="nofl">
-				<%= link_to "Delete", room, method: :delete, confirm: "You sure?" %> | 
-				<%= link_to "Edit", edit_room_path(room) %>
-			</div>
+			<% if bar_signed_in? %>
+				<div class="nofl">
+					<%= link_to "Delete", room, method: :delete, confirm: "You sure?" %> | 
+					<%= link_to "Edit", edit_room_path(room) %>
+				</div>
+			<% end %>
 		</li>
 	<% end %>
 </ul>
