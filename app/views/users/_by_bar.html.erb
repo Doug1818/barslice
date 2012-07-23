@@ -6,7 +6,13 @@
             <%= bar.rooms.count %> rooms available
         </div>
           <% bar.rooms.each do |room| %>
-            <div class="title" style="margin-bottom:0"><%= link_to room.name, room_path(room) %></div>
+            <div class="title" style="margin-bottom:0">
+              <%= link_to room.name, room_path(room) %> (
+              <% if room.privacy == 1 %> Private room
+              <% elsif room.privacy == 2 %> Semi-private room
+              <% else %> Shared space
+              <% end %> )
+            </div>
             <%= render 'shared/deets', room: room %>
             <div class="nofl">
               <% room.roompics.each do |roompic| %>
