@@ -1,6 +1,6 @@
 <li class="room">
 	<div class="title">
-		<span class="strong"><%= room.name %></span> |
+		<span class="strong"><%= link_to room.name, room_path(room) %></span> |
 		<% if room.privacy == 1 %> Private room
 		<% elsif room.privacy == 2 %> Semi-private room
 		<% else %> Shared space
