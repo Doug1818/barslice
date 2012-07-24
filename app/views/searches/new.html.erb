@@ -1,0 +1,34 @@
+<h2>Find a bar for your event</h2>
+
+<%= form_for @search do |f| %>
+	<%= f.label :bar_name, class: "hform strong" %>
+	<%= f.text_field :bar_name %>
+
+	<%= f.label :location, class: "hform strong" %>
+	<%= f.select :location, Bar::NEIGHBORHOODS, include_blank: true, multiple: true %>	
+
+	<%= f.label :date, class: "hform strong" %>
+	<%= f.text_field :date, class: "datepicker", style: "width: 100px" %>
+
+	<%= f.label :start_time, class: "hform strong" %>
+	<%= f.time_select :start_time, { ampm: true, default: Time.now.change(hour: 21) }, class: "time" %>
+
+	<%= f.label :end_time, class: "hform strong" %>
+	<%= f.time_select :end_time, { ampm: true, include_blank: true }, class: "time" %>
+
+	<%= f.label :hdct, "Number of people", class: "hform strong" %>
+	<%= f.text_field :hdct %>
+
+	<%= f.label :privacy, class: "hform strong" %>
+	<%= f.radio_button :privacy, 1 %> Private
+	<%= f.radio_button :privacy, 2 %> Semi-private
+	<%= f.radio_button :privacy, 3 %> Shared space<br /><br />
+
+	<%= f.submit "Search", class: "btn btn-large btn-primary" %>
+<% end %>
+
+<script type="text/javascript">
+	$(function() {
+		$(".datepicker").datepicker();
+	});
+</script>

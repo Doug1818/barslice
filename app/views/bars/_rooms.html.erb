@@ -1,30 +1,6 @@
 <ul class="rooms">
 	<% object.rooms.each do |room| %>
-		<li class="room">
-			<div class="title">
-				<span class="strong"><%= room.name %></span> |
-				<% if room.privacy == 1 %> Private room
-				<% elsif room.privacy == 2 %> Semi-private room
-				<% else %> Shared space
-				<% end %>
-			</div>
-				<%= render 'shared/deets', room: room %>
-			<div class="nofl">
-				<% room.roompics.each do |roompic| %>
-					<%= link_to image_tag(roompic.pic.url(:thumb)), roompic.pic.url(:large), target: "_blank" %>
-				<% end %>
-			</div>
-			<div class="nofl">
-				<strong>Description: </strong><br>
-				<%= room.description.gsub(/\n/, '<br/>').html_safe %>
-			</div>
-			<% if bar_signed_in? %>
-				<div class="nofl">
-					<%= link_to "Delete", room, method: :delete, confirm: "You sure?" %> | 
-					<%= link_to "Edit", edit_room_path(room) %>
-				</div>
-			<% end %>
-		</li>
+		<%= render room %>
 	<% end %>
 </ul>
 <%= link_to "Add room", new_room_path, class: "btn btn-med btn-primary" %>
