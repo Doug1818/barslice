@@ -4,8 +4,10 @@ class SearchesController < ApplicationController
   end
 
   def create
-  	@search = Search.create!(params[:search])
-  	redirect_to @search
+    @search = Search.new(params[:search])
+  	@search.date = Date.strptime(params[:search][:date],"%m/%d/%Y").to_time
+    @search.save
+    redirect_to @search
   end
 
   def show

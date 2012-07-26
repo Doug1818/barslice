@@ -1,8 +1,6 @@
 class Search < ActiveRecord::Base
   attr_accessible :bar_name, :date, :hdct, :location, :privacy, :start_time, :end_time
 
-  before_save { |search| search.date = Date.strptime(date,"%m/%d/%Y").to_time }
-
   def rooms
   	@rooms ||= find_rooms
   end
@@ -16,6 +14,7 @@ private
   	rooms = rooms.joins(:hdctranges).where("max >= ?", hdct) if hdct.present?
   	rooms = rooms.where("privacy = ?", privacy) if privacy.present?
   	rooms = rooms.joins(:bar).joins(:bar => :hrsranges).where("open <= ? AND #{Date::DAYNAMES[date.wday].downcase} = ?", start_time, true) if start_time.present?
+  	rooms = rooms.joins(:bar).joins(:bar => :hrsranges).where("close >= ? AND #{Date::DAYNAMES[date.wday].downcase} = ?", end_time, true) if end_time.present?
   	rooms
   end
 end
