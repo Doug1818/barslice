@@ -5,15 +5,15 @@
           <span class="strong"><%= link_to bar.name, bar_path(bar) %></span> | 
           <%= bar.neighborhood %> |
           <%= bar.rooms.count %> rooms available
-        </div>
+        </div><br />
           <% bar.rooms.each do |room| %>
-            <span class="title">
-              <%= link_to room.name, room_path(room) %> |
+            <span>
+              <span class="strong"><%= link_to room.name, room_path(room) %></span> |
               <% if room.privacy == 1 %> Private room
               <% elsif room.privacy == 2 %> Semi-private room
               <% else %> Shared space
               <% end %>
-            </span>
+            </span><br />
             <%= render 'shared/deets', room: room %>
           <% end %>
       </li>
