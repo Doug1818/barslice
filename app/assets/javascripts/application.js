@@ -14,4 +14,9 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require bootstrap
+//// require jquery.ui.widget
+//= require jquery.iframe-transport
+//= require jquery.fileupload
+//= require jquery.fileupload-fp
+//= require jquery.fileupload-ui
 //= require_tree .
