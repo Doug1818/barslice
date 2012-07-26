@@ -1,4 +1,5 @@
 <div class="dfield">
+    <%= link_to image_tag(f.object.pic.url(:thumb)), f.object.pic.url(:large), target: "_blank" %>
 	<%= f.file_field :pic %>
 	<%= f.hidden_field :_destroy %>
 	<span class='remove'><%= link_to "Remove", '#', class: "remove_fields" %></span>
