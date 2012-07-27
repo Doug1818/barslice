@@ -6,6 +6,7 @@
 				<li>
 					<%= hdctrange.min %>-<%= hdctrange.max %>
 					<% if hdctrange.sunday? && hdctrange.monday? && hdctrange.tuesday? && hdctrange.wednesday? && hdctrange.thursday? && hdctrange.friday? && hdctrange.saturday? %>
+					<% elsif hdctrange.sunday.nil? && hdctrange.monday.nil? && hdctrange.tuesday.nil? && hdctrange.wednesday.nil? && hdctrange.thursday.nil? && hdctrange.friday.nil? && hdctrange.saturday.nil? %>
 					<% else %> on 
 						<% if hdctrange.sunday? %> Sun <% end %>
 						<% if hdctrange.monday? %> Mon <% end %>
@@ -30,6 +31,7 @@
 					<% else %>
 						$<%= fee.amount %>
 						<% if fee.sunday? && fee.monday? && fee.tuesday? && fee.wednesday? && fee.thursday? && fee.friday? && fee.saturday? %>
+						<% elsif fee.sunday.nil? && fee.monday.nil? && fee.tuesday.nil? && fee.wednesday.nil? && fee.thursday.nil? && fee.friday.nil? && fee.saturday.nil? %>
 						<% else %> on
 							<% if fee.sunday? %> Sun <% end %>
 							<% if fee.monday? %> Mon <% end %>
@@ -55,6 +57,7 @@
 					<% else %>
 						$<%= spendmin.min %>
 						<% if spendmin.sunday? && spendmin.monday? && spendmin.tuesday? && spendmin.wednesday? && spendmin.thursday? && spendmin.friday? && spendmin.saturday? %>
+						<% elsif spendmin.sunday.nil? && spendmin.monday.nil? && spendmin.tuesday.nil? && spendmin.wednesday.nil? && spendmin.thursday.nil? && spendmin.friday.nil? && spendmin.saturday.nil? %>
 						<% else %>
 							<% if spendmin.per_person == true %> per person <% end %> on
 							<% if spendmin.sunday? %> Sun <% end %>

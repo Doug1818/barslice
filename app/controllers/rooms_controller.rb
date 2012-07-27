@@ -12,6 +12,10 @@ before_filter :authenticate_bar!, only: [:new, :create, :destroy, :edit, :update
 
   def create
     @room = current_bar.rooms.build(params[:room])
+    @room.restrictions.each_with_index do |restriction, idx|
+      restriction.start_date = Date.strptime(params[:room][:restrictions_attributes].values[idx][:start_date],"%m/%d/%Y").to_time
+      restriction.end_date = Date.strptime(params[:room][:restrictions_attributes].values[idx][:end_date],"%m/%d/%Y").to_time
+    end if params[:room][:restrictions_attributes]
     if @room.save
       flash[:success] = "Room created"
       redirect_to root_path
