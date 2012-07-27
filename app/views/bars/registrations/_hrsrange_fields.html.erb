@@ -3,7 +3,7 @@
 	Close: <%= f.time_select :close, { ampm: true, default: Time.now.change(hour: 4) }, class: "time" %>
 
 	<%= f.hidden_field :_destroy %>
-	<span class="remove"><%= link_to "Remove", '#', class: "remove_fields" %></span><br />
+	<%= link_to "Remove", '#', class: "remove_fields remove" %><br />
 
 	<div>
 		<%= f.check_box :sunday %> S

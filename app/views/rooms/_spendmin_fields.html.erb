@@ -4,7 +4,7 @@
 	<%= f.radio_button :per_person, false %> Total
 	<%= f.radio_button :per_person, true %> Per person
 	<%= f.hidden_field :_destroy %>
-	<span class='remove'><%= link_to "Remove", '#', class: "remove_fields" %></span><br />
+	<%= link_to "Remove", '#', class: "remove_fields remove" %><br />
 	
 	<div>
 		<%= f.check_box :sunday %> S

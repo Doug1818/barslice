@@ -238,7 +238,7 @@ DEPENDENCIES
   faker (= 1.0.1)
   guard-rspec (= 0.5.5)
   guard-spork (= 0.3.2)
-  jquery-rails (= 2.0.0)
+  jquery-rails
   jquery-ui-rails
   kumade
   libnotify (= 0.5.9)

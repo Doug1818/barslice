@@ -29,7 +29,7 @@ group :assets do
   gem 'jquery-ui-rails'
 end
 
-gem 'jquery-rails', '2.0.0'
+gem 'jquery-rails'
 
 group :test do
 	gem 'rspec-rails', '2.9.0'
