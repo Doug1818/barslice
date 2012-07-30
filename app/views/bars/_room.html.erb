@@ -17,35 +17,9 @@
 				<%= room.description.gsub(/\n/, '<br/>').html_safe %>
 			</div>
 
-			<% if room.restrictions.count >= 1 %>
-				<div class="nofl">
-					<strong>Restrictions</strong><br />
-					<% room.restrictions.each do |restriction| %>
-						<div>
-							<% if restriction.start_date? && restriction.end_date? %>
-								* From <%= restriction.start_date.strftime("%b %e") %> to <%= restriction.end_date.strftime("%b %e") %>
-							<% end %>
-							<% unless !restriction.sunday  && !restriction.monday && !restriction.tuesday && !restriction.wednesday && !restriction.thursday && !restriction.friday && !restriction.saturday %>
-								* On  <% if restriction.sunday %> Sun <% end %>
-									<% if restriction.monday %> Mon <% end %>
-									<% if restriction.tuesday %> Tues <% end %>
-									<% if restriction.wednesday %> Wed <% end %>
-									<% if restriction.thursday %> Thurs <% end %>
-									<% if restriction.friday %> Fri <% end %>
-									<% if restriction.saturday %> Sat <% end %>
-							<% end %>
-							<% if restriction.before.nil? && restriction.after.nil? %>
-							<% elsif restriction.before.nil? && restriction.after? %>
-								* After <%= restriction.after.strftime("%l:%M %p") %>
-							<% elsif restriction.before? && restriction.after.nil? %>
-								* Before <%= restriction.before.strftime("%l:%M %p") %>
-							<% else %>
-								* Before <%= restriction.before.strftime("%l:%M %p") %> and after <%= restriction.after.strftime("%l:%M %p") %>
-							<% end %>
-						</div>
-					<% end %>
-				</div>
-			<% end %>
+			<div>
+				<%= render 'rooms/restrictions', room: room %>
+			</div>
 			
 			<% if bar_signed_in? %>
 				<div class="nofl">

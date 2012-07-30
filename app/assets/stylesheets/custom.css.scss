@@ -193,6 +193,10 @@ footer {
 				}
 			}
 		}
+		ul.restrictions {
+			float:left;
+			list-style: decimal;
+		}
 	}
 }
 
@@ -205,9 +209,13 @@ footer {
 }
  */
 
+ /* Restrictions 
 
-
-
+.restrictions {
+	list-style: disc;
+	margin: 0;
+}
+*/
 
 
 
