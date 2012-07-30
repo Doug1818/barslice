@@ -10,8 +10,8 @@ class Bar < ActiveRecord::Base
   # attr_accessible :title, :body
   attr_accessible :name, :address, :neighborhood, :phone, :hrsranges_attributes
 
-  has_many :rooms
-  has_many :hrsranges
+  has_many :rooms, dependent: :destroy
+  has_many :hrsranges, dependent: :destroy
   accepts_nested_attributes_for :hrsranges, allow_destroy: true
   
   before_save { |bar| bar.phone = phone.gsub(/\D/, '') }

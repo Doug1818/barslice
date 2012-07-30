@@ -18,31 +18,31 @@
 			</div>
 
 			<% if room.restrictions.count >= 1 %>
-			<div class="nofl">
-				<strong>Restrictions</strong><br />
-				<% room.restrictions.each do |restriction| %>
-					<% unless restriction.start_date.nil? || restriction.end_date.nil? %>
-						From <%= restriction.start_date %> to <%= restriction.end_date %>
+				<div class="nofl">
+					<strong>Restrictions</strong><br />
+					<% room.restrictions.each do |restriction| %>
+						<% if restriction.start_date? && restriction.end_date? %>
+							From <%= restriction.start_date.strftime("%b %e") %> to <%= restriction.end_date.strftime("%b %e") %>
+						<% end %>
+						<% unless restriction.sunday == false  && restriction.monday == false && restriction.tuesday == false && restriction.wednesday == false && restriction.thursday == false && restriction.friday == false && restriction.saturday == false %>
+							On  <% if restriction.sunday? %> Sun <% end %>
+								<% if restriction.monday? %> Mon <% end %>
+								<% if restriction.tuesday? %> Tues <% end %>
+								<% if restriction.wednesday? %> Wed <% end %>
+								<% if restriction.thursday? %> Thurs <% end %>
+								<% if restriction.friday? %> Fri <% end %>
+								<% if restriction.saturday? %> Sat <% end %>
+						<% end %>
+						<% if restriction.start_time.nil? && restriction.end_time.nil? %>
+						<% elsif restriction.start_time.nil? && restriction.end_time? %>
+							After <%= restriction.end_time %>
+						<% elsif restriction.start_time? && restriction.end_time.nil? %>
+							Before <%= restriction.end_time %>
+						<% else %>
+							Before <%= restriction.start_time %> and after <%= restriction.end_time %>
+						<% end %>
 					<% end %>
-					<% unless restriction.sunday.nil? && restriction.monday.nil? && restriction.tuesday.nil? && restriction.wednesday.nil? && restriction.thursday.nil? && restriction.friday.nil? && restriction.saturday.nil? %>
-						On  <% if restriction.sunday? %> Sun <% end %>
-							<% if restriction.monday? %> Mon <% end %>
-							<% if restriction.tuesday? %> Tues <% end %>
-							<% if restriction.wednesday? %> Wed <% end %>
-							<% if restriction.thursday? %> Thurs <% end %>
-							<% if restriction.friday? %> Fri <% end %>
-							<% if restriction.saturday? %> Sat <% end %>
-					<% end %>
-					<% if restriction.start_time.nil? && restriction.end_time.nil? %>
-					<% elsif restriction.start_time.nil? && !restriction.end_time.nil? %>
-						After <%= restriction.end_time %>
-					<% elsif !restriction.start_time.nil? && restriction.end_time.nil? %>
-						Before <%= restriction.end_time %>
-					<% else %>
-						Before <%= restriction.end_time %> and after <%= restriction.end_time %>
-					<% end %>
-				<% end %>
-			</div>
+				</div>
 			<% end %>
 			
 			<% if bar_signed_in? %>
