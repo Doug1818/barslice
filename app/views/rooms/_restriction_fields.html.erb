@@ -13,8 +13,8 @@
 		<%= f.check_box :friday %> F
 		<%= f.check_box :saturday %> S
 	</div><br />
-	Start time:  <%= f.time_select :start_time, { ampm: true, include_blank: true }, class: "time" %>
-	End time: <%= f.time_select :end_time, { ampm: true, include_blank: true }, class: "time" %>
+	Before:  <%= f.time_select :before, { ampm: true, include_blank: true }, class: "time" %>
+	After: <%= f.time_select :after, { ampm: true, include_blank: true }, class: "time" %>
 </div>
 <script type="text/javascript">
 	$(function() {

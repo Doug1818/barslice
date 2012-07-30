@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723221016) do
+ActiveRecord::Schema.define(:version => 20120730040831) do
 
   create_table "bars", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(:version => 20120723221016) do
     t.boolean  "thursday"
     t.boolean  "friday"
     t.boolean  "saturday"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.time     "before"
+    t.time     "after"
   end
 
   create_table "roompics", :force => true do |t|
