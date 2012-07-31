@@ -21,11 +21,11 @@
 				<% end %>
 				<% if restriction.before.nil? && restriction.after.nil? %>
 				<% elsif restriction.before.nil? && restriction.after? %>
-					After <%= restriction.after.strftime("%l:%M %p") %>.
+					After <%= restriction.after %>.
 				<% elsif restriction.before? && restriction.after.nil? %>
-					Before <%= restriction.before.strftime("%l:%M %p") %>.
+					Before <%= restriction.before %>.
 				<% else %>
-					Before <%= restriction.before.strftime("%l:%M %p") %> and after <%= restriction.after.strftime("%l:%M %p") %>.
+					Before <%= restriction.before %> and after <%= restriction.after %>.
 				<% end %>
 			</li>
 		<% end %>

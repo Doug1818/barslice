@@ -13,8 +13,8 @@
 		<%= f.check_box :friday %> F
 		<%= f.check_box :saturday %> S
 	</div><br />
-	Before:  <%= f.select :before, Restriction::TIMES, include_blank: true, class: "time" %>
-	After: <%= f.select :after, Restriction::TIMES, include_blank: true, class: "time" %>
+	Before:  <%= f.select :before, Restriction::TIMES, { include_blank: true }, class: "time" %>
+	After: <%= f.select :after, Restriction::TIMES, { include_blank: true }, class: "time" %>
 </div>
 <script type="text/javascript">
 	$(function() {
