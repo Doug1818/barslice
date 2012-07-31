@@ -9,8 +9,7 @@
 						No minimum spend
 					<% else %>
 						$<%= spendmin.min %>
-						<% if !spendmin.sunday && !spendmin.monday && !spendmin.tuesday && !spendmin.wednesday && !spendmin.thursday && !spendmin.friday && !spendmin.saturday %>
-						<% elsif spendmin.sunday && spendmin.monday && spendmin.tuesday && spendmin.wednesday && spendmin.thursday && spendmin.friday && spendmin.saturday %>
+						<% if spendmin.sunday && spendmin.monday && spendmin.tuesday && spendmin.wednesday && spendmin.thursday && spendmin.friday && spendmin.saturday %>
 						<% else %>
 							<% if spendmin.per_person == true %> per person <% end %> on
 							<% if spendmin.sunday %> Sun <% end %>
@@ -36,8 +35,7 @@
 						No reservation fee
 					<% else %>
 						$<%= fee.amount %>
-						<% if !fee.sunday && !fee.monday && !fee.tuesday && !fee.wednesday && !fee.thursday && !fee.friday && !fee.saturday %>
-						<% elsif fee.sunday && fee.monday && fee.tuesday && fee.wednesday && fee.thursday && fee.friday && fee.saturday %>
+						<% if fee.sunday && fee.monday && fee.tuesday && fee.wednesday && fee.thursday && fee.friday && fee.saturday %>
 						<% else %> on
 							<% if fee.sunday %> Sun <% end %>
 							<% if fee.monday %> Mon <% end %>
@@ -58,8 +56,7 @@
 			<% room.hdctranges.each do |hdctrange| %>
 				<li>
 					<%= hdctrange.min %>-<%= hdctrange.max %>
-					<% if !hdctrange.sunday && !hdctrange.monday && !hdctrange.tuesday && !hdctrange.wednesday && !hdctrange.thursday && !hdctrange.friday && !hdctrange.saturday %>
-					<% elsif hdctrange.sunday && hdctrange.monday && hdctrange.tuesday && hdctrange.wednesday && hdctrange.thursday && hdctrange.friday && hdctrange.saturday %>
+					<% if hdctrange.sunday && hdctrange.monday && hdctrange.tuesday && hdctrange.wednesday && hdctrange.thursday && hdctrange.friday && hdctrange.saturday %>
 					<% else %> on 
 						<% if hdctrange.sunday %> Sun <% end %>
 						<% if hdctrange.monday %> Mon <% end %>
