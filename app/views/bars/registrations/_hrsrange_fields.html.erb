@@ -1,6 +1,6 @@
 <div class="dfield" style="width:60%;">
-	Open:  <%= f.time_select :open, { ampm: true, default: Time.now.change(hour: 11) }, class: "time" %>
-	Close: <%= f.time_select :close, { ampm: true, default: Time.now.change(hour: 4) }, class: "time" %>
+	Open:  <%= f.select :open, Restriction::TIMES, { selected: "11:00 AM" }, class: "time" %>
+	Close: <%= f.select :close, Restriction::TIMES, { selected: "4:00 AM" }, class: "time" %>
 
 	<%= f.hidden_field :_destroy %>
 	<%= link_to "Remove", '#', class: "remove_fields remove" %><br />

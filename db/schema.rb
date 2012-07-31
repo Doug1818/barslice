@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120730040831) do
+ActiveRecord::Schema.define(:version => 20120731034058) do
 
   create_table "bars", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -66,8 +66,6 @@ ActiveRecord::Schema.define(:version => 20120730040831) do
   end
 
   create_table "hrsranges", :force => true do |t|
-    t.time     "open"
-    t.time     "close"
     t.boolean  "monday"
     t.boolean  "tuesday"
     t.boolean  "wednesday"
@@ -78,6 +76,8 @@ ActiveRecord::Schema.define(:version => 20120730040831) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "bar_id"
+    t.integer  "open"
+    t.integer  "close"
   end
 
   create_table "restrictions", :force => true do |t|
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(:version => 20120730040831) do
     t.boolean  "thursday"
     t.boolean  "friday"
     t.boolean  "saturday"
-    t.time     "before"
-    t.time     "after"
+    t.integer  "before"
+    t.integer  "after"
   end
 
   create_table "roompics", :force => true do |t|
@@ -121,12 +121,12 @@ ActiveRecord::Schema.define(:version => 20120730040831) do
     t.string   "location"
     t.string   "bar_name"
     t.date     "date"
-    t.time     "start_time"
     t.integer  "hdct"
     t.integer  "privacy"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.time     "end_time"
+    t.integer  "start_time"
+    t.integer  "end_time"
   end
 
   create_table "spendmins", :force => true do |t|
