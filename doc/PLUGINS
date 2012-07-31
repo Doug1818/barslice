@@ -1,0 +1,14 @@
+Davie - check out the links below and let me know what you think.  Really psyched to have your help!
+
+jquery file upload
+- what we were looking at: http://blueimp.github.com/jQuery-File-Upload/  (with associated documentation: https://github.com/blueimp/jQuery-File-Upload/wiki)
+- there does seem to be a rails gem version, but also not sure how to implement: http://rubygems.org/gems/jquery.fileupload-rails (with associated documentation https://github.com/semaperepelitsa/jquery.fileupload-rails)
+
+time select plugin
+- overview: http://www.tonyamoyal.com/2009/04/21/simple-time-select-the-most-compact-time_select-for-ruby-on-rails/
+- latest version: http://www.tonyamoyal.com/2009/06/10/simple-time-select-for-ruby-on-rails-just-got-simpler/
+- documentation: https://github.com/tamoyal/simple_time_select
+
+day range constructor
+- overview: http://www.rubyquiz.com/quiz92.html
+- code to use: http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/211004
