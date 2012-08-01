@@ -21,11 +21,11 @@
 				<% end %>
 				<% if restriction.before.nil? && restriction.after.nil? %>
 				<% elsif restriction.before.nil? && restriction.after? %>
-					After <%= restriction.after %>.
+					After <%= TIMES.key(restriction.after) %>.
 				<% elsif restriction.before? && restriction.after.nil? %>
-					Before <%= restriction.before %>.
+					Before <%= TIMES.key(restriction.before) %>.
 				<% else %>
-					Before <%= restriction.before %> and after <%= restriction.after %>.
+					Before <%= TIMES.key(restriction.before) %> and after <%= TIMES.key(restriction.after) %>.
 				<% end %>
 			</li>
 		<% end %>

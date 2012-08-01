@@ -10,11 +10,9 @@
 	<%= f.label :date, class: "hform strong" %>
 	<%= f.text_field :date, class: "datepicker", style: "width: 100px" %>
 
-	<%= f.label :start_time, class: "hform strong" %>
-	<%= f.time_select :start_time, { ampm: true, default: Time.now.change(hour: 21) }, class: "time" %>
-
-	<%= f.label :end_time, class: "hform strong" %>
-	<%= f.time_select :end_time, { ampm: true, default: Time.now.change(hour: 1) }, class: "time" %>
+	<%= f.label "Time", class: "hform strong" %>
+	<%= f.select :start_time, TIMES.keys, { selected: "9:00 PM" }, class: "time" %> to 
+	<%= f.select :end_time, TIMES.keys, { selected: "1:00 AM" }, class: "time" %>
 
 	<%= f.label :hdct, "Number of people", class: "hform strong" %>
 	<%= f.text_field :hdct %>
