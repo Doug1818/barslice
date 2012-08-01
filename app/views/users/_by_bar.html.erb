@@ -4,7 +4,7 @@
         <div class="title">
           <span class="strong"><%= link_to bar.name, bar_path(bar) %></span> | 
           <%= bar.neighborhood %> |
-          <%= bar.rooms.count %> rooms available
+          <%= pluralize(bar.rooms.count, "room") %> available
         </div><br />
           <% bar.rooms.each do |room| %>
             <span>
