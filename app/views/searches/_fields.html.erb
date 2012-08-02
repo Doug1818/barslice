@@ -1,25 +1,38 @@
 <%= render 'shared/error_messages', object: f.object %>
 
-<%= f.label :bar_name, class: "hform strong" %>
-<%= f.text_field :bar_name %>
+<div class="search_form">
+	<div class="search_sections">
+		<%= f.label :location, "Search by location", class: "hform strong" %>
+		<%= f.select :location, Bar::NEIGHBORHOODS, include_blank: true, multiple: true %><br />
 
-<%= f.label :location, class: "hform strong" %>
-<%= f.select :location, Bar::NEIGHBORHOODS, include_blank: true, multiple: true %><br /><br />
+		<div><span class="hform strong">or</span></div>
 
-<span class="hform strong">Date</span>
-<%= f.text_field :date, class: "datepicker", style: "width: 100px" %><br /><br />
+		<%= f.label :bar_name, "Search by bar", class: "hform strong" %>
+		<%= f.text_field :bar_name %>
+	</div>
 
-<span class="hform strong">Time</span>
-<%= f.select :start_time, TIMES.keys, { selected: "9:00 PM" }, class: "time" %> to 
-<%= f.select :end_time, TIMES.keys, { selected: "1:00 AM" }, class: "time" %><br /><br />
+	<div class="search_sections">
+		<div class="hform strong">Required details</div>
 
-<span class="hform strong">Number of people</span>
-<%= f.text_field :hdct, style:"width:100px" %>
+		<div>Date: <%= f.text_field :date, class: "datepicker", style: "width: 100px" %></div><br />
 
-<%= f.label :privacy, class: "hform strong" %>
-<%= f.radio_button :privacy, 1 %> Private
-<%= f.radio_button :privacy, 2 %> Semi-private
-<%= f.radio_button :privacy, 3 %> Shared space<br /><br />
+		<div>
+			Time:
+			<%= f.select :start_time, TIMES.keys, { selected: "9:00 PM" }, class: "time" %> to 
+			<%= f.select :end_time, TIMES.keys, { selected: "1:00 AM" }, class: "time" %>
+		</div><br />
+
+		<div>Number of people: <%= f.text_field :hdct, style:"width:100px" %></div>
+	</div>
+
+	<div class="search_sections">
+		<div class="hform strong">Optional filters</div>
+		Privacy:
+		<%= f.radio_button :privacy, 1 %> Private
+		<%= f.radio_button :privacy, 2 %> Semi-private
+		<%= f.radio_button :privacy, 3 %> Shared space
+	</div>
+</div>
 
 <script type="text/javascript">
 	$(function() {

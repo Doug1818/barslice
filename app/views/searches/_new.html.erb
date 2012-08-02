@@ -7,9 +7,9 @@
 <%= form_for Search.new do |f| %>
 	<%= render 'searches/fields', f: f %>
 	<%= f.submit "Search", class: "btn btn-large btn-primary" %>
-<% end %>
+<% end %><br />
 
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs" style="clear:both">
   <li class="active"><a href="#tab1" data-toggle="tab">View by room</a></li>
   <li><a href="#tab2" data-toggle="tab">View by bar</a></li>
 </ul>

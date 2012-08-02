@@ -209,14 +209,21 @@ footer {
 }
  */
 
- /* Restrictions 
+/* search form */
 
-.restrictions {
-	list-style: disc;
-	margin: 0;
+.search_form {
+	float:left;
+	margin: 5px 0 20px 0;
+	padding: 0 20px 20px 20px;
+	border:1px solid;
+	border-color: Navy;
+	border-radius:15px;
+	background-color: #9999CC;
+	.search_sections {
+		float:left;
+		margin: 0 20px;
+	}
 }
-*/
-
 
 
 
