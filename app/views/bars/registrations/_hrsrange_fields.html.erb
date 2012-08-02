@@ -1,6 +1,18 @@
 <div class="dfield" style="width:60%;">
-	Open:  <%= f.select :open, TIMES.keys, { selected: "11:00 AM" }, class: "time" %>
-	Close: <%= f.select :close, TIMES.keys, { selected: "4:00 AM" }, class: "time" %>
+	
+	Open:
+	<% if f.object.open? %>
+		<%= f.select :open, TIMES.keys, { selected: TIMES.key(f.object.open) }, class: "time" %>
+	<% else %>
+		<%= f.select :open, TIMES.keys, { selected: "11:00 AM" }, class: "time" %>
+	<% end %>
+
+	Close:
+	<% if f.object.close? %>
+		<%= f.select :close, TIMES.keys, { selected: TIMES.key(f.object.close) }, class: "time" %>
+	<% else %>
+		<%= f.select :close, TIMES.keys, { selected: "4:00 AM" }, class: "time" %>
+	<% end %>
 
 	<%= f.hidden_field :_destroy %>
 	<%= link_to "Remove", '#', class: "remove_fields remove" %><br />

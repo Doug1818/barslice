@@ -1,6 +1,18 @@
 <div class="dfield">
-	Start date: <%= f.text_field :start_date, class: "datepicker", style: "width: 100px" %>
-	End date:   <%= f.text_field :end_date, class: "datepicker", style: "width: 100px" %>
+	
+	Start date:
+	<% if f.object.start_date? %>
+		<%= f.text_field :start_date, class: "datepicker", style: "width: 100px", value: f.object.start_date.strftime("%m/%d/%Y") %>
+	<% else %>
+		<%= f.text_field :start_date, class: "datepicker", style: "width: 100px" %>
+	<% end %>
+	
+	End date:
+	<% if f.object.end_date? %>
+		<%= f.text_field :end_date, class: "datepicker", style: "width: 100px", value: f.object.end_date.strftime("%m/%d/%Y") %>
+	<% else %>
+		<%= f.text_field :end_date, class: "datepicker", style: "width: 100px" %>
+	<% end %>
 
 	<%= f.hidden_field :_destroy %>
 	<%= link_to "Remove", '#', class: "remove_fields remove" %>
@@ -13,8 +25,21 @@
 		<%= f.check_box :friday %> F
 		<%= f.check_box :saturday %> S
 	</div><br />
-	Before:  <%= f.select :before, TIMES.keys, { include_blank: true }, class: "time" %>
-	After: <%= f.select :after, TIMES.keys, { include_blank: true }, class: "time" %>
+	
+	Before:
+	<% if f.object.before? %>
+		<%= f.select :before, TIMES.keys, { selected: TIMES.key(f.object.before) }, class: "time" %>
+	<% else %>
+		<%= f.select :before, TIMES.keys, { include_blank: true }, class: "time" %>
+	<% end %>
+	
+	After:
+	<% if f.object.after? %>
+		<%= f.select :after, TIMES.keys, { selected: TIMES.key(f.object.after) }, class: "time" %>
+	<% else %>
+		<%= f.select :after, TIMES.keys, { include_blank: true }, class: "time" %>
+	<% end %>
+
 </div>
 <script type="text/javascript">
 	$(function() {

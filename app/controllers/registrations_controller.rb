@@ -27,10 +27,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def edit
     @bar = current_bar
-    @bar.hrsranges.each do |hrsrange|
-      hrsrange.open = TIMES.key(hrsrange.open) if hrsrange.open
-      hrsrange.close = TIMES.key(hrsrange.close) if hrsrange.close
-    end
   end
 
   def update

@@ -37,12 +37,6 @@ before_filter :authenticate_bar!, only: [:new, :create, :destroy, :edit, :update
 
   def edit
     @room = current_bar.rooms.find(params[:id])
-    @room.restrictions.each do |restriction|
-      restriction.start_date = restriction.start_date.strftime("%m/%d/%Y") if restriction.start_date
-      restriction.end_date = restriction.end_date.strftime("%m/%d/%Y") if restriction.end_date
-      restriction.before = TIMES.key(restriction.before) if restriction.before
-      restriction.after = TIMES.key(restriction.after) if restriction.after
-    end
   end
 
   def update

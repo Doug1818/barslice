@@ -14,12 +14,28 @@
 	<div class="search_sections">
 		<div class="hform strong">Required details</div>
 
-		<div>Date: <%= f.text_field :date, class: "datepicker", style: "width: 100px" %></div><br />
+		<div>
+			Date:
+			<% if f.object.date? %>
+				<%= f.text_field :date, class: "datepicker", style: "width: 100px", value: f.object.date.strftime("%m/%d/%Y") %>
+			<% else %>
+				<%= f.text_field :date, class: "datepicker", style: "width: 100px" %>
+			<% end %>
+		</div><br />
 
 		<div>
-			Time:
-			<%= f.select :start_time, TIMES.keys, { selected: "9:00 PM" }, class: "time" %> to 
-			<%= f.select :end_time, TIMES.keys, { selected: "1:00 AM" }, class: "time" %>
+			Time:	
+			<% if f.object.start_time? %>
+				<%= f.select :start_time, TIMES.keys, { selected: TIMES.key(f.object.start_time) }, class: "time" %> to
+			<% else %>
+				<%= f.select :start_time, TIMES.keys, { selected: "9:00 PM" }, class: "time" %> to 
+			<% end %>
+
+			<% if f.object.end_time? %>
+				<%= f.select :end_time, TIMES.keys, { selected: TIMES.key(f.object.end_time) }, class: "time" %>
+			<% else %>
+				<%= f.select :end_time, TIMES.keys, { selected: "1:00 AM" }, class: "time" %>
+			<% end %>
 		</div><br />
 
 		<div>Number of people: <%= f.text_field :hdct, style:"width:100px" %></div>

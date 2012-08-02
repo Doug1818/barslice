@@ -1,9 +1,10 @@
 <div class="dfield">
     <% if f.object.pic? %>
-    <%= link_to image_tag(f.object.pic.url(:thumb)), f.object.pic.url(:large), target: "_blank" %>
+    	<%= link_to image_tag(f.object.pic.url(:thumb)), f.object.pic.url(:large), target: "_blank" %>
     <% else %>
-	<%= f.file_field :pic %>
+		<%= f.file_field :pic %>
     <% end %>
+	
 	<%= f.hidden_field :_destroy %>
 	<%= link_to "Remove", '#', class: "remove_fields remove" %>
 </div>
