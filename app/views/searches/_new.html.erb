@@ -1,18 +1,23 @@
 <div class="center hero-unit">
   <h1>Welcome to BarSlice</h1>
 </div>
-<div>
-  <%= link_to "Search", new_search_path %>
-</div><br />
+
+<h2>Find a bar for your event</h2>
+
+<%= form_for Search.new do |f| %>
+	<%= render 'searches/fields', f: f %>
+	<%= f.submit "Search", class: "btn btn-large btn-primary" %>
+<% end %>
+
 <ul class="nav nav-tabs">
   <li class="active"><a href="#tab1" data-toggle="tab">View by room</a></li>
   <li><a href="#tab2" data-toggle="tab">View by bar</a></li>
 </ul>
 <div class="tab-content">
   <div class="tab-pane active" id="tab1">
-    <%= render 'users/by_room' %>
+    <%= render 'shared/by_room' %>
   </div>
   <div class="tab-pane" id="tab2">
-    <%= render 'users/by_bar' %>
+    <%= render 'shared/by_bar' %>
   </div>
 </div>

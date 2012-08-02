@@ -1,0 +1,10 @@
+<h2>Edit NOT USED: Find a bar for your event</h2>
+
+<%= form_for @search do |f| %>
+	<%= render 'fields', f: f %>
+	<%= f.submit "Search", class: "btn btn-large btn-primary" %>
+<% end %>
+
+<ul class="rooms">
+	<%= render @search.rooms %>
+</ul>
