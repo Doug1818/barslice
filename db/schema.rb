@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120731034058) do
+ActiveRecord::Schema.define(:version => 20120803045848) do
 
   create_table "bars", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20120731034058) do
     t.string   "address"
     t.string   "neighborhood"
     t.string   "phone"
+    t.string   "website"
   end
 
   add_index "bars", ["email"], :name => "index_bars_on_email", :unique => true

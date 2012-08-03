@@ -1,4 +1,7 @@
 <h1><%= @room.name %> at <%= link_to Bar.find_by_id(@room.bar_id).name, bar_path(@room.bar_id) %></h1>
+
+<%= render 'shared/bar_info', object: Bar.find_by_id(@room.bar_id) %>
+
 <ul class="rooms">
 	<li class="room">
 		<div class="title">

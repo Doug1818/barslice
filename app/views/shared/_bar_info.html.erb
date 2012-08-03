@@ -1,0 +1,25 @@
+<div style="float:right;text-align:right;font-size:0.9em;">
+	<span class="strong">Bar info:</span><br />
+	<%= object.email %><br />
+	(<%= object.phone[0..2] %>) <%= object.phone[3..5] %>-<%= object.phone[6..9] %><br />
+	<%= object.website %><br />
+	<%= object.address %><br /><br />
+	Hours of operation:
+	<ul style="list-style:none;">
+		<% object.hrsranges.each do |hrsrange| %>
+			<li>
+			<%= TIMES.key(hrsrange.open) %> to <%= TIMES.key(hrsrange.close) %>
+				<% if hrsrange.sunday && hrsrange.monday && hrsrange.tuesday && hrsrange.wednesday && hrsrange.thursday && hrsrange.friday && hrsrange.saturday %>
+			<% else %>
+				<% if hrsrange.sunday %> Sun <% end %>
+				<% if hrsrange.monday %> Mon <% end %>
+				<% if hrsrange.tuesday %> Tues <% end %>
+				<% if hrsrange.wednesday %> Wed <% end %>
+				<% if hrsrange.thursday %> Thurs <% end %>
+				<% if hrsrange.friday %> Fri <% end %>
+				<% if hrsrange.saturday %> Sat <% end %>
+			<% end %>
+			</li>
+		<% end %>
+	</ul>
+</div>

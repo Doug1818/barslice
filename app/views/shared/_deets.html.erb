@@ -1,5 +1,25 @@
 <ul class="deets">
 	<li class="deet">
+		<strong>Number of people:</strong><br />
+		<ul>
+			<% room.hdctranges.each do |hdctrange| %>
+				<li>
+					<%= hdctrange.min %>-<%= hdctrange.max %>
+					<% if hdctrange.sunday && hdctrange.monday && hdctrange.tuesday && hdctrange.wednesday && hdctrange.thursday && hdctrange.friday && hdctrange.saturday %>
+					<% else %> on 
+						<% if hdctrange.sunday %> Sun <% end %>
+						<% if hdctrange.monday %> Mon <% end %>
+						<% if hdctrange.tuesday %> Tues <% end %>
+						<% if hdctrange.wednesday %> Wed <% end %>
+						<% if hdctrange.thursday %> Thurs <% end %>
+						<% if hdctrange.friday %> Fri <% end %>
+						<% if hdctrange.saturday %> Sat <% end %>
+					<% end %>
+				</li>
+			<% end %>
+		</ul>					
+	</li>
+	<li class="deet">
 		<strong>Spend minimum:</strong><br />
 		<% unless room.spendmins.any? %>No minimum spend<% end %>
 		<ul>
@@ -46,26 +66,6 @@
 							<% if fee.saturday %> Sat <% end %>
 						<% end %>
 					<% end %> 
-				</li>
-			<% end %>
-		</ul>					
-	</li>
-	<li class="deet">
-		<strong>Number of people required:</strong><br />
-		<ul>
-			<% room.hdctranges.each do |hdctrange| %>
-				<li>
-					<%= hdctrange.min %>-<%= hdctrange.max %>
-					<% if hdctrange.sunday && hdctrange.monday && hdctrange.tuesday && hdctrange.wednesday && hdctrange.thursday && hdctrange.friday && hdctrange.saturday %>
-					<% else %> on 
-						<% if hdctrange.sunday %> Sun <% end %>
-						<% if hdctrange.monday %> Mon <% end %>
-						<% if hdctrange.tuesday %> Tues <% end %>
-						<% if hdctrange.wednesday %> Wed <% end %>
-						<% if hdctrange.thursday %> Thurs <% end %>
-						<% if hdctrange.friday %> Fri <% end %>
-						<% if hdctrange.saturday %> Sat <% end %>
-					<% end %>
 				</li>
 			<% end %>
 		</ul>					

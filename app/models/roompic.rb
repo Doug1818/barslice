@@ -4,7 +4,7 @@ class Roompic < ActiveRecord::Base
   has_attached_file :pic, styles: { 
   						   thumb:  { geometry: "100x100>", convert_options: "-auto-orient" }, 
   						   medium: { geometry: "500x500>", convert_options: "-auto-orient" }, 
-  						   large:  { geometry: "750x750>", convert_options: "-auto-orient" } },
+  						   large:  { geometry: "900x900>", convert_options: "-auto-orient" } },
   					storage: :s3,
   					s3_credentials: "#{Rails.root}/config/s3.yml",
   					path: ":style/:id/:filename"

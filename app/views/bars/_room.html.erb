@@ -17,9 +17,7 @@
 				<%= room.description.gsub(/\n/, '<br/>').html_safe %>
 			</div>
 
-			<div>
-				<%= render 'rooms/restrictions', room: room %>
-			</div>
+			<div><%= render 'rooms/restrictions', room: room %></div>
 			
 			<% if bar_signed_in? %>
 				<div class="nofl">
