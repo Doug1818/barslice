@@ -2,8 +2,8 @@
 
 <h1>Add a new room!</h1>
 <div>
-<%= form_for( @room, html: { multipart: true } ) do |f| %>
-	<%= render 'fields', f: f %>
-	<%= f.submit "Add room", class: "btn btn-large btn-primary" %>
-<% end %>
+	<%= form_for( @room, html: { multipart: true } ) do |f| %>
+		<%= render 'fields', f: f %>
+		<%= f.submit "Add room", class: "btn btn-large btn-primary" %>
+	<% end %>
 </div>

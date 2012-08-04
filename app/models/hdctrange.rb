@@ -7,4 +7,7 @@ class Hdctrange < ActiveRecord::Base
   		hdctrange.sunday = true && hdctrange.monday = true && hdctrange.tuesday = true && hdctrange.wednesday = true && hdctrange.thursday = true && hdctrange.friday = true && hdctrange.saturday = true
 	end
   end
+
+  validates :min, presence: true, :numericality => { :only_integer => true }
+  validates :max, presence: true, :numericality => { :only_integer => true }
 end

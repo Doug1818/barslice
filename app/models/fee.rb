@@ -7,4 +7,6 @@ class Fee < ActiveRecord::Base
   		fee.sunday = true && fee.monday = true && fee.tuesday = true && fee.wednesday = true && fee.thursday = true && fee.friday = true && fee.saturday = true
 	end
   end
+
+  validates :amount, :numericality => { :only_integer => true }
 end

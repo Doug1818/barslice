@@ -9,6 +9,6 @@ class Roompic < ActiveRecord::Base
   					s3_credentials: "#{Rails.root}/config/s3.yml",
   					path: ":style/:id/:filename"
 
-  validates_attachment_presence :pic
+  #validates_attachment_presence :pic
   validates_attachment_size :pic, less_than: 5.megabytes
 end

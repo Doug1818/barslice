@@ -7,4 +7,7 @@ class Spendmin < ActiveRecord::Base
   		spendmin.sunday = true && spendmin.monday = true && spendmin.tuesday = true && spendmin.wednesday = true && spendmin.thursday = true && spendmin.friday = true && spendmin.saturday = true
 	end
   end
+
+  validates :min, :numericality => { :only_integer => true }
+  validates :per_person, presence: true
 end

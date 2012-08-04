@@ -4,6 +4,12 @@
 
 $grayMediumLight: #eaeaea;
 
+@mixin box_sizing {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 /* universal */
 
 
@@ -129,6 +135,16 @@ footer {
 	}
 }
 
+/* miscellaneous */
+
+.debug_dump {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin-top: 45px;
+	@include box_sizing;
+}
+
 /* forms */
 
 .hform {
@@ -155,6 +171,19 @@ footer {
 	height:25px;
 	font-size:0.9em;
 	margin:5px;
+}
+
+#error_explanation {
+	color: #foo;
+	ul {
+		list-style: none;
+		margin: 0 0 18px 0;
+	}
+}
+
+.field_with_errors {
+	@extend .control-group;
+	@extend .error;
 }
 
 
@@ -200,14 +229,17 @@ footer {
 	}
 }
 
-/* bar info
+/* bar info */
 
-.barinfo {
-	border:1px solid $grayLighter;
-	padding:10px;
+.bar_info {
 	float:right;
+	text-align:right;
+	font-size:0.88em;
+	.bar_hrs {
+		list-style:none;
+	}
 }
- */
+ 
 
 /* search form */
 

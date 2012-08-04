@@ -1,6 +1,15 @@
 class Search < ActiveRecord::Base
   attr_accessible :bar_name, :date, :hdct, :location, :privacy, :start_time, :end_time
 
+  validates :date, presence: true
+  validate  :time_order
+
+  def time_order
+    if self.end_time <= self.start_time
+      self.errors[:end_time] << "must be later than start time."
+    end
+  end
+
   def rooms
   	@rooms ||= find_rooms
   end

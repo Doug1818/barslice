@@ -7,6 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     @bar = Bar.new(params[:bar])
+    @bar.phone = params[:bar][:phone].gsub(/\D/, '')
     @bar.hrsranges.each_with_index do |hrsrange, idx|
       hrsrange.open = TIMES[params[:bar][:hrsranges_attributes].values[idx][:open]]
       hrsrange.close = TIMES[params[:bar][:hrsranges_attributes].values[idx][:close]]
@@ -20,8 +21,7 @@ class RegistrationsController < Devise::RegistrationsController
         redirect_to root_path
       end
     else
-      flash[:error] = "Sign up unsuccessfull"
-      redirect_to new_bar_registration_path
+      render 'new'
     end
   end
 

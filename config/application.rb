@@ -64,5 +64,10 @@ module BarSlice
 
     # Doug per devise
     config.assets.initialize_on_precompile = false
+
+    # Doug: overrrides ActionView::Base.field_error_proc to wrap error fields in span tags instead of div tags
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+        "<span class=\"field_with_errors\">#{html_tag}</span>".html_safe 
+    }
   end
 end

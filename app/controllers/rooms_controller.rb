@@ -30,8 +30,7 @@ before_filter :authenticate_bar!, only: [:new, :create, :destroy, :edit, :update
       flash[:success] = "Room created"
       redirect_to root_path
     else
-      flash[:error] = "Room not created"
-      redirect_to new_room_path
+      render 'new'
     end
   end
 
