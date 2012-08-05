@@ -2,4 +2,15 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      bar:
+        phone: "Phone number"
+      search:
+        hdct: "Number of people"
+      "room/hdctranges":
+        min: "Number of people minimum"
+        max: "Number of people maximum"
+      "room/fees":
+        amount: "Reservation fee"
+      "room/spendmins": "Spend minimum" 

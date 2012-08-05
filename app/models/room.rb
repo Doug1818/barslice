@@ -10,25 +10,33 @@ class Room < ActiveRecord::Base
   accepts_nested_attributes_for :hdctranges, :fees, :spendmins, :roompics, :restrictions, allow_destroy: true
 
   validates :name, presence: true, length: { maximum: 50 }
+  validate  :name_uniqueness
   validates :privacy, presence: true
   validates :description, presence: true
-  validate  :hdct_week_days
+  validate  :week_days
 
+  def name_uniqueness
+    names = []
+    Bar.find(self.bar_id).rooms.each_with_index { |room, idx| names[idx] = room.name }
+    if names.each.include?(self.name)
+      self.errors[:room_name] << "is already taken"
+    end
+  end
 
-  def hdct_week_days
+  def week_days
   	count = []
   	self.hdctranges.each_with_index do |hdctrange, idx|
-		hdctrange.sunday ? sun = 1 : sun = 0
-		hdctrange.monday ? mon = 1 : mon = 0
-		hdctrange.tuesday ? tues = 1 : tues = 0
-		hdctrange.wednesday ? wed = 1 : wed = 0
-		hdctrange.thursday ? thurs = 1 : thurs = 0
-		hdctrange.friday ? fri = 1 : fri = 0
-		hdctrange.saturday ? sat = 1 : sat = 0
+		hdctrange.sunday ?    sun = 1   : sun = 0
+		hdctrange.monday ?    mon = 1   : mon = 0
+		hdctrange.tuesday ?   tues = 1  : tues = 0
+		hdctrange.wednesday ? wed = 1   : wed = 0
+		hdctrange.thursday ?  thurs = 1 : thurs = 0
+		hdctrange.friday ?    fri = 1   : fri = 0
+		hdctrange.saturday ?  sat = 1   : sat = 0
 		count[idx] = sun + mon + tues + wed + thurs + fri + sat
-	end
+    end
   	if count.inject(:+) != 7 && count.inject(:+) != 0
-  	  self.errors[:each_weekday] << "for Number of people must be selected once."
+  	  self.errors[:each_weekday] << "for Number of people must be selected once"
   	end
   end
 end

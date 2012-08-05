@@ -8,5 +8,5 @@ class Fee < ActiveRecord::Base
 	end
   end
 
-  validates :amount, :numericality => { :only_integer => true }
+  validates :amount, :numericality => { :only_integer => true }, allow_blank: true
 end

@@ -14,19 +14,19 @@ class Restriction < ActiveRecord::Base
 
   def date_order
   	if self.start_date && self.end_date && (self.start_date > self.end_date)
-  	  self.errors[""] << "end date must be after or equivalent to start date."
+  	  self.errors[""] << "end date must be after or equivalent to start date"
   	end
   end
 
   def both_dates
   	if (self.start_date && !self.end_date) || (self.end_date && !self.start_date)
-  	  self.errors[""] << "start date and end date both need to be present. Set them both to the same date if restriction is for a single day."
+  	  self.errors[""] << "start date and end date both need to be present. Set them both to the same date if restriction is for a single day"
   	end
   end
 
   def time_order
   	if self.before && self.after && (self.after <= self.before)
-  	  self.errors[""] << "after time must be later than before time."
+  	  self.errors[""] << "after time must be later than before time"
   	end
   end
 end

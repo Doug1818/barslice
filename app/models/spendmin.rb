@@ -8,6 +8,12 @@ class Spendmin < ActiveRecord::Base
 	end
   end
 
-  validates :min, :numericality => { :only_integer => true }
-  validates :per_person, presence: true
+  validates :min, :numericality => { :only_integer => true }, allow_blank: true
+  validate :total_or_per_person
+
+  def total_or_per_person
+  	if self.min && !self.per_person
+  		self.errors[""] << "choice of total or per person can't be blank"
+	end
+  end
 end

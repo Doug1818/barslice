@@ -14,27 +14,33 @@ class Bar < ActiveRecord::Base
   has_many :hrsranges, dependent: :destroy
   accepts_nested_attributes_for :hrsranges, allow_destroy: true  
 
-  validates :name, presence: true, length: { maximum: 100 }
+  validates :name, presence: true, length: { maximum: 100 }, uniqueness: true
   validates :address, presence: true, length: { maximum: 150 }
   validates :neighborhood, presence: true
-  validates :phone, presence: true, length: { minimum:10, maximum: 10 }
-  validate  :hrs_week_days
+  validates :phone, presence: true
+  validate  :phone_length
+  validate  :week_days
 
+  def phone_length
+    if !self.phone.blank? && self.phone.length != 10
+      self.errors[:phone_number] = "must be 10 digits"
+    end
+  end
 
-  def hrs_week_days
+  def week_days
     count = []
     self.hrsranges.each_with_index do |hrsrange, idx|
-    hrsrange.sunday ? sun = 1 : sun = 0
-    hrsrange.monday ? mon = 1 : mon = 0
-    hrsrange.tuesday ? tues = 1 : tues = 0
-    hrsrange.wednesday ? wed = 1 : wed = 0
-    hrsrange.thursday ? thurs = 1 : thurs = 0
-    hrsrange.friday ? fri = 1 : fri = 0
-    hrsrange.saturday ? sat = 1 : sat = 0
+    hrsrange.sunday ?    sun = 1   : sun = 0
+    hrsrange.monday ?    mon = 1   : mon = 0
+    hrsrange.tuesday ?   tues = 1  : tues = 0
+    hrsrange.wednesday ? wed = 1   : wed = 0
+    hrsrange.thursday ?  thurs = 1 : thurs = 0
+    hrsrange.friday ?    fri = 1   : fri = 0
+    hrsrange.saturday ?  sat = 1   : sat = 0
     count[idx] = sun + mon + tues + wed + thurs + fri + sat
-  end
+    end
     if count.inject(:+) != 7 && count.inject(:+) != 0
-      self.errors[:each_weekday] << "for Hours of operation must be selected once."
+      self.errors[:each_weekday] << "for Hours of operation must be selected once"
     end
   end
 
