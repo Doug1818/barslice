@@ -43,10 +43,14 @@
 
 	<div class="search_sections">
 		<div class="hform strong">Optional filters</div>
-		Privacy:
-		<%= f.radio_button :privacy, 1 %> Private
-		<%= f.radio_button :privacy, 2 %> Semi-private
-		<%= f.radio_button :privacy, 3 %> Shared space
+		<div>
+			Privacy:
+			<%= f.radio_button :privacy, 1 %> Private
+			<%= f.radio_button :privacy, 2 %> Semi-private
+			<%= f.radio_button :privacy, 3 %> Shared space
+		</div><br />
+		<div><%= f.check_box :no_fee %> No fees</div><br />
+		<div><%= f.check_box :no_spendmin %> No spend minimums</div>
 	</div>
 </div>
 

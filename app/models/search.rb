@@ -1,14 +1,14 @@
 class Search < ActiveRecord::Base
-  attr_accessible :bar_name, :date, :hdct, :location, :privacy, :start_time, :end_time
+  attr_accessible :bar_name, :date, :hdct, :location, :privacy, :start_time, :end_time, :no_fee, :no_spendmin
 
-  validates_format_of :date, with: /^\d{4}-\d{2}-\d{2}/, message: "cannot be blank and must be in mm/dd/yyyy format."
+  validates :date, presence: true
   validates :hdct, numericality: { only_integer: true }, allow_blank: true
   validate  :future_date
   validate  :time_order
-
+  
   def future_date
     if self.date != nil && self.date < Time.now.to_date
-      self.errors[:date] << "cannot be in the past"
+      self.errors[:date] << "can't be in the past"
     end
   end
 
@@ -27,11 +27,13 @@ private
   	rooms = Room.order(privacy)
   	rooms = rooms.joins(:bar).where("neighborhood = ?", location) if location.present?
   	rooms = rooms.joins(:bar).where("bars.name = ?", bar_name) if bar_name.present?
-  	rooms = rooms.joins(:hdctranges).where("min <= ? AND max >= ? AND hdctranges.#{Date::DAYNAMES[date.wday].downcase} = ?", 
+  	rooms = rooms.joins(:bar).joins(:bar => :hrsranges).where("open <= ? AND close >= ? AND hrsranges.#{Date::DAYNAMES[date.wday].downcase} = ?", 
+      start_time, end_time, true) if date.present?
+    rooms = rooms.joins(:hdctranges).where("min <= ? AND max >= ? AND hdctranges.#{Date::DAYNAMES[date.wday].downcase} = ?", 
       hdct, hdct, true) if hdct.present? && date.present?
     rooms = rooms.where("privacy = ?", privacy) if privacy.present? && date.present?
-    rooms = rooms.joins(:bar).joins(:bar => :hrsranges).where("open <= ? AND close >= ? AND hrsranges.#{Date::DAYNAMES[date.wday].downcase} = ?", 
-      start_time, end_time, true) if date.present?
+    rooms = rooms.joins(:fees).where("amount IS NULL") if no_fee.present?
+    rooms = rooms.joins(:spendmins).where("min IS NULL") if no_spendmin.present?
   
     bad_time = rooms.joins(:restrictions).where("(before > ? OR after < ?) AND restrictions.#{Date::DAYNAMES[date.wday].downcase} = ? 
       AND start_date IS NULL AND end_date IS NULL", start_time, end_time, true) if date.present?

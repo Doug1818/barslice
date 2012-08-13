@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
 
   def create
     @search = Search.new(params[:search])
-  	@search.date = Date.strptime(params[:search][:date],"%m/%d/%Y").to_date if @search.date != nil
+  	@search.date = Date.strptime(params[:search][:date],"%m/%d/%Y").to_date if params[:search][:date] != ""
     @search.start_time = TIMES[params[:search][:start_time]]
     @search.end_time = TIMES[params[:search][:end_time]]
     if @search.save
