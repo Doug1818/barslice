@@ -11,13 +11,15 @@
 			<%= TIMES.key(hrsrange.open) %> to <%= TIMES.key(hrsrange.close) %>
 				<% if hrsrange.sunday && hrsrange.monday && hrsrange.tuesday && hrsrange.wednesday && hrsrange.thursday && hrsrange.friday && hrsrange.saturday %>
 			<% else %>
-				<% if hrsrange.sunday %> Sun <% end %>
-				<% if hrsrange.monday %> Mon <% end %>
-				<% if hrsrange.tuesday %> Tues <% end %>
-				<% if hrsrange.wednesday %> Wed <% end %>
-				<% if hrsrange.thursday %> Thurs <% end %>
-				<% if hrsrange.friday %> Fri <% end %>
-				<% if hrsrange.saturday %> Sat <% end %>
+				<% range = [] %>
+				<% range.push("Monday") if hrsrange.monday %>
+				<% range.push("Tuesday") if hrsrange.tuesday %>
+				<% range.push("Wednesday") if hrsrange.wednesday %>
+				<% range.push("Thursday") if hrsrange.thursday %>
+				<% range.push("Friday") if hrsrange.friday %>
+				<% range.push("Saturday") if hrsrange.saturday %>
+				<% range.push("Sunday") if hrsrange.sunday %>
+				<%= DayRange.new(range) %>
 			<% end %>
 			</li>
 		<% end %>

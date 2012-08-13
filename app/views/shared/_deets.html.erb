@@ -7,13 +7,15 @@
 					<%= hdctrange.min %>-<%= hdctrange.max %>
 					<% if hdctrange.sunday && hdctrange.monday && hdctrange.tuesday && hdctrange.wednesday && hdctrange.thursday && hdctrange.friday && hdctrange.saturday %>
 					<% else %> on 
-						<% if hdctrange.sunday %> Sun <% end %>
-						<% if hdctrange.monday %> Mon <% end %>
-						<% if hdctrange.tuesday %> Tues <% end %>
-						<% if hdctrange.wednesday %> Wed <% end %>
-						<% if hdctrange.thursday %> Thurs <% end %>
-						<% if hdctrange.friday %> Fri <% end %>
-						<% if hdctrange.saturday %> Sat <% end %>
+						<% range = [] %>
+						<% range.push("Monday") if hdctrange.monday %>
+						<% range.push("Tuesday") if hdctrange.tuesday %>
+						<% range.push("Wednesday") if hdctrange.wednesday %>
+						<% range.push("Thursday") if hdctrange.thursday %>
+						<% range.push("Friday") if hdctrange.friday %>
+						<% range.push("Saturday") if hdctrange.saturday %>
+						<% range.push("Sunday") if hdctrange.sunday %>
+						<%= DayRange.new(range) %>
 					<% end %>
 				</li>
 			<% end %>
@@ -32,13 +34,15 @@
 						<% if spendmin.sunday && spendmin.monday && spendmin.tuesday && spendmin.wednesday && spendmin.thursday && spendmin.friday && spendmin.saturday %>
 						<% else %>
 							<% if spendmin.per_person == true %> per person <% end %> on
-							<% if spendmin.sunday %> Sun <% end %>
-							<% if spendmin.monday %> Mon <% end %>
-							<% if spendmin.tuesday %> Tues <% end %>
-							<% if spendmin.wednesday %> Wed <% end %>
-							<% if spendmin.thursday %> Thurs <% end %>
-							<% if spendmin.friday %> Fri <% end %>
-							<% if spendmin.saturday %> Sat <% end %>
+							<% range = [] %>
+							<% range.push("Monday") if spendmin.monday %>
+							<% range.push("Tuesday") if spendmin.tuesday %>
+							<% range.push("Wednesday") if spendmin.wednesday %>
+							<% range.push("Thursday") if spendmin.thursday %>
+							<% range.push("Friday") if spendmin.friday %>
+							<% range.push("Saturday") if spendmin.saturday %>
+							<% range.push("Sunday") if spendmin.sunday %>
+							<%= DayRange.new(range) %>
 						<% end %>
 					<% end %> 
 				</li>
@@ -57,13 +61,15 @@
 						$<%= fee.amount %>
 						<% if fee.sunday && fee.monday && fee.tuesday && fee.wednesday && fee.thursday && fee.friday && fee.saturday %>
 						<% else %> on
-							<% if fee.sunday %> Sun <% end %>
-							<% if fee.monday %> Mon <% end %>
-							<% if fee.tuesday %> Tues <% end %>
-							<% if fee.wednesday %> Wed <% end %>
-							<% if fee.thursday %> Thurs <% end %>
-							<% if fee.friday %> Fri <% end %>
-							<% if fee.saturday %> Sat <% end %>
+							<% range = [] %>
+							<% range.push("Monday") if fee.monday %>
+							<% range.push("Tuesday") if fee.tuesday %>
+							<% range.push("Wednesday") if fee.wednesday %>
+							<% range.push("Thursday") if fee.thursday %>
+							<% range.push("Friday") if fee.friday %>
+							<% range.push("Saturday") if fee.saturday %>
+							<% range.push("Sunday") if fee.sunday %>
+							<%= DayRange.new(range) %>
 						<% end %>
 					<% end %> 
 				</li>
