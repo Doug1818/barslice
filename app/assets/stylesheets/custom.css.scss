@@ -236,7 +236,7 @@ footer {
 
 /* bar info */
 
-.bar_info {
+.bar_info_signed_in {
 	float:right;
 	text-align:right;
 	font-size:0.88em;
@@ -244,7 +244,12 @@ footer {
 		list-style:none;
 	}
 }
- 
+
+.bar_info_signed_out {
+	.bar_hrs {
+		list-style:none;
+	}
+}
 
 /* search form */
 

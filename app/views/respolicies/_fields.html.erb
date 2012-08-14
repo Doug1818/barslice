@@ -1,0 +1,14 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<div class="hform strong">Description</div>
+<%= f.text_area :description, placeholder: "Descibe the room itself and any relevant conditions to booking it.", style: 'height: 200px; width:500px' %>
+
+<% if f.object.policydoc? %>
+  <div class="hform strong">Change reservation policy document</div>
+	Current attachment: <%= link_to(f.object.policydoc_file_name, f.object.policydoc.url) %><br />
+	<%= f.check_box :delete_policydoc, {}, "1", "0" %> Delete or
+	Change: <%= f.file_field :policydoc %><br /><br />
+<% else %>
+	<div class="hform"><span class="strong">Upload reservation policy document</span> (if you have one)</div>
+	<%= f.file_field :policydoc %>
+<% end %><br />

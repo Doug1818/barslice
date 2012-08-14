@@ -1,27 +1,28 @@
-<div class="bar_info">
-	<span class="strong">Bar info:</span><br />
-	<%= object.email %><br />
-	(<%= object.phone[0..2] %>) <%= object.phone[3..5] %>-<%= object.phone[6..9] %><br />
-	<%= link_to object.website, url_with_protocol(object.website), target: "_blank" %><br />
-	<%= object.address %><br /><br />
-	Hours of operation:
-	<ul class="bar_hrs">
-		<% object.hrsranges.each do |hrsrange| %>
-			<li>
-			<%= TIMES.key(hrsrange.open) %> to <%= TIMES.key(hrsrange.close) %>
-				<% if hrsrange.sunday && hrsrange.monday && hrsrange.tuesday && hrsrange.wednesday && hrsrange.thursday && hrsrange.friday && hrsrange.saturday %>
-			<% else %>
-				<% range = [] %>
-				<% range.push("Monday") if hrsrange.monday %>
-				<% range.push("Tuesday") if hrsrange.tuesday %>
-				<% range.push("Wednesday") if hrsrange.wednesday %>
-				<% range.push("Thursday") if hrsrange.thursday %>
-				<% range.push("Friday") if hrsrange.friday %>
-				<% range.push("Saturday") if hrsrange.saturday %>
-				<% range.push("Sunday") if hrsrange.sunday %>
-				<%= DayRange.new(range) %>
-			<% end %>
-			</li>
+<span class="strong">Bar info:</span><br />
+<%= object.email %><br />
+(<%= object.phone[0..2] %>) <%= object.phone[3..5] %>-<%= object.phone[6..9] %><br />
+<%= link_to object.website, url_with_protocol(object.website), target: "_blank" %><br />
+<%= object.address %><br /><br />
+Hours of operation:
+<ul class="bar_hrs">
+	<% object.hrsranges.each do |hrsrange| %>
+		<li>
+		<%= TIMES.key(hrsrange.open) %> to <%= TIMES.key(hrsrange.close) %>
+			<% if hrsrange.sunday && hrsrange.monday && hrsrange.tuesday && hrsrange.wednesday && hrsrange.thursday && hrsrange.friday && hrsrange.saturday %>
+		<% else %>
+			<% range = [] %>
+			<% range.push("Monday") if hrsrange.monday %>
+			<% range.push("Tuesday") if hrsrange.tuesday %>
+			<% range.push("Wednesday") if hrsrange.wednesday %>
+			<% range.push("Thursday") if hrsrange.thursday %>
+			<% range.push("Friday") if hrsrange.friday %>
+			<% range.push("Saturday") if hrsrange.saturday %>
+			<% range.push("Sunday") if hrsrange.sunday %>
+			<%= DayRange.new(range) %>
 		<% end %>
-	</ul>
-</div>
+		</li>
+	<% end %>
+</ul>
+<% if bar_signed_in? %>
+	<%= link_to "Edit", edit_bar_registration_path %>
+<% end %>

@@ -1,26 +1,26 @@
 <h1><%= current_bar.name %></h1>
 
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Rooms</a></li>
-    <li><a href="#tab2" data-toggle="tab">Reservation policy</a></li>
+	<li class="active"><a href="#tab1" data-toggle="tab">Rooms</a></li>
+	<li><a href="#tab2" data-toggle="tab">Reservation policy</a></li>
     <li><a href="#tab3" data-toggle="tab">Specials</a></li>
     <li><a href="#tab4" data-toggle="tab">Reservations</a></li>
     <li><a href="#tab5" data-toggle="tab">Bar info</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
+</ul>
+<div class="tab-content">
+	<div class="tab-pane active" id="tab1">
       <%= render 'bars/room', object: current_bar %>
-    </div>
-    <div class="tab-pane" id="tab2">
-      Reservation policy
-    </div>
-    <div class="tab-pane" id="tab3">
+	</div>
+	<div class="tab-pane" id="tab2">
+      <%= render 'bars/respolicy' %>
+	</div>
+	<div class="tab-pane" id="tab3">
       Specials
-    </div>
-    <div class="tab-pane" id="tab4">
+	</div>
+	<div class="tab-pane" id="tab4">
       Reservations
-    </div>
-    <div class="tab-pane" id="tab5">
-      Bar info
-    </div>
-  </div>
+	</div>
+	<div class="tab-pane bar_info_signed_out" id="tab5">
+      <%= render 'shared/bar_info', object: current_bar %>
+	</div>
+</div>

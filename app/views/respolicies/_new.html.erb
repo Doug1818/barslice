@@ -1,0 +1,4 @@
+<%= form_for current_bar.build_respolicy, :html => { :multipart => true } do |f| %>
+  	<%= render 'respolicies/fields', f: f %>
+  	<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+<% end %>

@@ -27,7 +27,7 @@ before_filter :authenticate_bar!, only: [:new, :create, :destroy, :edit, :update
       end
     end if params[:room][:restrictions_attributes]
     if @room.save
-      flash[:success] = "Room created"
+      flash[:success] = "Room added"
       redirect_to root_path
     else
       render 'new'
