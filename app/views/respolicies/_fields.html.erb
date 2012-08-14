@@ -1,7 +1,7 @@
 <%= render 'shared/error_messages', object: f.object %>
 
 <div class="hform strong">Description</div>
-<%= f.text_area :description, placeholder: "Descibe the room itself and any relevant conditions to booking it.", style: 'height: 200px; width:500px' %>
+<%= f.text_area :description, placeholder: "List typical bar policies for large reservations - e.g cancellations, gratuity, failure to reach minimum spend, etc.", style: 'height: 200px; width:500px' %>
 
 <% if f.object.policydoc? %>
   <div class="hform strong">Change reservation policy document</div>
