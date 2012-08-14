@@ -12,7 +12,16 @@
       <%= render 'bars/room', object: current_bar %>
 	</div>
 	<div class="tab-pane" id="tab2">
-      <%= render 'bars/respolicy' %>
+		<% if current_bar.respolicy %>
+			<strong>Description:</strong><br>
+	    	<%= render 'bars/respolicy' %>
+	    	<div class="nofl">
+				<%= link_to "Delete", current_bar.respolicy, method: :delete, confirm: "You sure?" %> | 
+				<%= link_to "Edit", edit_respolicy_path(current_bar) %>
+			</div>
+	  	<% else %>
+			<%= render 'respolicies/new' %>
+		<% end %>
 	</div>
 	<div class="tab-pane" id="tab3">
       Specials
@@ -20,7 +29,7 @@
 	<div class="tab-pane" id="tab4">
       Reservations
 	</div>
-	<div class="tab-pane bar_info_signed_out" id="tab5">
-      <%= render 'shared/bar_info', object: current_bar %>
+	<div class="tab-pane bar_info_left" id="tab5">
+    	<%= render 'shared/bar_info', object: current_bar %>
 	</div>
 </div>

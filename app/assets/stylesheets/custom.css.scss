@@ -236,7 +236,7 @@ footer {
 
 /* bar info */
 
-.bar_info_signed_in {
+.bar_info_right {
 	float:right;
 	text-align:right;
 	font-size:0.88em;
@@ -245,7 +245,7 @@ footer {
 	}
 }
 
-.bar_info_signed_out {
+.bar_info_left {
 	.bar_hrs {
 		list-style:none;
 	}

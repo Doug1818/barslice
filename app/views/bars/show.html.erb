@@ -1,6 +1,6 @@
 <h1><%= @bar.name %></h1>
 
-<div class="bar_info_signed_out">
+<div class="bar_info_right">
 	<%= render 'shared/bar_info', object: @bar %>
 </div>
 
@@ -11,4 +11,9 @@
 
 <div>
 	<h2>Specials</h2>
+</div>
+
+<div>
+	<h2>Reservation policy</h2>
+	<%= render 'bars/respolicy' %>
 </div>

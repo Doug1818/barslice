@@ -1,18 +1,8 @@
-<% if current_bar.respolicy %>
-	<strong>Description: </strong><br>
-	<%= current_bar.respolicy.description.gsub(/\n/, '<br/>').html_safe %><br /><br />
-	
-	<strong>Attachment:</strong>
-	<% if current_bar.respolicy.policydoc_file_name %>
-		<%= link_to current_bar.respolicy.policydoc_file_name, current_bar.respolicy.policydoc.url %>
-	<% else %>
-		<div>No attachment uploaded</div>
-	<% end %><br /><br />
+<%= current_bar.respolicy.description.gsub(/\n/, '<br/>').html_safe %><br /><br />
 
-	<div class="nofl">
-		<%= link_to "Delete", current_bar.respolicy, method: :delete, confirm: "You sure?" %> | 
-		<%= link_to "Edit", edit_respolicy_path(current_bar) %>
-	</div>
+<strong>Attachment:</strong>
+<% if current_bar.respolicy.policydoc_file_name %>
+	<%= link_to current_bar.respolicy.policydoc_file_name, current_bar.respolicy.policydoc.url %>
 <% else %>
-	<%= render 'respolicies/new' %>
-<% end %>
+	<div>No attachment uploaded</div>
+<% end %><br /><br />

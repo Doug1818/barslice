@@ -1,6 +1,6 @@
 <h1><%= @room.name %> at <%= link_to Bar.find_by_id(@room.bar_id).name, bar_path(@room.bar_id) %></h1>
 
-<div class="bar_info_signed_out">
+<div class="bar_info_right">
 	<%= render 'shared/bar_info', object: Bar.find_by_id(@room.bar_id) %>
 </div>
 
@@ -18,6 +18,12 @@
 			<strong>Description: </strong><br>
 			<%= @room.description.gsub(/\n/, '<br/>').html_safe %>
 		</div>
-		<%= render 'rooms/restrictions', room: @room %>
+		<div>
+			<%= render 'rooms/restrictions', room: @room %>
+		</div><br /><br />
+		<div class="nofl">
+			<strong>Reservation policy:</strong><br>
+			<%= render 'bars/respolicy' %>
+		</div>
 	</li>
 <ul>
