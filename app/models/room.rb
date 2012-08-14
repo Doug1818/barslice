@@ -10,7 +10,7 @@ class Room < ActiveRecord::Base
   accepts_nested_attributes_for :hdctranges, :fees, :spendmins, :roompics, :restrictions, allow_destroy: true
 
   validates :name, presence: true, length: { maximum: 50 }
-  validate  :name_uniqueness
+  validate :name_uniqueness, on: :create #need to add different validation for update action
   validates :privacy, presence: true
   validates :description, presence: true
   validate  :week_days

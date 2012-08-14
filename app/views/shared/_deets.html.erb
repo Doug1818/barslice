@@ -6,7 +6,7 @@
 				<li>
 					<%= hdctrange.min %>-<%= hdctrange.max %>
 					<% if hdctrange.sunday && hdctrange.monday && hdctrange.tuesday && hdctrange.wednesday && hdctrange.thursday && hdctrange.friday && hdctrange.saturday %>
-					<% else %> on 
+					<% else %>
 						<% range = [] %>
 						<% range.push("Monday") if hdctrange.monday %>
 						<% range.push("Tuesday") if hdctrange.tuesday %>
@@ -60,7 +60,7 @@
 					<% else %>
 						$<%= fee.amount %>
 						<% if fee.sunday && fee.monday && fee.tuesday && fee.wednesday && fee.thursday && fee.friday && fee.saturday %>
-						<% else %> on
+						<% else %>
 							<% range = [] %>
 							<% range.push("Monday") if fee.monday %>
 							<% range.push("Tuesday") if fee.tuesday %>
@@ -79,6 +79,6 @@
 </ul>
 <div class="nofl">
 	<% room.roompics.each do |roompic| %>
-		<%= link_to image_tag(roompic.pic.url(:thumb)), roompic.pic.url(:large), target: "_blank" %>
+		<%= link_to(image_tag(roompic.pic.url(:thumb)), roompic.pic.url(:large), target: "_blank") if roompic.pic_content_type %>
 	<% end %>
 </div>
