@@ -1,7 +1,7 @@
 <% x = [] %>
 <% room.restrictions.each_with_index { |restriction, idx| x[idx] = restriction.exists } %>
 <% if x.inject(:+) >= 1 %>
-	<strong>Restrictions:</strong><br />
+	<strong>Availability restrictions:</strong><br />
 	<ul class="restrictions">
 		<% room.restrictions.each do |restriction| %>
 			<li class="restriction">

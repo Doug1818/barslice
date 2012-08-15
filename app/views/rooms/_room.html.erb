@@ -11,4 +11,6 @@
 	    <%= Bar.find(room.bar_id).neighborhood %>
     </span><br />
 	<%= render 'shared/deets', room: room %>
+	<strong>Description: </strong><br>
+	<%= room.description.truncate(210) %>
 </li>
