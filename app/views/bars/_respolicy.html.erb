@@ -1,8 +1,8 @@
-<%= current_bar.respolicy.description.gsub(/\n/, '<br/>').html_safe %><br /><br />
+<%= object.respolicy.description.gsub(/\n/, '<br/>').html_safe %><br /><br />
 
 <strong>Attachment:</strong>
-<% if current_bar.respolicy.policydoc_file_name %>
-	<%= link_to current_bar.respolicy.policydoc_file_name, current_bar.respolicy.policydoc.url %>
+<% if object.respolicy.policydoc_file_name %>
+	<%= link_to object.respolicy.policydoc_file_name, object.respolicy.policydoc.url %>
 <% else %>
 	<div>No attachment uploaded</div>
 <% end %><br /><br />

@@ -24,7 +24,7 @@
 		<% if Bar.find_by_id(@room.bar_id).respolicy %>
 			<div class="nofl">
 				<strong>Reservation policy:</strong><br>
-				<%= render 'bars/respolicy' %>
+				<%= render 'bars/respolicy', object: Bar.find_by_id(@room.bar_id) %>
 			</div>
 		<% end %>
 	</li>
