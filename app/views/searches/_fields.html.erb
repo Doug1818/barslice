@@ -28,13 +28,13 @@
 			<% if f.object.start_time? %>
 				<%= f.select :start_time, TIMES.keys, { selected: TIMES.key(f.object.start_time) }, class: "time" %> to
 			<% else %>
-				<%= f.select :start_time, TIMES.keys, { selected: "9:00 PM" }, class: "time" %> to 
+				<%= f.select :start_time, TIMES.keys, { selected: "9:00am" }, class: "time" %> to 
 			<% end %>
 
 			<% if f.object.end_time? %>
 				<%= f.select :end_time, TIMES.keys, { selected: TIMES.key(f.object.end_time) }, class: "time" %>
 			<% else %>
-				<%= f.select :end_time, TIMES.keys, { selected: "1:00 AM" }, class: "time" %>
+				<%= f.select :end_time, TIMES.keys, { selected: "1:00am" }, class: "time" %>
 			<% end %>
 		</div><br />
 

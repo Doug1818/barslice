@@ -13,7 +13,9 @@
 	<h2>Specials</h2>
 </div>
 
-<div>
-	<h2>Reservation policy</h2>
-	<%= render 'bars/respolicy' %>
-</div>
+<% if @bar.respolicy %>
+	<div>
+		<h2>Reservation policy</h2>
+		<%= render 'bars/respolicy' %>
+	</div>
+<% end %>

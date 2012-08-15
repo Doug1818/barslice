@@ -4,14 +4,14 @@
 	<% if f.object.open? %>
 		<%= f.select :open, TIMES.keys, { selected: TIMES.key(f.object.open) }, class: "time" %>
 	<% else %>
-		<%= f.select :open, TIMES.keys, { selected: "11:00 AM" }, class: "time" %>
+		<%= f.select :open, TIMES.keys, { selected: "11:00am" }, class: "time" %>
 	<% end %>
 
 	Close:
 	<% if f.object.close? %>
 		<%= f.select :close, TIMES.keys, { selected: TIMES.key(f.object.close) }, class: "time" %>
 	<% else %>
-		<%= f.select :close, TIMES.keys, { selected: "4:00 AM" }, class: "time" %>
+		<%= f.select :close, TIMES.keys, { selected: "4:00am" }, class: "time" %>
 	<% end %>
 
 	<%= f.hidden_field :_destroy %>

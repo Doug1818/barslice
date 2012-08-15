@@ -21,9 +21,11 @@
 		<div>
 			<%= render 'rooms/restrictions', room: @room %>
 		</div><br /><br />
-		<div class="nofl">
-			<strong>Reservation policy:</strong><br>
-			<%= render 'bars/respolicy' %>
-		</div>
+		<% if Bar.find_by_id(@room.bar_id).respolicy %>
+			<div class="nofl">
+				<strong>Reservation policy:</strong><br>
+				<%= render 'bars/respolicy' %>
+			</div>
+		<% end %>
 	</li>
 <ul>
