@@ -28,7 +28,7 @@
 			<% if f.object.start_time? %>
 				<%= f.select :start_time, TIMES.keys, { selected: TIMES.key(f.object.start_time) }, class: "time" %> to
 			<% else %>
-				<%= f.select :start_time, TIMES.keys, { selected: "9:00am" }, class: "time" %> to 
+				<%= f.select :start_time, TIMES.keys, { selected: "9:00pm" }, class: "time" %> to 
 			<% end %>
 
 			<% if f.object.end_time? %>
