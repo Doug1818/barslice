@@ -1,9 +1,12 @@
 <%= render 'shared/error_messages', object: f.object %>
 
-<div class="hform strong">Special description</div>
+<div class="hform strong">Name</div>
+<%= f.text_field :name %><br>
+
+<div class="hform strong">Description</div>
 <%= f.text_area :description, placeholder: "Descibe the special.", style: 'height: 100px; width:400px' %><br>
 
-<%= f.check_box :open_bar %><%= label_tag "special_open_bar", "Open bar special" %>
+<%= f.check_box :open_bar %> Open bar special
 <%= f.check_box :food %> Food special <br>
 
 <div class="hform"><span class="strong">Minimum number of people</span> (leave blank if no minimum)</div>
@@ -51,8 +54,8 @@ Until:
 <div class="hform"><span class="strong">Applicable rooms</span> (ignore if applies to all rooms)</div>
 <% Bar.find(current_bar.id).rooms.each do |room| %>
 	<%= hidden_field_tag "special[room_ids][]", nil %>
-	<%= check_box_tag "special[room_ids][]", room.id, @special.room_ids.include?(room.id), id: dom_id(room) %>
-	<%= label_tag dom_id(room), room.name %><br>
+	<%= check_box_tag "special[room_ids][]", room.id, @special.room_ids.include?(room.id) %>
+	<%= room.name %><br>
 <% end %>
 
 <script type="text/javascript">

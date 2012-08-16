@@ -13,4 +13,5 @@
 	<%= render 'shared/deets', room: room %>
 	<strong>Description: </strong><br>
 	<%= room.description.truncate(210) %>
+	<div><%= render 'rooms/specials_list', room: room %></div>
 </li>

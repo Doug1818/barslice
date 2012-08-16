@@ -1,5 +1,5 @@
 class Special < ActiveRecord::Base
-  attr_accessible :end_date, :friday, :from, :monday, :saturday, :start_date, :sunday, :thursday, :tuesday,
+  attr_accessible :name, :end_date, :friday, :from, :monday, :saturday, :start_date, :sunday, :thursday, :tuesday,
    :until, :wednesday, :description, :min_hdct, :open_bar, :food, :room_ids
   
   belongs_to :bar
@@ -12,4 +12,6 @@ class Special < ActiveRecord::Base
 		  special.sunday = true && special.monday = true && special.tuesday = true && special.wednesday = true && special.thursday = true && special.friday = true && special.saturday = true
     end
   end
+
+  validates :name, presence: true, length: { maximum: 80 }
 end

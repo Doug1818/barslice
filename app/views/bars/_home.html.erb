@@ -7,10 +7,12 @@
     <li><a href="#tab4" data-toggle="tab">Reservations</a></li>
     <li><a href="#tab5" data-toggle="tab">Bar info</a></li>
 </ul>
+
 <div class="tab-content">
 	<div class="tab-pane active" id="tab1">
       <%= render 'bars/room', object: current_bar %>
 	</div>
+	
 	<div class="tab-pane" id="tab2">
 		<% if current_bar.respolicy %>
 			<strong>Description:</strong><br>
@@ -23,12 +25,28 @@
 			<%= render 'respolicies/new' %>
 		<% end %>
 	</div>
+	
 	<div class="tab-pane" id="tab3">
-      <%= render 'bars/special', object: current_bar %>
+		<ul class="rooms">
+			<% current_bar.specials.each do |special| %>
+				<li class="room">
+					<div>
+						<strong>Name:</strong>
+						<%= special.name %>
+					</div>
+	      			<%= render 'bars/special', special: special %>
+	  			</li>
+  			<% end %>
+		</ul>
+		<% if bar_signed_in? %>
+		<%= link_to "Add special", new_special_path, class: "btn btn-med btn-primary" %>
+		<% end %>
 	</div>
+	
 	<div class="tab-pane" id="tab4">
       Reservations
 	</div>
+	
 	<div class="tab-pane bar_info_left" id="tab5">
     	<%= render 'shared/bar_info', object: current_bar %>
 	</div>

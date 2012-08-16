@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120815191537) do
+ActiveRecord::Schema.define(:version => 20120816154016) do
 
   create_table "bars", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(:version => 20120815191537) do
     t.integer  "min_hdct"
     t.boolean  "open_bar"
     t.boolean  "food"
+    t.string   "name"
   end
 
   create_table "spendmins", :force => true do |t|

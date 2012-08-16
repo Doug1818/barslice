@@ -1,0 +1,11 @@
+<h1><%= link_to Bar.find(@special.bar_id).name, bar_path(@special.bar_id) %> special: <%= @special.name %></h1>
+
+<div class="bar_info_right">
+	<%= render 'shared/bar_info', object: Bar.find(@special.bar_id) %>
+</div>
+
+<ul class="rooms span9">
+	<li class="room">
+		<%= render 'bars/special', special: @special %>
+	</li>
+</ul>

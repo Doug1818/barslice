@@ -1,0 +1,7 @@
+<% if room.specials.any? %>
+	<strong>Specials:</strong>
+	<% c = room.specials.count - 1 %>
+	<% room.specials.each_with_index do |special, idx| %>
+	     <%= link_to special.name, special_path(special) %><%= ", " unless idx == c %>
+	<% end %>
+<% end %>

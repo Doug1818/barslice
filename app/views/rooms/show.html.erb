@@ -13,14 +13,13 @@
 			<% else %> Shared space
 			<% end %>
 		</div>
-		<%= render 'shared/deets', room: @room %>
+		<div><%= render 'shared/deets', room: @room %></div>
 		<div class="nofl">
 			<strong>Description: </strong><br>
 			<%= @room.description.gsub(/\n/, '<br/>').html_safe %>
 		</div>
-		<div>
-			<%= render 'rooms/restrictions', room: @room %>
-		</div><br /><br />
+		<div><%= render 'rooms/specials_list', room: @room %></div>
+		<div><%= render 'rooms/restrictions', room: @room %></div><br /><br />
 		<% if Bar.find_by_id(@room.bar_id).respolicy %>
 			<div class="nofl">
 				<strong>Reservation policy:</strong><br>

@@ -3,19 +3,20 @@
 <div class="bar_info_right">
 	<%= render 'shared/bar_info', object: @bar %>
 </div>
-
-<div>
-	<h2>Rooms</h2>
-	<%= render 'bars/room', object: @bar %>
-</div>
-
-<div>
-	<h2>Specials</h2>
-</div>
-
-<% if @bar.respolicy %>
-	<div>
-		<h2>Reservation policy</h2>
-		<%= render 'bars/respolicy', object: @bar %>
+<ul class="nav nav-tabs span9">
+	<li class="active"><a href="#tab1" data-toggle="tab">Rooms</a></li>
+	<li><a href="#tab2" data-toggle="tab">Reservation policy</a></li>
+</ul>
+<div class="tab-content span9">
+	<div class="tab-pane active" id="tab1">
+      <%= render 'bars/room', object: @bar %>
 	</div>
-<% end %>
+	<div class="tab-pane" id="tab2">
+		<% if @bar.respolicy %>
+			<strong>Description:</strong><br>
+	    	<%= render 'bars/respolicy', object: @bar %>
+	  	<% else %>
+			<p>No reservation policy available</p>
+		<% end %>
+	</div>
+</div>
