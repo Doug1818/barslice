@@ -12,12 +12,13 @@ gem "paperclip", "~> 3.0"
 gem 'kumade'
 gem 'aws-sdk'
 gem 'aws-s3'
+gem 'jquery-rails', '2.1.0'
 
 group :development do
-	gem 'rspec-rails', '2.9.0'
-	gem 'guard-rspec', '0.5.5'
-	gem 'annotate', '~> 2.4.1.beta'
-	gem 'pry'
+  gem 'rspec-rails', '2.9.0'
+  gem 'guard-rspec', '0.5.5'
+  gem 'annotate', '~> 2.4.1.beta'
+  gem 'pry'
 end
 
 # Gems used only for assets and not required
@@ -29,14 +30,13 @@ group :assets do
   gem 'jquery-ui-rails'
 end
 
-gem 'jquery-rails'
 
 group :test do
-	gem 'rspec-rails', '2.9.0'
-	gem 'capybara', '1.1.2'
-	gem 'rb-inotify', '0.8.8'
-	gem 'libnotify', '0.5.9'
-	gem 'guard-spork', '0.3.2'
-	gem 'spork', '0.9.0'
-	gem 'factory_girl_rails', '1.4.0'
+  gem 'rspec-rails', '2.9.0'
+  gem 'capybara', '1.1.2'
+  gem 'rb-inotify', '0.8.8'
+  gem 'libnotify', '0.5.9'
+  gem 'guard-spork', '0.3.2'
+  gem 'spork', '0.9.0'
+  gem 'factory_girl_rails', '1.4.0'
 end
