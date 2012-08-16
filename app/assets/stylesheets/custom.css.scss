@@ -89,20 +89,8 @@ em {
 	font-size: 1.7em;
 	color: white;
 	letter-spacing: -1px;
-	padding: 10px;
+	padding: 10px 10px 10px 0;
 	font-weight: bold;
-	line-height: 1;
-	
-	&:hover {
-		color: white;
-		text-decoration: none;
-	}
-}
-
-#session {
-	float: right;
-	color: white;
-	padding: 10px;
 	line-height: 1;
 	
 	&:hover {
