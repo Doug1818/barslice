@@ -28,14 +28,14 @@
 	
 	Before:
 	<% if f.object.before? %>
-		<%= f.select :before, TIMES.keys, { selected: TIMES.key(f.object.before) }, class: "time" %>
+		<%= f.select :before, TIMES.keys, { selected: TIMES.key(f.object.before), include_blank: true }, class: "time" %>
 	<% else %>
 		<%= f.select :before, TIMES.keys, { include_blank: true }, class: "time" %>
 	<% end %>
 	
 	After:
 	<% if f.object.after? %>
-		<%= f.select :after, TIMES.keys, { selected: TIMES.key(f.object.after) }, class: "time" %>
+		<%= f.select :after, TIMES.keys, { selected: TIMES.key(f.object.after), include_blank: true }, class: "time" %>
 	<% else %>
 		<%= f.select :after, TIMES.keys, { include_blank: true }, class: "time" %>
 	<% end %>

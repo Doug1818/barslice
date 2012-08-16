@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120814184652) do
+ActiveRecord::Schema.define(:version => 20120815191537) do
 
   create_table "bars", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -111,6 +111,13 @@ ActiveRecord::Schema.define(:version => 20120814184652) do
     t.integer  "exists"
   end
 
+  create_table "rmsprelationships", :force => true do |t|
+    t.integer  "room_id"
+    t.integer  "special_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "roompics", :force => true do |t|
     t.string   "description"
     t.integer  "room_id"
@@ -143,6 +150,27 @@ ActiveRecord::Schema.define(:version => 20120814184652) do
     t.integer  "end_time"
     t.boolean  "no_fee"
     t.boolean  "no_spendmin"
+  end
+
+  create_table "specials", :force => true do |t|
+    t.integer  "bar_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "sunday"
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednesday"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturday"
+    t.integer  "from"
+    t.integer  "until"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
+    t.integer  "min_hdct"
+    t.boolean  "open_bar"
+    t.boolean  "food"
   end
 
   create_table "spendmins", :force => true do |t|

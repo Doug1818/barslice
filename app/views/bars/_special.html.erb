@@ -1,0 +1,50 @@
+<ul class="rooms">
+	<% object.specials.each do |special| %>
+		<li class="room">
+
+			<div>
+				<strong>Description:</strong><br>
+				<%= special.description.gsub(/\n/, '<br/>').html_safe %>
+			</div>
+
+			<ul>
+				<li>
+					<% if special.open_bar %>
+						Open bar available for this special
+					<% else %>
+						Open bar not availabe for this special
+					<% end %>
+				</li>
+				<li>
+					<% if special.food %>
+						Food available for this special
+					<% else %>
+						Food not availabe for this special
+					<% end %>
+				</li>
+				<li>Minimum number of people: <%= special.min_hdct %></li>
+			</ul>
+
+			<div><%= render 'specials/valid', special: special %></div>
+
+			<div>
+				<strong>Applicable rooms:</strong><br>
+				<ul>
+					<% special.rooms.each do |room| %>
+						<li><%= room.name %></li>
+					<% end %>
+				</ul>
+			</div>
+			
+			<% if bar_signed_in? %>
+				<div class="nofl">
+					<%= link_to "Delete", special, method: :delete, confirm: "You sure?" %> | 
+					<%= link_to "Edit", edit_special_path(special) %>
+				</div>
+			<% end %>
+		</li>
+	<% end %>
+</ul>
+<% if bar_signed_in? %>
+<%= link_to "Add special", new_special_path, class: "btn btn-med btn-primary" %>
+<% end %>

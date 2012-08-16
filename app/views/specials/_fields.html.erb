@@ -1,0 +1,62 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<div class="hform strong">Special description</div>
+<%= f.text_area :description, placeholder: "Descibe the special.", style: 'height: 100px; width:400px' %><br>
+
+<%= f.check_box :open_bar %><%= label_tag "special_open_bar", "Open bar special" %>
+<%= f.check_box :food %> Food special <br>
+
+<div class="hform"><span class="strong">Minimum number of people</span> (leave blank if no minimum)</div>
+<%= f.text_field :min_hdct, style: 'width: 50px;' %>
+
+<div class="hform"><span class="strong">Special valid</span> (ignore if always valid)</div>
+Start date:
+<% if f.object.start_date? %>
+	<%= f.text_field :start_date, class: "datepicker", style: "width: 100px", value: f.object.start_date.strftime("%m/%d/%Y") %>
+<% else %>
+	<%= f.text_field :start_date, class: "datepicker", style: "width: 100px" %>
+<% end %>
+
+End date:
+<% if f.object.end_date? %>
+	<%= f.text_field :end_date, class: "datepicker", style: "width: 100px", value: f.object.end_date.strftime("%m/%d/%Y") %>
+<% else %>
+	<%= f.text_field :end_date, class: "datepicker", style: "width: 100px" %>
+<% end %>
+
+<div><br>
+	<%= f.check_box :sunday %> S		
+	<%= f.check_box :monday %> M
+	<%= f.check_box :tuesday %> T
+	<%= f.check_box :wednesday %> W
+	<%= f.check_box :thursday %> T
+	<%= f.check_box :friday %> F
+	<%= f.check_box :saturday %> S
+</div><br>
+
+From:
+<% if f.object.from? %>
+	<%= f.select :from, TIMES.keys, { selected: TIMES.key(f.object.from), include_blank: true }, class: "time" %>
+<% else %>
+	<%= f.select :from, TIMES.keys, { include_blank: true }, class: "time" %>
+<% end %>
+
+Until:
+<% if f.object.until? %>
+	<%= f.select :until, TIMES.keys, { selected: TIMES.key(f.object.until), include_blank: true }, class: "time" %>
+<% else %>
+	<%= f.select :until, TIMES.keys, { include_blank: true }, class: "time" %>
+<% end %>
+
+<div class="hform"><span class="strong">Applicable rooms</span> (ignore if applies to all rooms)</div>
+<% Bar.find(current_bar.id).rooms.each do |room| %>
+	<%= hidden_field_tag "special[room_ids][]", nil %>
+	<%= check_box_tag "special[room_ids][]", room.id, @special.room_ids.include?(room.id), id: dom_id(room) %>
+	<%= label_tag dom_id(room), room.name %><br>
+<% end %>
+
+<script type="text/javascript">
+	$(function() {
+		$(".datepicker").datepicker();
+	});
+</script>

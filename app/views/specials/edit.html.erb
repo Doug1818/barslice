@@ -1,0 +1,7 @@
+<h1>Edit special</h1>
+<div>
+	<%= form_for( @special, html: { multipart: true } ) do |f| %>
+		<%= render 'fields', f: f %><br /><br />
+		<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+	<% end %>
+</div>

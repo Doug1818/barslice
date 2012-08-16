@@ -1,0 +1,29 @@
+<strong>Special valid:</strong>
+<% if !special.start_date? && !special.end_date? && !special.from? && !special.until? && special.sunday = true && special.monday = true && special.tuesday = true && special.wednesday = true && special.thursday = true && special.friday = true && special.saturday = true %>
+	always
+<% else %>
+	
+	<% if special.start_date? && special.end_date? %>
+		<% if special.start_date == special.end_date %>
+			<%= special.start_date.strftime("%B %e") %>.
+		<% else %>
+			<%= special.start_date.strftime("%B %e") %> to <%= special.end_date.strftime("%B %e") %>.
+		<% end %>
+	<% end %>
+
+	<% unless special.sunday  && special.monday && special.tuesday && special.wednesday && special.thursday && special.friday && special.saturday %>
+			<% range = [] %>
+			<% range.push("Monday") if special.monday %>
+			<% range.push("Tuesday") if special.tuesday %>
+			<% range.push("Wednesday") if special.wednesday %>
+			<% range.push("Thursday") if special.thursday %>
+			<% range.push("Friday") if special.friday %>
+			<% range.push("Saturday") if special.saturday %>
+			<% range.push("Sunday") if special.sunday %>
+			<%= DayRange.new(range) %>.
+	<% end %>
+
+	<% if !special.from.blank? && !special.until.blank? %>
+		From <%= TIMES.key(special.from) %> to <%= TIMES.key(special.until) %>.
+	<% end %>
+<% end %>

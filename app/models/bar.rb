@@ -14,6 +14,7 @@ class Bar < ActiveRecord::Base
   has_many :hrsranges, dependent: :destroy
   accepts_nested_attributes_for :hrsranges, allow_destroy: true
   has_one  :respolicy, dependent: :destroy
+  has_many :specials, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 100 }, uniqueness: true
   validates :address, presence: true, length: { maximum: 150 }
