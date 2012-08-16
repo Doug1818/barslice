@@ -3,7 +3,7 @@
 <div class="search_form">
 	<div class="search_sections">
 		<%= f.label :location, "Search by location", class: "hform strong" %>
-		<%= f.select :location, Bar::NEIGHBORHOODS, include_blank: true, multiple: true %><br />
+		<%= f.select :location, Bar::NEIGHBORHOODS, include_blank: true, multiple: true %><br>
 
 		<div><span class="hform strong">or</span></div>
 
@@ -48,9 +48,10 @@
 			<%= f.radio_button :privacy, 1 %> Private
 			<%= f.radio_button :privacy, 2 %> Semi-private
 			<%= f.radio_button :privacy, 3 %> Shared space
-		</div><br />
-		<div><%= f.check_box :no_fee %> No fees</div><br />
-		<div><%= f.check_box :no_spendmin %> No spend minimums</div>
+		</div><br>
+		<div><%= f.check_box :no_fee %> No fees</div><br>
+		<div><%= f.check_box :no_spendmin %> No spend minimums</div><br>
+		<div><%= f.check_box :has_open_bar %> Open bar available</div>
 	</div>
 </div>
 

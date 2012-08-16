@@ -1,5 +1,6 @@
 class Search < ActiveRecord::Base
   attr_accessible :bar_name, :date, :hdct, :location, :privacy, :start_time, :end_time, :no_fee, :no_spendmin
+  attr_accessible :bar_name, :date, :hdct, :location, :privacy, :start_time, :end_time, :no_fee, :no_spendmin, :has_open_bar
 
   validates :date, presence: true
   validates :hdct, numericality: { only_integer: true }, allow_blank: true
@@ -36,13 +37,13 @@ private
     rooms = rooms.joins(:spendmins).where("min IS NULL") if no_spendmin.present?
   
     bad_time = rooms.joins(:restrictions).where("(before > ? OR after < ?) AND restrictions.#{Date::DAYNAMES[date.wday].downcase} = ? 
-      AND start_date IS NULL AND end_date IS NULL", start_time, end_time, true) if date.present?
-    bad_date = rooms.joins(:restrictions).where("start_date <= ? AND end_date >= ? AND restrictions.#{Date::DAYNAMES[date.wday].downcase} = ? 
-      AND before IS NULL AND after IS NULL", date, date, true) if date.present?
-    bad_date_and_time = rooms.joins(:restrictions).where("(before > ? OR after < ?) AND start_date <= ? AND end_date >= ? 
+      AND restrictions.start_date IS NULL AND restrictions.end_date IS NULL", start_time, end_time, true) if date.present?
+    bad_date = rooms.joins(:restrictions).where("restrictions.start_date <= ? AND restrictions.end_date >= ? 
+      AND restrictions.#{Date::DAYNAMES[date.wday].downcase} = ? AND before IS NULL AND after IS NULL", date, date, true) if date.present?
+    bad_date_and_time = rooms.joins(:restrictions).where("(before > ? OR after < ?) AND restrictions.start_date <= ? AND restrictions.end_date >= ? 
       AND restrictions.#{Date::DAYNAMES[date.wday].downcase} = ?", start_time, end_time, date, date, true) if date.present?
-    bad_day = rooms.joins(:restrictions).where("restrictions.#{Date::DAYNAMES[date.wday].downcase} = ? AND start_date IS NULL AND end_date IS NULL 
-      AND before IS NULL AND after IS NULL", true) if date.present?
+    bad_day = rooms.joins(:restrictions).where("restrictions.#{Date::DAYNAMES[date.wday].downcase} = ? 
+      AND restrictions.start_date IS NULL AND restrictions.end_date IS NULL AND before IS NULL AND after IS NULL", true) if date.present?
     
     bad_rooms = bad_time + bad_date + bad_date_and_time + bad_day if !bad_time.nil? && !bad_date.nil? && !bad_date_and_time.nil? && !bad_day.nil?
     

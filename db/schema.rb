@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120816154016) do
+ActiveRecord::Schema.define(:version => 20120816183628) do
 
   create_table "bars", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -144,12 +144,13 @@ ActiveRecord::Schema.define(:version => 20120816154016) do
     t.date     "date"
     t.integer  "hdct"
     t.integer  "privacy"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "start_time"
     t.integer  "end_time"
     t.boolean  "no_fee"
     t.boolean  "no_spendmin"
+    t.boolean  "has_open_bar"
   end
 
   create_table "specials", :force => true do |t|

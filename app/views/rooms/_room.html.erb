@@ -1,4 +1,4 @@
-<li class="room">
+<li class="room span8">
 	<span class="title">
 	    <span class="strong"><%= link_to room.name, room_path(room) %></span> | 
 	    <% if room.privacy == 1 %> Private room
@@ -12,6 +12,14 @@
     </span><br />
 	<%= render 'shared/deets', room: room %>
 	<strong>Description: </strong><br>
-	<%= room.description.truncate(210) %>
-	<div><%= render 'rooms/specials_list', room: room %></div>
+	<%= room.description.truncate(200) %>
+	<div>
+		<% if room.specials.any? %>
+			<strong>Specials:</strong>
+			<% c = room.specials.count - 1 %>
+			<% room.specials.each_with_index do |special, idx| %>
+			     <%= link_to special.name, special_path(special) %><%= ", " unless idx == c %>
+			<% end %>
+		<% end %>
+	</div>
 </li>
