@@ -1,5 +1,4 @@
 class Search < ActiveRecord::Base
-  attr_accessible :bar_name, :date, :hdct, :location, :privacy, :start_time, :end_time, :no_fee, :no_spendmin
   attr_accessible :bar_name, :date, :hdct, :location, :privacy, :start_time, :end_time, :no_fee, :no_spendmin, :has_open_bar
 
   validates :date, presence: true
@@ -19,38 +18,32 @@ class Search < ActiveRecord::Base
     end
   end
 
+  def specials
+    @specials ||= find_specials
+  end
+
   def rooms
   	@rooms ||= find_rooms
   end
 
-  def fspecials
-    @fspecials ||= find_specials
-  end
-
 private
   def find_specials
-    specials = Special.order("created_at")
-    #rooms = rooms.joins(:specials).where("open_bar = ? AND specials.#{Date::DAYNAMES[date.wday].downcase} = ?", true, true) if has_open_bar.present?
-
-    good_time = rooms.joins(:specials).where("(from <= ? AND until >= ?) AND specials.#{Date::DAYNAMES[date.wday].downcase} = ?
+    specials = Special.order(:name)
+    good_time = specials.where("specials.from <= ? AND until >= ? AND specials.#{Date::DAYNAMES[date.wday].downcase} = ?
       AND specials.start_date IS NULL AND specials.end_date IS NULL", start_time, end_time, true) if date.present?
-    good_date = rooms.joins(:specials).where("specials.start_date <= ? AND specials.end_date >= ?
-      AND specials.#{Date::DAYNAMES[date.wday].downcase} = ? AND from IS NULL AND until IS NULL", date, date, true) if date.present?
-    good_date_and_time = rooms.joins(:specials).where("(from <= ? AND until >= ?) AND specials.start_date <= ? AND specials.end_date >= ?
+    good_date = specials.where("specials.start_date <= ? AND specials.end_date >= ?
+      AND specials.#{Date::DAYNAMES[date.wday].downcase} = ? AND specials.from IS NULL AND until IS NULL", date, date, true) if date.present?
+    good_date_and_time = specials.where("specials.from <= ? AND until >= ? AND specials.start_date <= ? AND specials.end_date >= ?
       AND specials.#{Date::DAYNAMES[date.wday].downcase} = ?", start_time, end_time, date, date, true) if date.present?
-    good_day = rooms.joins(:specials).where("specials.#{Date::DAYNAMES[date.wday].downcase} = ?
-      AND specials.start_date IS NULL AND specials.end_date IS NULL AND from IS NULL AND until IS NULL", true) if date.present?
-
+    good_day = specials.where("specials.#{Date::DAYNAMES[date.wday].downcase} = ?
+      AND specials.start_date IS NULL AND specials.end_date IS NULL AND specials.from IS NULL AND until IS NULL", true) if date.present?
     specials = good_time + good_date + good_date_and_time + good_day if !good_time.nil? && !good_date.nil? && !good_date_and_time.nil? && !good_day.nil?
-    #bad_rooms.each do |bad_room|
-    #  rooms.delete_if { |room| room == bad_room }
-    #end if !bad_rooms.nil?
-
+    specials = specials.to_a.uniq
     specials
   end
 
   def find_rooms
-  	rooms = Room.order(privacy)
+  	rooms = Room.order(:name)
   	rooms = rooms.joins(:bar).where("neighborhood = ?", location) if location.present?
   	rooms = rooms.joins(:bar).where("bars.name = ?", bar_name) if bar_name.present?
   	rooms = rooms.joins(:bar).joins(:bar => :hrsranges).where("open <= ? AND close >= ? AND hrsranges.#{Date::DAYNAMES[date.wday].downcase} = ?",
@@ -60,6 +53,7 @@ private
     rooms = rooms.where("privacy = ?", privacy) if privacy.present? && date.present?
     rooms = rooms.joins(:fees).where("amount IS NULL") if no_fee.present?
     rooms = rooms.joins(:spendmins).where("min IS NULL") if no_spendmin.present?
+    rooms = rooms.joins(:specials).where("open_bar = ?", true) if has_open_bar.present?
 
     bad_time = rooms.joins(:restrictions).where("(before > ? OR after < ?) AND restrictions.#{Date::DAYNAMES[date.wday].downcase} = ?
       AND restrictions.start_date IS NULL AND restrictions.end_date IS NULL", start_time, end_time, true) if date.present?
@@ -71,11 +65,10 @@ private
       AND restrictions.start_date IS NULL AND restrictions.end_date IS NULL AND before IS NULL AND after IS NULL", true) if date.present?
 
     bad_rooms = bad_time + bad_date + bad_date_and_time + bad_day if !bad_time.nil? && !bad_date.nil? && !bad_date_and_time.nil? && !bad_day.nil?
-
     bad_rooms.each do |bad_room|
       rooms.delete_if { |room| room == bad_room }
     end if !bad_rooms.nil?
-
+    rooms = rooms.to_a.uniq
     rooms
   end
 end

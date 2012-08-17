@@ -18,8 +18,7 @@ class SearchesController < ApplicationController
   def show
   	@edit_search = Search.find(params[:id])
     @show_search = @edit_search
-    @filtered = @show_search.rooms
-    @sfiltered = @edit_search.fspecials
+    @sfiltered = @show_search.specials
   end
 
   def edit
