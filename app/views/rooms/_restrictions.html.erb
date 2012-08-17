@@ -1,37 +1,39 @@
 <% x = [] %>
 <% room.restrictions.each_with_index { |restriction, idx| x[idx] = restriction.exists } %>
 <% if !x.inject(:+).nil? %>
-	<strong>Availability restrictions:</strong><br />
-	<ul class="restrictions">
-		<% room.restrictions.each do |restriction| %>
-			<li class="restriction">
-				<% if restriction.start_date? && restriction.end_date? %>
-					<% if restriction.start_date == restriction.end_date %>
-						<%= restriction.start_date.strftime("%B %e") %>.
-					<% else %>
-						<%= restriction.start_date.strftime("%B %e") %> to <%= restriction.end_date.strftime("%B %e") %>.
+	<% if x.inject(:+) >= 1 %>
+		<strong>Availability restrictions:</strong><br />
+		<ul class="restrictions">
+			<% room.restrictions.each do |restriction| %>
+				<li class="restriction">
+					<% if restriction.start_date? && restriction.end_date? %>
+						<% if restriction.start_date == restriction.end_date %>
+							<%= restriction.start_date.strftime("%B %e") %>.
+						<% else %>
+							<%= restriction.start_date.strftime("%B %e") %> to <%= restriction.end_date.strftime("%B %e") %>.
+						<% end %>
 					<% end %>
-				<% end %>
-				<% unless restriction.sunday  && restriction.monday && restriction.tuesday && restriction.wednesday && restriction.thursday && restriction.friday && restriction.saturday %>
-						<% range = [] %>
-						<% range.push("Monday") if restriction.monday %>
-						<% range.push("Tuesday") if restriction.tuesday %>
-						<% range.push("Wednesday") if restriction.wednesday %>
-						<% range.push("Thursday") if restriction.thursday %>
-						<% range.push("Friday") if restriction.friday %>
-						<% range.push("Saturday") if restriction.saturday %>
-						<% range.push("Sunday") if restriction.sunday %>
-						<%= DayRange.new(range) %>.
-				<% end %>
-				<% if restriction.before.nil? && restriction.after.nil? %>
-				<% elsif restriction.before.nil? && restriction.after? %>
-					After <%= TIMES.key(restriction.after) %>.
-				<% elsif restriction.before? && restriction.after.nil? %>
-					Before <%= TIMES.key(restriction.before) %>.
-				<% else %>
-					Before <%= TIMES.key(restriction.before) %> and after <%= TIMES.key(restriction.after) %>.
-				<% end %>
-			</li>
-		<% end %>
-	</ul>
+					<% unless restriction.sunday  && restriction.monday && restriction.tuesday && restriction.wednesday && restriction.thursday && restriction.friday && restriction.saturday %>
+							<% range = [] %>
+							<% range.push("Monday") if restriction.monday %>
+							<% range.push("Tuesday") if restriction.tuesday %>
+							<% range.push("Wednesday") if restriction.wednesday %>
+							<% range.push("Thursday") if restriction.thursday %>
+							<% range.push("Friday") if restriction.friday %>
+							<% range.push("Saturday") if restriction.saturday %>
+							<% range.push("Sunday") if restriction.sunday %>
+							<%= DayRange.new(range) %>.
+					<% end %>
+					<% if restriction.before.nil? && restriction.after.nil? %>
+					<% elsif restriction.before.nil? && restriction.after? %>
+						After <%= TIMES.key(restriction.after) %>.
+					<% elsif restriction.before? && restriction.after.nil? %>
+						Before <%= TIMES.key(restriction.before) %>.
+					<% else %>
+						Before <%= TIMES.key(restriction.before) %> and after <%= TIMES.key(restriction.after) %>.
+					<% end %>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
 <% end %>
