@@ -38,7 +38,7 @@ private
     good_day = specials.where("specials.#{Date::DAYNAMES[date.wday].downcase} = ?
       AND specials.start_date IS NULL AND specials.end_date IS NULL AND specials.from IS NULL AND specials.until IS NULL", true) if date.present?
     specials = good_time + good_date + good_date_and_time + good_day if !good_time.nil? && !good_date.nil? && !good_date_and_time.nil? && !good_day.nil?
-    specials = specials.to_a.uniq
+    specials = specials.to_a.uniq if specials.any?
     specials
   end
 
@@ -51,10 +51,11 @@ private
     rooms = rooms.joins(:hdctranges).where("hdctranges.min <= ? AND hdctranges.max >= ? 
       AND hdctranges.#{Date::DAYNAMES[date.wday].downcase} = ?", hdct, hdct, true) if hdct.present? && date.present?
     rooms = rooms.where("privacy = ?", privacy) if privacy.present? && date.present?
-    rooms = rooms.joins(:fees).where("amount IS NULL") if no_fee.present?
-    rooms = rooms.joins(:spendmins).where("spendmin.min IS NULL") if no_spendmin.present?
-    rooms = rooms.joins(:specials).where("open_bar = ?", true) if has_open_bar.present?
+    rooms = rooms.joins(:specials).where("open_bar = ? AND specials.#{Date::DAYNAMES[date.wday].downcase} = ?", true, true) if has_open_bar.present?  && date.present?
 
+    bad_fee = rooms.joins(:fees).where("fees.#{Date::DAYNAMES[date.wday].downcase} = ?", true) if no_fee.present? && date.present?
+    bad_spendmin = rooms.joins(:spendmins).where("spendmins.#{Date::DAYNAMES[date.wday].downcase} = ?", true) if no_spendmin.present? && date.present?
+    
     bad_time = rooms.joins(:restrictions).where("(before > ? OR after < ?) AND restrictions.#{Date::DAYNAMES[date.wday].downcase} = ?
       AND restrictions.start_date IS NULL AND restrictions.end_date IS NULL", start_time, end_time, true) if date.present?
     bad_date = rooms.joins(:restrictions).where("restrictions.start_date <= ? AND restrictions.end_date >= ?
@@ -64,11 +65,15 @@ private
     bad_day = rooms.joins(:restrictions).where("restrictions.#{Date::DAYNAMES[date.wday].downcase} = ?
       AND restrictions.start_date IS NULL AND restrictions.end_date IS NULL AND before IS NULL AND after IS NULL", true) if date.present?
 
-    bad_rooms = bad_time + bad_date + bad_date_and_time + bad_day if !bad_time.nil? && !bad_date.nil? && !bad_date_and_time.nil? && !bad_day.nil?
+    bad_restriction = bad_time + bad_date + bad_date_and_time + bad_day if !bad_time.nil? && !bad_date.nil? && !bad_date_and_time.nil? && !bad_day.nil?
+    bad_rooms = bad_restriction + bad_fee if !bad_fee.nil? && bad_spendmin.nil?
+    bad_rooms = bad_restriction + bad_spendmin if !bad_spendmin.nil? && bad_fee.nil?
+    bad_rooms = bad_restriction + bad_fee + bad_spendmin if !bad_spendmin.nil? && !bad_fee.nil?
+    
     bad_rooms.each do |bad_room|
       rooms.delete_if { |room| room == bad_room }
     end if !bad_rooms.nil?
-    rooms = rooms.to_a.uniq
+    rooms = rooms.to_a.uniq if rooms.any?
     rooms
   end
 end
