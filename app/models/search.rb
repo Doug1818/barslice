@@ -52,7 +52,7 @@ private
       AND hdctranges.#{Date::DAYNAMES[date.wday].downcase} = ?", hdct, hdct, true) if hdct.present? && date.present?
     rooms = rooms.where("privacy = ?", privacy) if privacy.present? && date.present?
     rooms = rooms.joins(:fees).where("amount IS NULL") if no_fee.present?
-    rooms = rooms.joins(:spendmins).where("hdctranges.min IS NULL") if no_spendmin.present?
+    rooms = rooms.joins(:spendmins).where("spendmin.min IS NULL") if no_spendmin.present?
     rooms = rooms.joins(:specials).where("open_bar = ?", true) if has_open_bar.present?
 
     bad_time = rooms.joins(:restrictions).where("(before > ? OR after < ?) AND restrictions.#{Date::DAYNAMES[date.wday].downcase} = ?
