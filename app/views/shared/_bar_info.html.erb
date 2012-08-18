@@ -7,8 +7,7 @@ Hours of operation:
 <ul class="bar_hrs">
 	<% object.hrsranges.each do |hrsrange| %>
 		<li>
-		<%= TIMES.key(hrsrange.open) %> to <%= TIMES.key(hrsrange.close) %>
-			<% if hrsrange.sunday && hrsrange.monday && hrsrange.tuesday && hrsrange.wednesday && hrsrange.thursday && hrsrange.friday && hrsrange.saturday %>
+		<% if hrsrange.sunday && hrsrange.monday && hrsrange.tuesday && hrsrange.wednesday && hrsrange.thursday && hrsrange.friday && hrsrange.saturday %>
 		<% else %>
 			<% range = [] %>
 			<% range.push("Monday") if hrsrange.monday %>
@@ -20,6 +19,7 @@ Hours of operation:
 			<% range.push("Sunday") if hrsrange.sunday %>
 			<%= DayRange.new(range) %>
 		<% end %>
+		<%= TIMES.key(hrsrange.open) %> to <%= TIMES.key(hrsrange.close) %>
 		</li>
 	<% end %>
 </ul>
