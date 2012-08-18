@@ -51,7 +51,7 @@ Until:
 	<%= f.select :until, TIMES.keys, { include_blank: true }, class: "time" %>
 <% end %>
 
-<div class="hform"><span class="strong">Applicable rooms</span> (ignore if applies to all rooms)</div>
+<div class="hform strong">Applicable rooms</div>
 <% Bar.find(current_bar.id).rooms.each do |room| %>
 	<%= hidden_field_tag "special[room_ids][]", nil %>
 	<%= check_box_tag "special[room_ids][]", room.id, @special.room_ids.include?(room.id) %>

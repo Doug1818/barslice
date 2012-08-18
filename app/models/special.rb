@@ -14,4 +14,13 @@ class Special < ActiveRecord::Base
   end
 
   validates :name, presence: true, length: { maximum: 80 }
+  validate  :room_selected
+
+  def room_selected
+    if !self.rooms.any?
+      self.errors[:applicable_rooms] = "must have at least one room selected (otherwise go to your home page to delete the special)."
+    end
+  end
+
+
 end
