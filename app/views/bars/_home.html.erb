@@ -8,7 +8,7 @@
     <li><a href="#tab5" data-toggle="tab">Bar info</a></li>
 </ul>
 
-<div class="tab-content">
+<div class="tab-content span10">
 	<div class="tab-pane active" id="tab1">
       <%= render 'bars/room', object: current_bar %>
 	</div>
@@ -27,20 +27,7 @@
 	</div>
 	
 	<div class="tab-pane" id="tab3">
-		<ul class="rooms">
-			<% current_bar.specials.each do |special| %>
-				<li class="room">
-					<div>
-						<strong>Name:</strong>
-						<%= special.name %>
-					</div>
-	      			<%= render 'bars/special', special: special %>
-	  			</li>
-  			<% end %>
-		</ul>
-		<% if bar_signed_in? %>
-		<%= link_to "Add special", new_special_path, class: "btn btn-med btn-primary" %>
-		<% end %>
+		<%= render 'bars/specials_list', object: current_bar %>
 	</div>
 	
 	<div class="tab-pane" id="tab4">

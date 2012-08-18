@@ -11,8 +11,8 @@
 	    <%= Bar.find(room.bar_id).neighborhood %>
     </span><br />
 	<%= render 'shared/deets', room: room %>
-	<strong>Description: </strong><br>
-	<%= room.description.truncate(200) %>
+	<strong>Description: </strong>
+	<%= room.description.truncate(190) %>
 	<div>
 		<% if !@sfiltered.nil? %>
 			<% a = [] %>

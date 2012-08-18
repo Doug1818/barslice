@@ -13,11 +13,11 @@
 			<%= render 'shared/deets', room: room %>
 			
 			<div class="nofl">
-				<strong>Description:</strong><br>
-				<%= room.description.gsub(/\n/, '<br/>').html_safe %>
+				<strong>Description:</strong>
+				<%= room.description %>
 			</div>
 
-			<div><%= render 'rooms/specials_list', room: room %></div>
+			<div><%= render 'rooms/specials_by_comma', room: room %></div>
 
 			<div><%= render 'rooms/restrictions', room: room %></div>
 			

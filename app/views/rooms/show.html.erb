@@ -18,7 +18,7 @@
 			<strong>Description: </strong><br>
 			<%= @room.description.gsub(/\n/, '<br/>').html_safe %>
 		</div>
-		<div><%= render 'rooms/specials_list', room: @room %></div>
+		<div><%= render 'rooms/specials_by_comma', room: @room %></div>
 		<div><%= render 'rooms/restrictions', room: @room %></div><br /><br />
 		<% if Bar.find_by_id(@room.bar_id).respolicy %>
 			<div class="nofl">

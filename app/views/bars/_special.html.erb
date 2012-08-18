@@ -1,24 +1,12 @@
 <div>
-	<strong>Description:</strong><br>
-	<%= special.description.gsub(/\n/, '<br/>').html_safe %>
+	<strong>Description:</strong>
+	<%= special.description %>
 </div>
 
 <ul>
-	<li>
-		<% if special.open_bar %>
-			Open bar available for this special
-		<% else %>
-			Open bar not availabe for this special
-		<% end %>
-	</li>
-	<li>
-		<% if special.food %>
-			Food available for this special
-		<% else %>
-			Food not availabe for this special
-		<% end %>
-	</li>
-	<li>Minimum number of people: <%= special.min_hdct %></li>
+	<% if special.open_bar %><li>Involves an open bar</li><% end %>
+	<% if special.food %><li>Involved food</li><% end %>
+	<% if special.min_hdct? %><li>Minimum of <%= special.min_hdct %> people required</li><% end %>
 </ul>
 
 <div><%= render 'specials/valid', special: special %></div>
