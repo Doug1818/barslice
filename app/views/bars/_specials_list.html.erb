@@ -1,10 +1,7 @@
 <ul class="rooms">
 	<% object.specials.each do |special| %>
 	<li class="room">
-		<div>
-			<strong>Name:</strong>
-			<%= special.name %>
-		</div>
+		<div class="title strong"><%= special.name %></div>
 			<%= render 'bars/special', special: special %>
 		</li>
 	<% end %>
