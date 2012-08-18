@@ -1,35 +1,39 @@
 <ul class="rooms">
-	<% object.rooms.each do |room| %>
-		<li class="room">
-	
-			<div class="title">
-				<span class="strong"><%= link_to room.name, room_path(room) %></span> |
-				<% if room.privacy == 1 %> Private room
-				<% elsif room.privacy == 2 %> Semi-private room
-				<% else %> Shared space
-				<% end %>
-			</div>
-			
-			<%= render 'shared/deets', room: room %>
-			
-			<div class="nofl">
-				<strong>Description:</strong>
-				<%= room.description %>
-			</div>
-
-			<div><%= render 'rooms/specials_by_comma', room: room %></div>
-
-			<div><%= render 'rooms/restrictions', room: room %></div>
-			
-			<% if bar_signed_in? %>
-				<div class="nofl">
-					<%= link_to "Delete", room, method: :delete, confirm: "You sure?" %> | 
-					<%= link_to "Edit", edit_room_path(room) %>
+	<% if object.rooms.empty? %>
+			<p>No rooms currently listed</p>
+	<% else %>
+		<% object.rooms.each do |room| %>
+			<li class="room">
+		
+				<div class="title">
+					<span class="strong"><%= link_to room.name, room_path(room) %></span> |
+					<% if room.privacy == 1 %> Private room
+					<% elsif room.privacy == 2 %> Semi-private room
+					<% else %> Shared space
+					<% end %>
 				</div>
-			<% end %>
-		</li>
+				
+				<%= render 'shared/deets', room: room %>
+				
+				<div class="nofl">
+					<strong>Description:</strong>
+					<%= room.description %>
+				</div>
+
+				<div><%= render 'rooms/specials_by_comma', room: room %></div>
+
+				<div><%= render 'rooms/restrictions', room: room %></div>
+				
+				<% if bar_signed_in? %>
+					<div class="nofl">
+						<%= link_to "Delete", room, method: :delete, confirm: "You sure?" %> | 
+						<%= link_to "Edit", edit_room_path(room) %>
+					</div>
+				<% end %>
+			</li>
+		<% end %>
 	<% end %>
 </ul>
 <% if bar_signed_in? %>
-<%= link_to "Add room", new_room_path, class: "btn btn-med btn-primary", style: "margin-bottom: 30px" %>
+<%= link_to "Add room", new_room_path, class: "btn btn-med btn-primary button"%>
 <% end %>

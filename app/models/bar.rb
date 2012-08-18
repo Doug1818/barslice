@@ -31,15 +31,15 @@ class Bar < ActiveRecord::Base
 
   def week_days
     count = []
-    self.hrsranges.each_with_index do |hrsrange, idx|
-    hrsrange.sunday ?    sun = 1   : sun = 0
-    hrsrange.monday ?    mon = 1   : mon = 0
-    hrsrange.tuesday ?   tues = 1  : tues = 0
-    hrsrange.wednesday ? wed = 1   : wed = 0
-    hrsrange.thursday ?  thurs = 1 : thurs = 0
-    hrsrange.friday ?    fri = 1   : fri = 0
-    hrsrange.saturday ?  sat = 1   : sat = 0
-    count[idx] = sun + mon + tues + wed + thurs + fri + sat
+      self.hrsranges.each_with_index do |hrsrange, idx|
+      hrsrange.sunday ?    sun = 1   : sun = 0
+      hrsrange.monday ?    mon = 1   : mon = 0
+      hrsrange.tuesday ?   tues = 1  : tues = 0
+      hrsrange.wednesday ? wed = 1   : wed = 0
+      hrsrange.thursday ?  thurs = 1 : thurs = 0
+      hrsrange.friday ?    fri = 1   : fri = 0
+      hrsrange.saturday ?  sat = 1   : sat = 0
+      count[idx] = sun + mon + tues + wed + thurs + fri + sat
     end
     if count.inject(:+) != 7 && count.inject(:+) != 0
       self.errors[:each_weekday] << "for Hours of operation must be selected once"
