@@ -1,11 +1,15 @@
 <ul class="rooms">
-	<% object.specials.each do |special| %>
-	<li class="room">
-		<div class="title strong"><%= special.name %></div>
-			<%= render 'bars/special', special: special %>
-		</li>
+	<% if object.specials.empty? %>
+		No specials currently listed	
+	<% else %>
+		<% object.specials.each do |special| %>
+			<li class="room">
+				<div class="title strong"><%= special.name %></div>
+				<%= render 'bars/special', special: special %>
+			</li>
+		<% end %>
 	<% end %>
 </ul>
 <% if bar_signed_in? %>
-<%= link_to "Add special", new_special_path, class: "btn btn-med btn-primary" %>
+	<%= link_to "Add special", new_special_path, class: "btn btn-med btn-primary" %>
 <% end %>
