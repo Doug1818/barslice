@@ -1,20 +1,22 @@
 <ul class="rooms">
   <% Bar.all.each do |bar| %>
       <li class="room">
-        <div class="title">
+        <span class="title">
           <span class="strong"><%= link_to bar.name, bar_path(bar) %></span> | 
           <%= bar.neighborhood %> |
           <%= pluralize(bar.rooms.count, "room") %> available
-        </div><br />
+        </span>
           <% bar.rooms.each do |room| %>
-            <span>
-              <span class="strong"><%= link_to room.name, room_path(room) %></span> |
+            <div style="margin-bottom:0">
+              <span class="strong" style="font-size:1.05em"><%= link_to room.name, room_path(room) %></span> |
               <% if room.privacy == 1 %> Private room
               <% elsif room.privacy == 2 %> Semi-private room
               <% else %> Shared space
               <% end %>
-            </span><br />
+            </div>
             <%= render 'shared/deets', room: room %>
+            <strong>Description: </strong>
+            <%= room.description.truncate(190) %>
           <% end %>
       </li>
   <% end %>
