@@ -7,5 +7,9 @@
 
 <h2>Results</h2>
 <ul class="rooms">
-	<%= render @show_search.rooms %>
+	<% if @show_search.rooms.empty? %>
+		<p>No results matched your search</p>
+	<% else %>
+		<%= render @show_search.rooms %>
+	<% end %>
 </ul>
