@@ -45,7 +45,7 @@ private
   def find_rooms
   	rooms = Room.order(:privacy)
   	rooms = rooms.joins(:bar).where("neighborhood = ?", location) if location.present?
-  	rooms = rooms.joins(:bar).where("bars.name = ?", bar_name) if bar_name.present?
+  	rooms = rooms.joins(:bar).where("bars.name like ?", "%#{bar_name}%") if bar_name.present?
   	rooms = rooms.joins(:bar).joins(:bar => :hrsranges).where("open <= ? AND close >= ? 
       AND hrsranges.#{Date::DAYNAMES[date.wday].downcase} = ?", start_time, end_time, true) if date.present?
     rooms = rooms.joins(:hdctranges).where("hdctranges.min <= ? AND hdctranges.max >= ? 
