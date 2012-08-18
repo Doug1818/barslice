@@ -2,7 +2,7 @@
 
 /* mixings, variables, etc. */
 
-$grayMediumLight: #eaeaea;
+$grayMediumLight: #E0E0E0;
 
 @mixin box_sizing {
 	-moz-box-sizing: border-box;
@@ -189,7 +189,7 @@ footer {
 	.room {
 		overflow: auto;
 		padding: 10px 0;
-		border-bottom: 1px solid $grayLighter;
+		border-bottom: 1px solid $grayMediumLight;
 		&:last-child {
 			margin-bottom: 20px;
 			border-bottom: none;
@@ -281,9 +281,9 @@ footer {
 	margin: 5px 0 20px 0;
 	padding: 0 20px 20px 20px;
 	border:1px solid;
-	border-color: Navy;
+	border-color: $linkColor;
 	border-radius:15px;
-	background-color: #9999CC;
+	background-color: #ADC2FF;
 	.search_sections {
 		float:left;
 		margin: 0 20px;
