@@ -1,0 +1,21 @@
+<% sun = [] %>
+<% object.each { |h| sun.push(1) if h.sunday? && h.closed? } %>
+<% unless !sun.inject(:+).nil? %><%= f.check_box :sunday %> S <% end %>
+<% mon = [] %>
+<% object.each { |h| mon.push(1) if h.monday? && h.closed? } %>
+<% unless !mon.inject(:+).nil? %><%= f.check_box :monday %> M <% end %>
+<% tue = [] %>
+<% object.each { |h| tue.push(1) if h.tuesday? && h.closed? } %>
+<% unless !tue.inject(:+).nil? %><%= f.check_box :tuesday %> T <% end %>
+<% wed = [] %>
+<% object.each { |h| wed.push(1) if h.wednesday? && h.closed? } %>
+<% unless !wed.inject(:+).nil? %><%= f.check_box :wednesday %> W <% end %>
+<% thu = [] %>
+<% object.each { |h| thu.push(1) if h.thursday? && h.closed? } %>
+<% unless !thu.inject(:+).nil? %><%= f.check_box :thursday %> T <% end %>
+<% fri = [] %>
+<% object.each { |h| fri.push(1) if h.friday? && h.closed? } %>
+<% unless !fri.inject(:+).nil? %><%= f.check_box :friday %> F <% end %>
+<% sat = [] %>
+<% object.each { |h| sat.push(1) if h.saturday? && h.closed? } %>
+<% unless !sat.inject(:+).nil? %><%= f.check_box :saturday %> S <% end %>

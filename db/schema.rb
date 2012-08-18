@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120816183628) do
+ActiveRecord::Schema.define(:version => 20120818211215) do
 
   create_table "bars", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20120816183628) do
     t.integer  "bar_id"
     t.integer  "open"
     t.integer  "close"
+    t.boolean  "closed"
   end
 
   create_table "respolicies", :force => true do |t|

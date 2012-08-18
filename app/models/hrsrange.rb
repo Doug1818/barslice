@@ -1,5 +1,5 @@
 class Hrsrange < ActiveRecord::Base
-  attr_accessible :close, :friday, :monday, :saturday, :open, :sunday, :thursday, :tuesday, :wednesday
+  attr_accessible :close, :closed, :friday, :monday, :saturday, :open, :sunday, :thursday, :tuesday, :wednesday
   belongs_to :bar
 
   before_save do |hrsrange|

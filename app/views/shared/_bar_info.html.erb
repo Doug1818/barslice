@@ -19,7 +19,11 @@ Hours of operation:
 			<% range.push("Sunday") if hrsrange.sunday %>
 			<%= DayRange.new(range) %>
 		<% end %>
-		<%= TIMES.key(hrsrange.open) %> to <%= TIMES.key(hrsrange.close) %>
+		<% if hrsrange.closed %>
+			closed
+		<% else %>
+			<%= TIMES.key(hrsrange.open) %> to <%= TIMES.key(hrsrange.close) %>
+		<% end %>
 		</li>
 	<% end %>
 </ul>

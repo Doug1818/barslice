@@ -28,13 +28,7 @@ End date:
 <% end %>
 
 <div><br>
-	<%= f.check_box :sunday %> S		
-	<%= f.check_box :monday %> M
-	<%= f.check_box :tuesday %> T
-	<%= f.check_box :wednesday %> W
-	<%= f.check_box :thursday %> T
-	<%= f.check_box :friday %> F
-	<%= f.check_box :saturday %> S
+	<%= render 'shared/form_week_days', f: f, object: current_bar.hrsranges %>
 </div><br>
 
 From:
