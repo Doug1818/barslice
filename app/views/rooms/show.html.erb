@@ -4,8 +4,8 @@
 	<%= render 'shared/bar_info', object: Bar.find_by_id(@room.bar_id) %>
 </div>
 
-<ul class="rooms">
-	<li class="room">
+<div class="rooms">
+	<div class="room_show span9">
 		<div class="title">
 			<span class="strong"><%= @room.name %></span> |
 			<% if @room.privacy == 1 %> Private room
@@ -26,5 +26,5 @@
 				<%= render 'bars/respolicy', object: Bar.find_by_id(@room.bar_id) %>
 			</div>
 		<% end %>
-	</li>
-<ul>
+	</div>
+<div>
