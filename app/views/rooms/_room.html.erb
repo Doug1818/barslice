@@ -12,7 +12,7 @@
     </span><br />
 	<%= render 'shared/deets', room: room %>
 	<strong>Description: </strong>
-	<%= room.description.truncate(190) %>
+	<%= room.description.truncate(180) %>
 	<div>
 		<% if !@sfiltered.nil? %>
 			<% a = [] %>
@@ -26,14 +26,6 @@
 				<strong>Specials:</strong>
 				<% c = a.count - 1 %>
 				<% a.each_with_index do |special, idx| %>
-				  <%= link_to special.name, special_path(special) %><%= " • " unless idx == c %>
-				<% end %>
-			<% end %>
-		<% else %>
-			<% if room.specials.any? %>
-				<strong>Specials:</strong>
-				<% c = room.specials.count - 1 %>
-				<% room.specials.each_with_index do |special, idx| %>
 				  <%= link_to special.name, special_path(special) %><%= " • " unless idx == c %>
 				<% end %>
 			<% end %>
