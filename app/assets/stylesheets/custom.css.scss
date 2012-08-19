@@ -257,6 +257,64 @@ footer {
 	}
 }
 
+/* bar list */
+
+.bars {
+	list-style: none;
+	margin: 0;
+	.bar {
+		overflow: auto;
+		padding: 10px 7px;
+		border-bottom: 2px solid #ADC2FF;
+		&:last-child {
+			margin-bottom: 20px;
+			border-bottom: none;
+		}
+		.title {
+			font-size: 1.15em;
+		}
+		div {
+			margin: 7px 0;
+		}
+		.nofl {
+			clear:both;
+		}
+		ul.rooms {
+			list-style: none;
+			margin: 0;
+			li.room {
+				border-bottom: 1px solid $grayMediumLight;
+				padding: 10px 15px;
+				&:nth-child(even) {
+					background: #F8F8F8;
+				}
+				&:last-child {
+					margin-bottom: 20px;
+					border-bottom: none;
+				}
+			}
+		}
+		ul.deets {
+			float:left;
+			width: 100%;
+			margin:7px 0;
+			li.deet {
+				float:left;
+				margin-right:20px;
+				list-style:none;
+				ul {
+					list-style:none;
+					margin:0;
+				}
+			}
+		}
+		ul.restrictions {
+			float:left;
+			list-style: decimal;
+		}
+	}
+}
+
 /* bar info */
 
 .bar_info_right {
