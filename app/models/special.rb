@@ -14,7 +14,6 @@ class Special < ActiveRecord::Base
   end
 
   validates :name, presence: true, length: { maximum: 80 }
-  validates :description, presence: true
   validate  :room_selected
 
   def room_selected
