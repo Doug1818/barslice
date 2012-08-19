@@ -264,10 +264,10 @@ footer {
 	margin: 0;
 	.bar {
 		overflow: auto;
-		padding: 10px 7px;
+		padding: 20px 7px 10px 7px;
 		border-bottom: 2px solid #ADC2FF;
 		&:last-child {
-			margin-bottom: 20px;
+			margin-bottom: 10px;
 			border-bottom: none;
 		}
 		.title {
