@@ -20,9 +20,9 @@
 	    	<div class="nofl">
 				<%= link_to "Delete", current_bar.respolicy, method: :delete, confirm: "You sure?" %> | 
 				<%= link_to "Edit", edit_respolicy_path(current_bar) %>
-			</div>
+			</div><br><br>
 	  	<% else %>
-			<%= render 'respolicies/new' %>
+			<div><%= render 'respolicies/new' %></div>
 		<% end %>
 	</div>
 	
@@ -31,7 +31,7 @@
 	</div>
 	
 	<div class="tab-pane" id="tab4">
-      Reservations
+      <p>Coming soon</p>
 	</div>
 	
 	<div class="tab-pane bar_info_left" id="tab5">
