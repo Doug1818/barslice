@@ -3,8 +3,8 @@
 <div class="hform strong">Name</div>
 <%= f.text_field :name %><br>
 
-<div class="hform strong">Description</div>
-<%= f.text_area :description, placeholder: "Descibe the special.", style: 'height: 100px; width:400px' %><br>
+<div class="hform"><span class="strong">Description</span> (optional)</div>
+<%= f.text_area :description, placeholder: "Add additional description not captured in name, if necessary.", style: 'height: 100px; width:400px' %><br>
 
 <%= f.check_box :open_bar %> Open bar special
 <%= f.check_box :food %> Food special <br>

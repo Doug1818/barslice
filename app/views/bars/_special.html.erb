@@ -1,7 +1,10 @@
-<div>
-	<strong>Description:</strong>
-	<%= special.description %>
-</div>
+
+<% if special.description %>
+	<div>
+		<strong>Description:</strong>
+		<%= special.description.gsub(/\n/, '<br/>').html_safe %>
+	</div>
+<% end %>
 
 <ul>
 	<% if special.open_bar %><li>Involves an open bar</li><% end %>
