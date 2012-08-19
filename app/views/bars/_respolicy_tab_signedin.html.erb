@@ -1,0 +1,10 @@
+<% if current_bar.respolicy %>
+	<strong>Description:</strong><br>
+	<%= render 'bars/respolicy', object: current_bar %>
+	<div class="nofl">
+		<%= link_to "Delete", current_bar.respolicy, method: :delete, confirm: "You sure?" %> | 
+		<%= link_to "Edit", edit_respolicy_path(current_bar) %>
+	</div><br><br>
+<% else %>
+	<div><%= render 'respolicies/new' %></div>
+<% end %>
