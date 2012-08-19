@@ -26,7 +26,7 @@
 				<strong>Specials:</strong>
 				<% c = a.count - 1 %>
 				<% a.each_with_index do |special, idx| %>
-				  <%= link_to special.name, special_path(special) %><%= ", " unless idx == c %>
+				  <%= link_to special.name, special_path(special) %><%= " • " unless idx == c %>
 				<% end %>
 			<% end %>
 		<% else %>
@@ -34,7 +34,7 @@
 				<strong>Specials:</strong>
 				<% c = room.specials.count - 1 %>
 				<% room.specials.each_with_index do |special, idx| %>
-				  <%= link_to special.name, special_path(special) %><%= ", " unless idx == c %>
+				  <%= link_to special.name, special_path(special) %><%= " • " unless idx == c %>
 				<% end %>
 			<% end %>
 		<% end %>
