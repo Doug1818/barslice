@@ -13,12 +13,16 @@
       <%= render 'bars/room', object: @bar %>
 	</div>
 	<div class="tab-pane" id="tab2">
+	<% if bar_signed_in? %>
+		<%= render 'bars/respolicy_tab_signedin' %>
+	<% else %>
 		<% if @bar.respolicy %>
 			<strong>Description:</strong><br>
 	    	<%= render 'bars/respolicy', object: @bar %>
 	  	<% else %>
 			<p>No reservation policy currently available</p>
 		<% end %>
+	<% end %>
 	</div>
 	<div class="tab-pane" id="tab3">
 		<%= render 'bars/specials_list', object: @bar %>
