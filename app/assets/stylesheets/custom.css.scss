@@ -190,8 +190,13 @@ footer {
 	margin: 0;
 	.room {
 		overflow: auto;
-		padding: 10px 0;
+		margin:0;
+		padding: 0;
 		border-bottom: 1px solid $grayMediumLight;
+		padding: 10px 20px;
+		&:nth-child(even) {
+			background: #F8F8F8;
+			}
 		&:last-child {
 			margin-bottom: 20px;
 			border-bottom: none;
