@@ -4,7 +4,7 @@
 	<%= render 'shared/bar_info', object: Bar.find_by_id(@room.bar_id) %>
 </div>
 <div class="rooms">
-	<div class="room_show span9">
+	<div class="room_show span7">
 		<div class="title">
 			<span class="strong"><%= @room.name %></span> |
 			<% if @room.privacy == 1 %> Private room
@@ -18,14 +18,16 @@
 			<%= @room.description %>
 		</div>
 		<div><%= render 'rooms/specials_delimited', room: @room %></div>
-		<div><%= render 'rooms/restrictions', room: @room %></div><br /><br />
+		<div><%= render 'rooms/restrictions', room: @room %></div><br>
 		<% if Bar.find_by_id(@room.bar_id).respolicy %>
 			<div class="nofl">
 				<strong>Reservation policy:</strong><br>
 				<%= render 'bars/respolicy', object: Bar.find_by_id(@room.bar_id) %>
 			</div>
 		<% end %>
-		<div><a class="btn btn-small btn-info" data-toggle="modal" style="font-size:1.04em" href="#myModal" >Reserve</a></div>
-		<div class="nofl"><%= render 'shared/reserve_popup' %></div>
+		<% if !bar_signed_in? %>
+			<div><a class="btn btn-small btn-info" data-toggle="modal" style="font-size:1.04em" href="#myModal" >Reserve</a></div>
+			<div class="nofl"><%= render 'shared/reserve_popup' %></div>
+		<% end %>
 	</div>
 <div>

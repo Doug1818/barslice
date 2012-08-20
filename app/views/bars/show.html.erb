@@ -4,16 +4,16 @@
 	<%= render 'shared/bar_info', object: @bar %>
 </div>
 
-<ul class="nav nav-tabs span9">
+<ul class="nav nav-tabs span7">
 	<li class="active"><a href="#tab1" data-toggle="tab">Rooms</a></li>
 	<li><a href="#tab2" data-toggle="tab">Reservation policy</a></li>
 	<li><a href="#tab3" data-toggle="tab">Specials</a></li>
 </ul>
-<div class="tab-content span9">
+<div class="tab-content span7">
 	<div class="tab-pane active" id="tab1">
       <%= render 'bars/room', object: @bar %>
 	</div>
-	<div class="tab-pane" id="tab2">
+	<div class="tab-pane" id="tab2" style="margin-left:20px">
 	<% if bar_signed_in? %>
 		<%= render 'bars/respolicy_tab_signedin' %>
 	<% else %>

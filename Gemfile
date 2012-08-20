@@ -13,7 +13,7 @@ gem 'aws-s3'
 gem 'jquery-rails', '2.1.0'
 gem 'activeadmin'
 gem "meta_search"
-gem 'bootswatch-rails'
+#gem 'bootswatch-rails'
 
 group :development do
   gem 'rspec-rails', '2.9.0'
@@ -29,6 +29,7 @@ group :assets do
   gem 'coffee-rails', '3.2.2'
   gem 'uglifier', '1.2.3'
   gem 'jquery-ui-rails'
+  gem 'twitter-bootstrap-rails'
 end
 
 

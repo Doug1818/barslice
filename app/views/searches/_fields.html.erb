@@ -1,57 +1,59 @@
 <%= render 'shared/error_messages', object: f.object %>
 
-<div class="search_form">
-	<div class="search_sections">
-		<%= f.label :location, "Search by location", class: "hform strong" %>
-		<%= f.select :location, Bar::NEIGHBORHOODS, include_blank: true, multiple: true %><br>
+<div>
+	<div class="search_form">
+		<div class="search_sections">
+			<%= f.label :location, "Search by location", class: "hform strong" %>
+			<%= f.select :location, Bar::NEIGHBORHOODS, include_blank: true, multiple: true %><br>
 
-		<div><span class="hform strong">or</span></div>
+			<div><span class="hform strong">or</span></div>
 
-		<%= f.label :bar_name, "Search by bar", class: "hform strong" %>
-		<%= f.text_field :bar_name %>
-	</div>
+			<%= f.label :bar_name, "Search by bar", class: "hform strong" %>
+			<%= f.text_field :bar_name %>
+		</div>
 
-	<div class="search_sections">
-		<div class="hform strong">Event details</div>
+		<div class="search_sections">
+			<div class="hform strong">Event details</div>
 
-		<div>
-			Date:
-			<% if f.object.date? %>
-				<%= f.text_field :date, class: "datepicker", style: "width: 100px", value: f.object.date.strftime("%m/%d/%Y") %>
-			<% else %>
-				<%= f.text_field :date, class: "datepicker", style: "width: 100px" %>
-			<% end %>
-		</div><br />
+			<div>
+				Date:
+				<% if f.object.date? %>
+					<%= f.text_field :date, class: "datepicker", style: "width: 100px", value: f.object.date.strftime("%m/%d/%Y") %>
+				<% else %>
+					<%= f.text_field :date, class: "datepicker", style: "width: 100px" %>
+				<% end %>
+			</div><br />
 
-		<div>
-			Time:	
-			<% if f.object.start_time? %>
-				<%= f.select :start_time, TIMES.keys, { selected: TIMES.key(f.object.start_time) }, class: "time" %> to
-			<% else %>
-				<%= f.select :start_time, TIMES.keys, { selected: "9:00pm" }, class: "time" %> to 
-			<% end %>
+			<div>
+				Time:	
+				<% if f.object.start_time? %>
+					<%= f.select :start_time, TIMES.keys, { selected: TIMES.key(f.object.start_time) }, class: "time" %> to
+				<% else %>
+					<%= f.select :start_time, TIMES.keys, { selected: "9:00pm" }, class: "time" %> to 
+				<% end %>
 
-			<% if f.object.end_time? %>
-				<%= f.select :end_time, TIMES.keys, { selected: TIMES.key(f.object.end_time) }, class: "time" %>
-			<% else %>
-				<%= f.select :end_time, TIMES.keys, { selected: "1:00am" }, class: "time" %>
-			<% end %>
-		</div><br />
+				<% if f.object.end_time? %>
+					<%= f.select :end_time, TIMES.keys, { selected: TIMES.key(f.object.end_time) }, class: "time" %>
+				<% else %>
+					<%= f.select :end_time, TIMES.keys, { selected: "1:00am" }, class: "time" %>
+				<% end %>
+			</div><br />
 
-		<div>Number of people: <%= f.text_field :hdct, style:"width:100px" %></div>
-	</div>
+			<div>Number of people: <%= f.text_field :hdct, style:"width:100px" %></div>
+		</div>
 
-	<div class="search_sections">
-		<div class="hform strong">Optional filters</div>
-		<div>
-			Privacy:
-			<%= f.radio_button :privacy, 1 %> Private
-			<%= f.radio_button :privacy, 2 %> Semi-private
-			<%= f.radio_button :privacy, 3 %> Shared space
-		</div><br>
-		<div><%= f.check_box :no_fee %> No fees</div><br>
-		<div><%= f.check_box :no_spendmin %> No spend minimums</div><br>
-		<div><%= f.check_box :has_open_bar %> Open bar available</div>
+		<div class="search_sections">
+			<div class="hform strong">Optional filters</div>
+			<div>
+				Privacy:
+				<%= f.radio_button :privacy, 1 %> Private
+				<%= f.radio_button :privacy, 2 %> Semi-private
+				<%= f.radio_button :privacy, 3 %> Shared space
+			</div><br>
+			<div><%= f.check_box :no_fee %> No fees</div><br>
+			<div><%= f.check_box :no_spendmin %> No spend minimums</div><br>
+			<div><%= f.check_box :has_open_bar %> Open bar available</div>
+		</div>
 	</div>
 </div>
 

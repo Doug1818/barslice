@@ -1,0 +1,380 @@
+@import "twitter/bootstrap/bootstrap";
+
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
+@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled boostrap_and_overrides.css will not 
+//       have the proper paths. So for now we use the absolute path.
+@fontAwesomeEotPath: '/assets/fontawesome-webfont.eot';
+@fontAwesomeWoffPath: '/assets/fontawesome-webfont.woff';
+@fontAwesomeTtfPath: '/assets/fontawesome-webfont.ttf';
+@fontAwesomeSvgPath: '/assets/fontawesome-webfont.svg';
+
+// Font Awesome
+@import "fontawesome";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/less.html for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+
+@navbarBackground: #369bd7;
+@navbarBackgroundHighlight: #61b0df;
+@navbarText: #eee;
+@navbarLinkColor: #eee;
+
+
+@grayMediumLight: #E0E0E0;
+
+
+
+/* universal */
+
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	padding-top: 60px;
+}
+
+
+section {
+	overflow: auto;
+}
+
+textarea {
+	resize: vertical;
+}
+
+.center {
+	text-align: center;
+	font-size:1.6em;
+	margin: 25px 0 50px 0;
+	h1, h2 {
+		margin-bottom: 10px;
+	}
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+	line-height: 1;
+}
+
+h1 {
+	font-size: 2.5em;
+	color: @gray;
+	letter-spacing: -2px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+h2 {
+	font-size: 1.9em;
+	letter-spacing: -1px;
+	margin-bottom: 10px;
+	margin-top:20px;
+	text-align: left;
+	font-weight: normal;
+	color: @grayLight;
+}
+
+p {
+	font-size: 1.1em;
+	line-height: 1.7em;
+	}
+
+.strong {
+	font-weight: bold;
+	}
+
+em {
+	color: @grayLight;
+	font-weight: bold;
+}
+
+.remove {
+	float:right;
+	margin:7px 30px 0;
+}
+
+/* header */
+
+#logo {
+	float: left;
+	margin-right: 10px;
+	margin-left:50px;
+	font-size: 1.7em;
+	color: white;
+	letter-spacing: -1px;
+	padding: 10px 10px 10px 0;
+	font-weight: bold;
+	line-height: 1;
+	
+	&:hover {
+		color: white;
+		text-decoration: none;
+	}
+}
+
+/* footer */
+
+footer {
+	clear:both;
+	margin-top: 45px;
+	padding-top: 5px;
+	border-top: 1px solid @grayMediumLight;
+	color: @grayLight;
+	a {
+		color: @gray;
+		&:hover {
+			color:@grayDarker;
+		}
+	}
+	small {
+		float: left
+	}
+	ul {
+		float: right;
+		list-style: none;
+		li {
+			float: left;
+			margin-left: 10px;
+		}
+	}
+}
+
+/* miscellaneous */
+
+.debug_dump {
+	clear: both;
+	float: left;
+	width: 100%;
+	margin-top: 45px;
+	@include box_sizing;
+}
+
+/* forms */
+
+.hform {
+	margin-bottom: 10px;
+	margin-top: 25px;
+	font-size: 1.1em;
+}
+
+.avail {
+	span {
+		display:block;
+	}
+}
+
+.dfield { 
+	margin:15px 0;
+	border-bottom: 1px solid @grayMediumLight;
+	padding-bottom: 5px;
+	width:55%;
+}
+
+.time {
+	width:80px;
+	height:25px;
+	font-size:0.9em;
+	margin:5px;
+}
+
+#error_explanation {
+	color: #foo;
+	ul {
+		list-style: none;
+		margin: 0 0 18px 0;
+	}
+}
+
+.button {
+	margin: 30px 0;
+}
+
+/* room list */
+
+.rooms {
+	list-style: none;
+	margin: 0;
+	.room {
+		overflow: auto;
+		margin:0;
+		padding: 0;
+		border-bottom: 1px solid @grayMediumLight;
+		padding: 10px 20px;
+		&:nth-child(even) {
+			background: #F8F8F8;
+			}
+		&:last-child {
+			margin-bottom: 20px;
+			border-bottom: none;
+		}
+		.title {
+			font-size: 1.15em;
+		}
+		div {
+			margin: 7px 0;
+		}
+		.nofl {
+			clear:both;
+		}
+		ul.deets {
+			float:left;
+			width: 100%;
+			margin:7px 0;
+			li.deet {
+				float:left;
+				margin-right:20px;
+				list-style:none;
+				ul {
+					list-style:none;
+					margin:0;
+				}
+			}
+		}
+		ul.restrictions {
+			float:left;
+			list-style: decimal;
+		}
+	}
+	.room_show {
+		overflow: auto;
+		padding: 10px 0;
+		.title {
+			font-size: 1.15em;
+		}
+		div {
+			margin: 7px 0;
+		}
+		.nofl {
+			clear:both;
+		}
+		ul.deets {
+			float:left;
+			width: 100%;
+			margin:7px 0;
+			li.deet {
+				float:left;
+				margin-right:20px;
+				list-style:none;
+				ul {
+					list-style:none;
+					margin:0;
+				}
+			}
+		}
+		ul.restrictions {
+			float:left;
+			list-style: decimal;
+		}
+	}
+}
+
+/* bar list */
+
+.bars {
+	list-style: none;
+	margin: 0;
+	.bar {
+		overflow: auto;
+		padding: 20px 7px 10px 7px;
+		border-bottom: 1px solid #61b0df;
+		&:last-child {
+			margin-bottom: 10px;
+			border-bottom: none;
+		}
+		.title {
+			font-size: 1.15em;
+		}
+		div {
+			margin: 7px 0;
+		}
+		.nofl {
+			clear:both;
+		}
+		ul.rooms {
+			list-style: none;
+			margin: 0;
+			li.room {
+				border-bottom: 1px solid @grayMediumLight;
+				padding: 10px 15px;
+				&:nth-child(even) {
+					background: #F8F8F8;
+				}
+				&:last-child {
+					margin-bottom: 20px;
+					border-bottom: none;
+				}
+			}
+		}
+		ul.deets {
+			float:left;
+			width: 100%;
+			margin:7px 0;
+			li.deet {
+				float:left;
+				margin-right:20px;
+				list-style:none;
+				ul {
+					list-style:none;
+					margin:0;
+				}
+			}
+		}
+		ul.restrictions {
+			float:left;
+			list-style: decimal;
+		}
+	}
+}
+
+/* bar info */
+
+.bar_info_right {
+	float:right;
+	text-align:right;
+	font-size:0.88em;
+	margin-bottom: 50px;
+	margin-right: 0px;
+	.bar_hrs {
+		list-style:none;
+	}
+}
+
+.bar_info_left {
+	margin-bottom: 50px;
+	margin-left:20px;
+	.bar_hrs {
+		list-style:none;
+	}
+}
+
+/* search form */
+
+.search_form {
+	float:left;
+	margin: 10px 0px 20px 0;
+	padding: 0 60px 20px 20px;
+	border-radius:15px;
+	background-color: #61b0df;
+	.search_sections {
+		float:left;
+		margin: 0 20px 0 20px;
+	}
+}
+
