@@ -13,6 +13,7 @@ gem 'aws-s3'
 gem 'jquery-rails', '2.1.0'
 gem 'activeadmin'
 gem "meta_search"
+gem 'bootswatch-rails'
 
 group :development do
   gem 'rspec-rails', '2.9.0'
