@@ -19,4 +19,3 @@
 //= require jquery.fileupload
 //= require jquery.fileupload-fp
 //= require jquery.fileupload-ui
-//= require_tree .
