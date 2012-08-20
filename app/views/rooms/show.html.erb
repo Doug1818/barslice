@@ -3,7 +3,6 @@
 <div class="bar_info_right">
 	<%= render 'shared/bar_info', object: Bar.find_by_id(@room.bar_id) %>
 </div>
-
 <div class="rooms">
 	<div class="room_show span9">
 		<div class="title">
@@ -26,5 +25,7 @@
 				<%= render 'bars/respolicy', object: Bar.find_by_id(@room.bar_id) %>
 			</div>
 		<% end %>
+		<div><a class="btn btn-small btn-info" data-toggle="modal" style="font-size:1.04em" href="#myModal" >Reserve</a></div>
+		<div class="nofl"><%= render 'shared/reserve_popup' %></div>
 	</div>
 <div>
