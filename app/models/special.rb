@@ -20,7 +20,7 @@ class Special < ActiveRecord::Base
 
   def room_selected
     if !self.rooms.any?
-      self.errors[:applicable_rooms] = "must have at least one room selected (otherwise go to your home page to delete the special)"
+      self.errors[:applicable_rooms] = "must have at least one room selected"
     end
   end
 
