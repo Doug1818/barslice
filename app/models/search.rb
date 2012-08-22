@@ -43,7 +43,7 @@ private
   end
 
   def find_rooms
-  	rooms = Room.order(:privacy)
+  	rooms = Room.order(:name)
   	rooms = rooms.joins(:bar).where("neighborhood = ?", location) if location.present?
   	rooms = rooms.joins(:bar).where("bars.name like ?", "%#{bar_name}%") if bar_name.present?
   	rooms = rooms.joins(:bar).joins(:bar => :hrsranges).where("open <= ? AND close >= ? 
