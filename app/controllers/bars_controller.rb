@@ -4,4 +4,6 @@ class BarsController < ApplicationController
   end
 
   def confirm_bar
+  	# send email
+  end
 end
