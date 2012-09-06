@@ -1,4 +1,4 @@
-<ul class="bars span9">
+<ul class="bars span8">
   <% Bar.all.each do |bar| %>
       <li class="bar">
         <span class="title">
@@ -9,19 +9,21 @@
           <% bar.rooms.each do |room| %>
             <li class="room">
               <% if !bar_signed_in? %>
-                <div>
-                  <a class="btn btn-small btn-info" data-toggle="modal" style="float:right;font-size:1.04em" href="#myModal" >Reserve</a>
-                </div>
-                <%= render 'shared/reserve_popup' %>
+                <span style="float:right;margin-top:5px;">
+                  <a class="btn btn-small btn-info" data-toggle="modal" style="float:right;font-size:1.04em" href="#reserveModal" >Reserve</a>
+                  <%= render 'shared/reserve_modal' %><br>
+                  <a data-toggle="modal" style="font-size:0.6em" href="#claimbarModal" >Your bar? Click here</a>
+                  <%= render 'shared/claim_bar_modal' %>
+                </span>
               <% end %>
-              <div style="margin-bottom:0">
+              <span style="float:left;width:80%;margin-top:5px;">
                 <span class="strong" style="font-size:1.05em"><%= link_to room.name, room_path(room) %></span> |
                 <% if room.privacy == 1 %> Private room
                 <% elsif room.privacy == 2 %> Semi-private room
                 <% else %> Shared space
                 <% end %>
                 <%= render 'shared/deets', room: room %>
-              </div>
+              </span>
               <div class="nofl">
                 <strong>Description: </strong>
                 <%= room.description.truncate(190) %>

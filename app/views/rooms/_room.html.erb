@@ -1,8 +1,8 @@
 <li class="room span8">
 	
 <% if !bar_signed_in? %>	
-	<div><a class="btn btn-small btn-info" data-toggle="modal" style="float:right;font-size:1.04em" href="#myModal" >Reserve</a></div>
-	<%= render 'shared/reserve_popup' %>
+	<div><a class="btn btn-small btn-info" data-toggle="modal" style="float:right;font-size:1.04em" href="#reserveModal" >Reserve</a></div>
+	<%= render 'shared/reserve_modal' %>
 <% end %>
 	<span class="title">
 	    <span class="strong"><%= link_to room.name, room_path(room) %></span> | 

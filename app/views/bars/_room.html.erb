@@ -6,10 +6,10 @@
 			<li class="room">
 				<% if !bar_signed_in? %>
 					<div>
-						<a class="btn btn-small btn-info" data-toggle="modal" style="float:right;font-size:1.04em" href="#myModal" >Reserve</a>
+						<a class="btn btn-small btn-info" data-toggle="modal" style="float:right;font-size:1.04em" href="#reserveModal" >Reserve</a>
 					</div>
 				<% end %>
-					<%= render 'shared/reserve_popup' %>
+					<%= render 'shared/reserve_modal' %>
 				<div class="title">
 					<span class="strong"><%= link_to room.name, room_path(room) %></span> |
 					<% if room.privacy == 1 %> Private room
