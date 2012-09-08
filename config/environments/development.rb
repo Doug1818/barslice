@@ -14,8 +14,23 @@ BarSlice::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
+  # Change mail delvery to either :smtp, :sendmail, :file, :test
+  config.action_mailer.delivery_method = :letter_opener
+  #config.action_mailer.smtp_settings = {
+  #  address: "smtp.gmail.com",
+  #  port: 587,
+  #  domain: "barslice.com",
+  #  authentication: "plain",
+  #  enable_starttls_auto: true,
+  #  user_name: "doug@barslice.com",
+  #  password: "44203905"
+  #}
+
+  # Specify what domain to use for mailer URLs (also required for Devise)
+  config.action_mailer.default_url_options = {host: "localhost:3000"}
+  
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
@@ -34,9 +49,6 @@ BarSlice::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-
-  # Doug per devise
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # Doug per paperclip
   Paperclip.options[:command_path] = "/opt/local/bin/"

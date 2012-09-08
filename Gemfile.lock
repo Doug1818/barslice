@@ -145,6 +145,8 @@ GEM
     less-rails (2.2.3)
       actionpack (>= 3.1)
       less (~> 2.2.0)
+    letter_opener (0.0.2)
+      launchy
     libnotify (0.5.9)
       ffi (~> 1.0.0)
     libv8 (3.3.10.4)
@@ -285,7 +287,9 @@ DEPENDENCIES
   jquery-rails (= 2.1.0)
   jquery-ui-rails
   kumade
+  letter_opener
   libnotify (= 0.5.9)
+  mail
   meta_search
   paperclip (~> 3.0)
   pg (= 0.12.2)
