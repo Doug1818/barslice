@@ -4,6 +4,6 @@ class BarsController < ApplicationController
   end
 
   def confirm_bar
-  	# send email
+  	BarMailer.identity_confirmation(@bar).deliver
   end
 end
