@@ -13,7 +13,6 @@ class RegistrationsController < Devise::RegistrationsController
       hrsrange.close = TIMES[params[:bar][:hrsranges_attributes].values[idx][:close]]
     end
     if @bar.save
-      BarMailer.identity_confirmation(@bar).deliver
       sign_in @bar
       flash[:success] = "Welcome! You have signed up successfully."
       if current_bar.rooms.count == 0

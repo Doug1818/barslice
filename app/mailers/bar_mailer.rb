@@ -8,7 +8,6 @@ class BarMailer < ActionMailer::Base
   #
   def identity_confirmation(bar)
     @bar = bar
-
     mail from:"contact@barslice.com" , to: bar.email, subject: "Identity Confirmation"
   end
 end

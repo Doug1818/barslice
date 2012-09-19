@@ -6,7 +6,11 @@ BarSlice::Application.routes.draw do
   devise_for :users
   devise_for :bars, controllers: { registrations: "registrations" }
   resources :rooms
-  resources :bars
+  resources :bars do 
+    member do
+      get :confirm_bar
+    end
+  end
   resources :searches
   resources :respolicies
   resources :specials

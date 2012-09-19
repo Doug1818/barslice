@@ -4,6 +4,8 @@ class BarsController < ApplicationController
   end
 
   def confirm_bar
+  	@bar = Bar.find(params[:id])
   	BarMailer.identity_confirmation(@bar).deliver
+  	redirect_to :back
   end
 end
