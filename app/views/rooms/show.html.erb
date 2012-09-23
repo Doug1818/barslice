@@ -5,14 +5,22 @@
 </div>
 <div class="rooms">
 	<div class="room_show span7">
-		<div class="title">
-			<span class="strong"><%= @room.name %></span> |
-			<% if @room.privacy == 1 %> Private room
-			<% elsif @room.privacy == 2 %> Semi-private room
-			<% else %> Shared space
-			<% end %>
-		</div>
-		<div><%= render 'shared/deets', room: @room %></div>
+		<% if !bar_signed_in? %>
+			<span style="float:right;margin-top:10px;">
+				<%= render 'shared/reserve_modal' %><br>
+				<%= render 'shared/claim_bar_modal', object: Bar.find(@room.bar_id), room: @room %>
+			</span>
+		<% end %>
+		<span style="float:left;width:85%;">
+			<div class="title">
+				<span class="strong"><%= @room.name %></span> |
+				<% if @room.privacy == 1 %> Private room
+				<% elsif @room.privacy == 2 %> Semi-private room
+				<% else %> Shared space
+				<% end %>
+			</div>
+			<div><%= render 'shared/deets', room: @room %></div>
+		</span>
 		<div class="nofl">
 			<strong>Description: </strong>
 			<%= @room.description %>
@@ -24,10 +32,6 @@
 				<strong>Reservation policy:</strong><br>
 				<%= render 'bars/respolicy', object: Bar.find_by_id(@room.bar_id) %>
 			</div>
-		<% end %>
-		<% if !bar_signed_in? %>
-			<div><a class="btn btn-small btn-info" data-toggle="modal" style="font-size:1.04em" href="#reserveModal" >Reserve</a></div>
-			<div class="nofl"><%= render 'shared/reserve_modal' %></div>
 		<% end %>
 	</div>
 <div>

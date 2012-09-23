@@ -1,0 +1,11 @@
+<p><%= @bar.name %>,</p>
+
+<p>Thank you for claiming your bar at BarSlice.com.  If you are receiving this message in error, please disregard it.  You can sign in and begin tailoring your account by signing in <%= link_to "here", "http://barslice.herokuapp.com/bars/sign_in", target: "_blank" %> with the following email address and temporary password.</p>
+
+<p>Email: <%= @bar.email %><br>
+Temporary password: "xxx"</p>
+
+<p>Be sure to reset your password after signing in.</p>
+
+<p>Cheers,<br>
+The BarSlice Team</p>
