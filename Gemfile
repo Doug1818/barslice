@@ -15,6 +15,7 @@ gem 'activeadmin'
 gem 'meta_search'
 #gem 'bootswatch-rails'
 gem 'mail'
+gem "rufus-mnemo", "~> 1.2.3"
 
 group :development do
   gem 'rspec-rails', '2.9.0'
