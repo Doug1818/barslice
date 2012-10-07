@@ -1,6 +1,6 @@
-<a class="btn btn-small btn-info reserve" data-toggle="modal" href="#reserveModal" >Reserve</a>
+<a class="btn btn-small btn-info reserve" data-toggle="modal" href="#reserveModal-<%= room.id %>" >Reserve</a>
 
-<div class="modal hide" id="reserveModal">
+<div class="modal hide" id="reserveModal-<%= room.id %>">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
     <h3>This bar does not yet participate in BarSlice reservations</h3>
@@ -19,7 +19,7 @@
 </div>
 
 <script type="text/javascript">
-$('#reserveModal').css({
+$('#reserveModal-<%= room.id %>').css({
           'margin-top': function () {
             return -($(this).height() / 2);
           }
