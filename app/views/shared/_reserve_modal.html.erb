@@ -1,16 +1,17 @@
-<a class="btn btn-small btn-info" data-toggle="modal" style="float:right;font-size:1.04em" href="#reserveModal" >Reserve</a>
+<a class="btn btn-small btn-info reserve" data-toggle="modal" href="#reserveModal" >Reserve</a>
 
 <div class="modal hide" id="reserveModal">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>This feature is coming soon</h3>
+    <h3>This bar does not yet participate in BarSlice reservations</h3>
   </div>
   <div class="modal-body">
-    <p>BarSlice will facilitate the reservation process through the site.  We are currently building this feature as follows: (1) The user will click the reserve button, which will take them to a reservation request form confirming the event details.  (2) The bar will then receive an email with the event details and a link to either confirm the reservation, deny it, or message the user if more communication is necesarry before making a decision. (3) Once the bar has confirmed the reservation, the user is notified and must accept to complete the reservation.</p>
+    <p>To place a reservation with <%= object.name %>, see reservation guidelines at 
+      <%= link_to object.website, "http://#{object.website}", target: "_blank" %></p>
 
-    <p>Users will be told that upon accepting a reservation, any pending requests to other bars will be cancelled in order to prevent unfullfilled reservations or "no shows" from taking place.</p>
+    <p>If you would like to be able to make online reservation with <%= object.name %> in the future, please let them know that you found them through BarSlice and click <%= link_to 'here', '#' %> to let us know that we should follow up with them.</p>
 
-    <p>We welcome any feedback you may have on this feature.  Please send us your thoughts at <a href="mailto:feedback@barslice.com">feedback@barslice.com</a></p>
+    <p>Good luck with your event!</p>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>

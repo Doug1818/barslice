@@ -20,6 +20,7 @@ class Bar < ActiveRecord::Base
   validates :address, presence: true, length: { maximum: 150 }
   validates :neighborhood, presence: true
   validates :phone, presence: true
+  validates :website, presence: true
   validate  :phone_length
   validate  :week_days
 
