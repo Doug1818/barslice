@@ -8,7 +8,7 @@ BarSlice::Application.routes.draw do
   resources :rooms
   resources :bars do 
     member do
-      get :confirm_bar
+      get :confirm_bar, :add_click
     end
   end
   resources :searches

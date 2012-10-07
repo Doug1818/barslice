@@ -9,7 +9,8 @@
     <p>To place a reservation with <%= object.name %>, see reservation guidelines at 
       <%= link_to object.website, "http://#{object.website}", target: "_blank" %></p>
 
-    <p>If you would like to be able to make online reservation with <%= object.name %> in the future, please let them know that you found them through BarSlice and click <%= link_to 'here', '#' %> to let us know that we should follow up with them.</p>
+    <p>If you would like to be able to make online reservation with <%= object.name %> in the future, please let them know that you found them through BarSlice and click 
+      <%= link_to "here", add_click_bar_path(object.id) %> to let us know that we should follow up with them.</p>
 
     <p>Good luck with your event!</p>
   </div>
