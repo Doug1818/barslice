@@ -1,0 +1,44 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<div>
+	<div class="hform strong">Confirm event details</div>
+	<div class="hform">
+		<span>Date:</span>
+		<% if f.object.date? %>
+			<%= f.text_field :date, class: "datepicker", style: "width: 100px", value: f.object.date.strftime("%m/%d/%Y") %>
+		<% else %>
+			<%= f.text_field :date, class: "datepicker", style: "width: 100px" %>
+		<% end %>
+	</div>
+	<div class="hform">
+		Time:
+		<% if f.object.start_time? %>
+			<%= f.select :start_time, TIMES.keys, { selected: TIMES.key(f.object.start_time) }, class: "time" %> to
+		<% else %>
+			<%= f.select :start_time, TIMES.keys, { selected: "9:00pm" }, class: "time" %> to 
+		<% end %>
+
+		<% if f.object.end_time? %>
+			<%= f.select :end_time, TIMES.keys, { selected: TIMES.key(f.object.end_time) }, class: "time" %>
+		<% else %>
+			<%= f.select :end_time, TIMES.keys, { selected: "1:00am" }, class: "time" %>
+		<% end %>
+	</div>
+	<div class="hform">Number of people: <%= f.text_field :hdct, style:"width:100px" %></div>
+</div>
+
+<div class="hform strong">Provide your contact info</div>
+<div><%= f.label :name, class: "hform" %>
+<%= f.text_field :name %></div>  
+<div><%= f.label :email, class: "hform" %>
+<%= f.email_field :email %></div>
+<div><%= f.label :phone, "Phone number", class: "hform" %>
+<%= f.text_field :phone %></div>
+
+<div><%= f.hidden_field :room_id, value: @room.id %></div>
+
+<script type="text/javascript">
+	$(function() {
+		$(".datepicker").datepicker();
+	});
+</script>

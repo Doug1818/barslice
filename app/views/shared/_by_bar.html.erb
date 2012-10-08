@@ -11,7 +11,7 @@
               <% if !bar_signed_in? %>
                 <span style="float:right;margin-top:5px;">
                   <% if bar.claimed == true %>
-                    <%= link_to "Reserve", '#', class: "btn btn-small btn-info reserve" %>
+                    <%= link_to "Reserve", new_reservation_path(room), class: "btn btn-small btn-info reserve" %>
                   <% else %>
                     <%= render 'shared/reserve_modal', object: bar, room: room %><br>
                     <%= render 'shared/claim_bar_modal', object: bar, room: room %>

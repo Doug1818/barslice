@@ -15,6 +15,7 @@ BarSlice::Application.routes.draw do
   resources :respolicies
   resources :specials
   resources :rmsprelationships
+  resources :reservations
 
   root              to: 'searches#new'
   match '/help',    to: 'static_pages#help'

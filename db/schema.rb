@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121007205204) do
+ActiveRecord::Schema.define(:version => 20121008013348) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -115,6 +115,19 @@ ActiveRecord::Schema.define(:version => 20121007205204) do
     t.integer  "open"
     t.integer  "close"
     t.boolean  "closed"
+  end
+
+  create_table "reservations", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.date     "date"
+    t.integer  "start_time"
+    t.integer  "end_time"
+    t.integer  "hdct"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "room_id"
   end
 
   create_table "respolicies", :force => true do |t|
