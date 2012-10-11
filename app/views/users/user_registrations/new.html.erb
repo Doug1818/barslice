@@ -1,0 +1,7 @@
+<h2>Submit request to <%= @bar.name %> to reserve <%= @room.name %></h2>
+<div>
+	<%= form_for( @user, html: { multipart: true } ) do |f| %>
+		<%= render 'fields', f: f %><br /><br />
+		<%= f.submit "Submit", class: "btn btn-large" %>
+	<% end %>
+</div>

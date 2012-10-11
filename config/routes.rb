@@ -3,14 +3,16 @@ BarSlice::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  devise_for :users
-  devise_for :bars, controllers: { registrations: "registrations" }
-  resources :rooms
+  devise_for :users, controllers: { registrations: "user_registrations" }
+  devise_for :bars, controllers: { registrations: "bar_registrations" }
+  resources :users
   resources :bars do 
     member do
       get :confirm_bar, :add_click
     end
   end
+  resources :rooms
+
   resources :searches
   resources :respolicies
   resources :specials

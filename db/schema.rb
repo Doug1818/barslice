@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008013348) do
+ActiveRecord::Schema.define(:version => 20121010014020) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -118,9 +118,6 @@ ActiveRecord::Schema.define(:version => 20121008013348) do
   end
 
   create_table "reservations", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "phone"
     t.date     "date"
     t.integer  "start_time"
     t.integer  "end_time"
@@ -128,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20121008013348) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "room_id"
+    t.integer  "user_id"
   end
 
   create_table "respolicies", :force => true do |t|
@@ -254,6 +252,8 @@ ActiveRecord::Schema.define(:version => 20121008013348) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.boolean  "admin"
+    t.string   "name"
+    t.string   "phone"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

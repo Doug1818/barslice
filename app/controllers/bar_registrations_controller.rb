@@ -1,4 +1,4 @@
-class RegistrationsController < Devise::RegistrationsController
+class BarRegistrationsController < Devise::RegistrationsController
   
   def new
     @bar = Bar.new
