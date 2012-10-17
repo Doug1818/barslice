@@ -1,0 +1,16 @@
+<p><%= @bar.name %>,</p>
+
+<p>You have a new reservation request from <%= @user.name %>.</p>
+
+<p>Reservation request details:</p>
+<ul>
+	<li>Date: <%= @reservation.date.strftime("%m/%d/%Y") %></li>
+	<li>Time: <%= TIMES.key(@reservation.start_time) %>-<%= TIMES.key(@reservation.end_time) %></li>
+	<li>Room: <%= @room.name %></li>
+	<li>Number of people: <%= @reservation.hdct %></li>
+</ul>
+
+<p>Please respond to this request ASAP by clicking <%= link_to 'here', '#' %>.</p>
+
+<p>Cheers,<br>
+The BarSlice Team</p>

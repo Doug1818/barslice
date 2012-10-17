@@ -9,16 +9,24 @@ class BarMailer < ActionMailer::Base
   def identity_confirmation(bar)
     @bar = bar
     @temp_pass = Rufus::Mnemo::from_integer(@bar.id*10000)[0..5]
-    mail from:"contact@barslice.com" , to: bar.email, subject: "Identity Confirmation"
+    mail from:"contact@barslice.com", to: bar.email, subject: "Identity Confirmation"
   end
 
   def identity_confirmation_alert(bar)
     @bar = bar
-    mail from:"contact@barslice.com" , to: "doug@barslice.com", subject: "[Identity Confirmation]#{bar.name}"
+    mail from:"contact@barslice.com", to: "doug@barslice.com", subject: "[Identity Confirmation]#{bar.name}"
   end
 
   def claimed_bar_alert(bar)
     @bar = bar
-    mail from:"contact@barslice.com" , to: "doug@barslice.com", subject: "[Claimed Bar]#{bar.name}"
+    mail from:"contact@barslice.com", to: "doug@barslice.com", subject: "[Claimed Bar]#{bar.name}"
+  end
+
+  def resrequest(room, bar, user)
+    @room = room
+    @bar = bar
+    @user = user
+    @reservation = @user.reservations.last
+    mail from:"contact@barslice.com", to: bar.email, subject: "Reservation Request"
   end
 end

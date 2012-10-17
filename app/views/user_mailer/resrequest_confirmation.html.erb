@@ -1,0 +1,14 @@
+<p><%= @user.name %>,</p>
+
+<p>Your reservation request has been sent to <%= @bar.name %>. You will be notified of their availability by email as soon as possible.</p>
+
+<p>Reservation request details:</p>
+<ul>
+	<li>Date: <%= @reservation.date.strftime("%m/%d/%Y") %></li>
+	<li>Time: <%= TIMES.key(@reservation.start_time) %>-<%= TIMES.key(@reservation.end_time) %></li>
+	<li>Room: <%= @room.name %></li>
+	<li>Number of people: <%= @reservation.hdct %></li>
+</ul>
+
+<p>Cheers,<br>
+The BarSlice Team</p>

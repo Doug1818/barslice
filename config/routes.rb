@@ -3,7 +3,7 @@ BarSlice::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  devise_for :users, controllers: { registrations: "user_registrations" }
+  devise_for :users, controllers: { registrations: "user_registrations", sessions: "user_sessions" }
   devise_for :bars, controllers: { registrations: "bar_registrations" }
   resources :users
   resources :bars do 

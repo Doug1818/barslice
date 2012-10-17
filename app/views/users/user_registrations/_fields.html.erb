@@ -1,5 +1,7 @@
 <%= render 'shared/error_messages', object: f.object %>
 
+<div class="hform strong">Have an account already? <%= link_to 'Sign in', new_user_session_path %></div>
+
 <div>
 	<div class="hform strong">Confirm event details</div>
 	<%= f.fields_for :reservations do |builder| %>
