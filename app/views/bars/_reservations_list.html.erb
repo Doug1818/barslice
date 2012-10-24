@@ -1,0 +1,75 @@
+<h2>Reservations Requests (please respond ASAP)</h2>
+<ul class="bars span8">
+  <% object.rooms.each do |room| %>
+    <% if room.reservations.any? %>
+      <li class="bar">
+        <span class="title strong"><%= room.name %></span>
+        <ul class="rooms">
+          <% room.reservations.each do |reservation| %>
+            <% if !reservation.bar_response? %>
+	            <li class="room">
+	              <div style="float:left;">
+									<%= reservation.date.strftime("%b %d") %>, 
+									<%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %> | 
+									<%= User.find(reservation.user_id).name %>, party of <%= pluralize(reservation.hdct, "person") %>
+								</div>
+								<div class="remove">
+									<%= link_to 'Accept', bar_accepts_reservation_path(reservation.id) %> |
+									<%= link_to 'Reject', bar_rejects_reservation_path(reservation.id) %>
+								</div>
+	            </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<h2>Accepted Reservations (waiting for user confirmation)</h2>
+<ul class="bars span8">
+  <% object.rooms.each do |room| %>
+  	<% if room.reservations.any? %>
+      <li class="bar">
+        <span class="title strong"><%= room.name %></span>
+        <ul class="rooms">
+          <% room.reservations.each do |reservation| %>
+            <% if reservation.bar_response? && !reservation.user_response? %>
+	            <li class="room">
+	              <div>
+									<%= reservation.date.strftime("%b %d") %>, 
+									<%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %> | 
+									<%= User.find(reservation.user_id).name %>, party of <%= pluralize(reservation.hdct, "person") %>
+								</div>
+	            </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<h2>Upcomming Confirmed Reservations</h2>
+<ul class="bars span8">
+  <% object.rooms.each do |room| %>
+  	<% if room.reservations.any? %>
+      <li class="bar">
+        <span class="title strong"><%= room.name %></span>
+        <ul class="rooms">
+          <% room.reservations.each do |reservation| %>
+            <% if reservation.bar_response? && reservation.user_response? %>
+	            <li class="room">
+	              <div>
+									<%= reservation.date.strftime("%b %d") %>, 
+									<%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %> | 
+									<%= User.find(reservation.user_id).name %>, party of <%= pluralize(reservation.hdct, "person") %>
+								</div>
+	            </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

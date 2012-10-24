@@ -24,4 +24,28 @@ class ReservationsController < ApplicationController
       render 'new'
     end
   end
+
+  def bar_accepts
+    @reservation = Reservation.find(params[:id])
+    @reservation.update_attributes(bar_response: 1)
+    redirect_to root_path(tab: "tab4")
+  end
+
+  def bar_rejects
+    @reservation = Reservation.find(params[:id])
+    @reservation.update_attributes(bar_response: 2)
+    redirect_to root_path(tab: "tab4")
+  end
+
+  def user_accepts
+    @reservation = Reservation.find(params[:id])
+    @reservation.update_attributes(user_response: 1)
+    redirect_to :back
+  end
+
+  def user_rejects
+    @reservation = Reservation.find(params[:id])
+    @reservation.update_attributes(user_response: 2)
+    redirect_to :back
+  end
 end

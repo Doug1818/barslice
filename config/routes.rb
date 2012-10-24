@@ -17,7 +17,11 @@ BarSlice::Application.routes.draw do
   resources :respolicies
   resources :specials
   resources :rmsprelationships
-  resources :reservations
+  resources :reservations do 
+    member do
+      get :bar_accepts, :bar_rejects, :user_accepts, :user_rejects
+    end
+  end
 
   root              to: 'searches#new'
   match '/help',    to: 'static_pages#help'

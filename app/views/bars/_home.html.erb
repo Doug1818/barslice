@@ -1,31 +1,31 @@
 <h1><%= current_bar.name %></h1>
 
 <ul class="nav nav-tabs span9">
-	<li class="active"><a href="#tab1" data-toggle="tab">Rooms</a></li>
-	<li><a href="#tab2" data-toggle="tab">Reservation policy</a></li>
-    <li><a href="#tab3" data-toggle="tab">Specials</a></li>
-    <li><a href="#tab4" data-toggle="tab">Reservations</a></li>
-    <li><a href="#tab5" data-toggle="tab">Bar info</a></li>
+	<li class="<%= 'active' if params[:tab] == 'tab1' || !params[:tab] %>"><a href="#tab1" data-toggle="tab">Rooms</a></li>
+	<li class="<%= 'active' if params[:tab] == 'tab2' %>"><a href="#tab2" data-toggle="tab">Reservation policy</a></li>
+    <li class="<%= 'active' if params[:tab] == 'tab3' %>"><a href="#tab3" data-toggle="tab">Specials</a></li>
+    <li class="<%= 'active' if params[:tab] == 'tab4' %>"><a href="#tab4" data-toggle="tab">Reservations</a></li>
+    <li class="<%= 'active' if params[:tab] == 'tab5' %>"><a href="#tab5" data-toggle="tab">Bar info</a></li>
 </ul>
 
 <div class="tab-content span8">
-	<div class="tab-pane active" id="tab1">
+	<div class="<%= if (params[:tab] == 'tab1' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end %>" id="tab1">
       <%= render 'bars/room', object: current_bar %>
 	</div>
 	
-	<div class="tab-pane" id="tab2" style="margin-left:20px">
+	<div class="<%= if (params[:tab] == 'tab2')then 'tab-pane active'  else 'tab-pane' end %>" id="tab2" style="margin-left:20px">
 		<%= render 'bars/respolicy_tab_signedin' %>
 	</div>
 	
-	<div class="tab-pane" id="tab3">
+	<div class="<%= if (params[:tab] == 'tab3')then 'tab-pane active'  else 'tab-pane' end %>" id="tab3">
 		<%= render 'bars/specials_list', object: current_bar %>
 	</div>
 	
-	<div class="tab-pane" id="tab4">
-      <p style="margin: 0 0 50px 20px">Coming soon</p>
+	<div class="<%= if (params[:tab] == 'tab4')then 'tab-pane active'  else 'tab-pane' end %>" id="tab4">
+      <%= render 'bars/reservations_list', object: current_bar %>
 	</div>
 	
-	<div class="tab-pane bar_info_left" id="tab5">
+	<div class="<%= if (params[:tab] == 'tab5')then 'tab-pane active'  else 'tab-pane' end %> bar_info_left" id="tab5">
     	<%= render 'shared/bar_info', object: current_bar %>
 	</div>
 </div>
