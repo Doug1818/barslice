@@ -8,7 +8,7 @@
     <li class="<%= 'active' if params[:tab] == 'tab5' %>"><a href="#tab5" data-toggle="tab">Bar info</a></li>
 </ul>
 
-<div class="tab-content span8">
+<div class="tab-content span9">
 	<div class="<%= if (params[:tab] == 'tab1' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end %>" id="tab1">
       <%= render 'bars/room', object: current_bar %>
 	</div>

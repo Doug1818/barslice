@@ -18,6 +18,15 @@ BarSlice::Application.configure do
 
   # Change mail delvery to either :smtp, :sendmail, :file, :test
   config.action_mailer.delivery_method = :letter_opener
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #:address              => "smtp.gmail.com",
+  #:port                 => 587,
+  #:domain               => 'barslice.com',
+  #:user_name            => 'doug@barslice.com',
+  #:password             => '44203905',
+  #:authentication       => 'plain',
+  #:enable_starttls_auto => true  }
 
   # Specify what domain to use for mailer URLs (also required for Devise)
   config.action_mailer.default_url_options = {host: "localhost:3000"}

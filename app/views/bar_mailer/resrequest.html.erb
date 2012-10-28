@@ -10,7 +10,10 @@
 	<li>Number of people: <%= @reservation.hdct %></li>
 </ul>
 
-<p>Please respond to this request ASAP by clicking <%= link_to 'here', 'x' %>.</p>
+<p>Please respond to this request ASAP.<br>
+<%= link_to 'Accept', bar_accepts_reservation_url(@reservation.id) %> | 
+<%= link_to 'See all reservations', reservations_url, target: "_blank" %>
+</p>
 
 <p>Cheers,<br>
 The BarSlice Team</p>
