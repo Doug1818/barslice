@@ -31,6 +31,15 @@ before_filter :authenticate_user!, only: [:user_accepts, :user_rejects]
     redirect_to root_path(tab: "tab4")
   end
 
+  def show
+    @reservation = Reservation.find(params[:id])
+    if bar_signed_in?
+      @message = current_bar.messages.build
+    elsif user_signed_in?
+      @message = current_user.messages.build
+    end      
+  end
+
   def bar_accepts
     @reservation = Reservation.find(params[:id])
     @reservation.update_attributes(bar_response: 1)

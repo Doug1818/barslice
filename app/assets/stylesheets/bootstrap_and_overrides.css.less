@@ -112,6 +112,10 @@ p {
 	font-weight: bold;
 	}
 
+.gray {
+	color: @grayLight;
+}
+
 em {
 	color: @grayLight;
 	font-weight: bold;
@@ -222,6 +226,19 @@ footer {
 	margin: 30px 0;
 }
 
+/* message list */
+
+.msg_info {
+	margin-left: 10px;
+}
+.content {
+	margin-top: 7px;
+	border: 1px solid @grayMediumLight;
+	border-radius:10px;
+	background: #F8F8F8;
+	padding: 10px;
+}
+
 /* reservation table */
 
 .pretty_table {
@@ -235,20 +252,26 @@ footer {
 			margin-bottom: 20px;
 			border-bottom: none;
 		}
-		.when {
-			width: 165px;
+		.date {
+			width: 75px;
+		}
+		.time {
+			width: 100px;
 		}
 		.rm {
-			width: 180px;
+			width: 150px;
 		}
 		.hdct {
 			width: 80px;
 		}
 		.user {
-			width: 125px;
+			width: 100px;
 		}
 		.reqdate {
-			width: 100px;
+			width: 50px;
+		}
+		.action {
+			width: 160px;
 		}
 		th {
 			padding: 5px 10px;

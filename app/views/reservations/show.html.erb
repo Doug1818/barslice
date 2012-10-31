@@ -1,0 +1,36 @@
+<span class="remove"><%= link_to "Back to reservations page", reservations_path %></span>
+
+<div>
+	<h3>Reservation details:</h3>
+	<ul>
+		<li>Date: <%= @reservation.date.strftime("%a, %b %e") %></li>
+		<li>Time: <%= TIMES.key(@reservation.start_time) %>-<%= TIMES.key(@reservation.end_time) %></li>
+		<li>Room: <%= Room.find(@reservation.room_id).name %></li>
+		<li>Event size: <%= pluralize(@reservation.hdct, "person") %></li>
+		<li>Organizer: <%= User.find(@reservation.user_id).name %></li>
+		<li>Request date: <%= @reservation.created_at.strftime("%a, %b %e") %></li>
+	</ul>
+</div>
+
+<div>
+	<% if @reservation.messages.any? %>
+		<h3>Message history</h3>
+		<% @reservation.messages.each do |message| %>
+			<div>
+				<div class="msg_info">
+					<span class="strong">
+					<% if message.sent_by == false %>
+						<%= Bar.find(message.bar_id).name %>
+					<% elsif message.sent_by == true %>
+						<%= User.find(message.user_id).name %>
+					<% end %>
+					</span>|
+					<span><%= message.created_at.strftime("%a, %b %e, %l:%M%P") %></span>
+				</div>
+				<div class="content"><%= message.content.gsub(/\n/, '<br/>').html_safe %></div>
+			</div><br>
+		<% end %>
+	<% end %>
+</div>
+
+<div><%= render 'shared/message_form' %></div>

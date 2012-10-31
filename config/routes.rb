@@ -12,7 +12,7 @@ BarSlice::Application.routes.draw do
     end
   end
   resources :rooms
-
+  resources :messages
   resources :searches
   resources :respolicies
   resources :specials

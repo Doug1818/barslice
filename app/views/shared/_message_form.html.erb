@@ -1,0 +1,9 @@
+<h3>Send a message to <%= User.find(@reservation.user_id).name %></h3>
+<%= form_for(@message) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+		<%= f.text_area :content, placeholder: "Compose new message...", style: "height:150px;width:99%" %>
+		<%= f.hidden_field :reservation_id, value: @reservation.id %>
+	</div>
+	<%= f.submit "Send", class: "btn btn-med" %>
+<% end %>

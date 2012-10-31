@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :reservations, dependent: :destroy
+  has_many :messages, dependent: :destroy
   accepts_nested_attributes_for :reservations, allow_destroy: true
 
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
