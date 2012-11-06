@@ -5,7 +5,7 @@
   <table class="pretty_table">
     <tr>
       <th class="date">Date</th>
-      <th class="time">Time</th>
+      <th class="tm">Time</th>
       <th class="rm">Room</th>
       <th class="hdct">Event size</th>
       <th class="user">Organizer</th>
@@ -17,7 +17,7 @@
   onclick="location.href='<%= reservation_path(reservation) %>';"
   style="cursor: pointer;">
         <td class="date"><%= reservation.date.strftime("%a, %b %e") %></td>
-        <td class="time"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
+        <td class="tm"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
         <td class="rm"><%= Room.find(reservation.room_id).name.truncate(28) %></td>
         <td class="hdct"><%= pluralize(reservation.hdct, "person") %></td>
         <td class="user"><%= User.find(reservation.user_id).name.truncate(20) %></td>
