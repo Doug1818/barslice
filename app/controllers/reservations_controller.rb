@@ -28,7 +28,7 @@ before_filter :authenticate_user!, only: [:user_accepts, :user_rejects]
   end
 
   def index
-    redirect_to root_path(tab: "tab4")
+    redirect_to root_path(tab: "tab1")
   end
 
   def show
@@ -43,13 +43,13 @@ before_filter :authenticate_user!, only: [:user_accepts, :user_rejects]
   def bar_accepts
     @reservation = Reservation.find(params[:id])
     @reservation.update_attributes(bar_response: 1)
-    redirect_to root_path(tab: "tab4")
+    redirect_to root_path(tab: "tab1")
   end
 
   def bar_rejects
     @reservation = Reservation.find(params[:id])
     @reservation.update_attributes(bar_response: 2)
-    redirect_to root_path(tab: "tab4")
+    redirect_to root_path(tab: "tab1")
   end
 
   def user_accepts
