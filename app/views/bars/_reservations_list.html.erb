@@ -1,93 +1,23 @@
-<h3>Reservations Requests (please respond ASAP)</h3>
-<% if Reservation.of_bar(object).requested.count == 0 %>
-  <span style="margin-left:10px">None</span>
-<% else %>
-  <table class="pretty_table">
-    <tr>
-      <th class="date">Date</th>
-      <th class="time">Time</th>
-      <th class="rm">Room</th>
-      <th class="hdct">Event size</th>
-      <th class="user">Organizer</th>
-      <th class="reqdate">Requested</th>
-      <th class="action">Action</th>
-    </tr>
-    <% Reservation.of_bar(object).requested.each do |reservation| %>
-      <tr onmouseover="this.style.cursor='pointer';"
-  onclick="location.href='<%= reservation_path(reservation) %>';"
-  style="cursor: pointer;">
-        <td class="date"><%= reservation.date.strftime("%a, %b %e") %></td>
-        <td class="time"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
-        <td class="rm"><%= Room.find(reservation.room_id).name.truncate(28) %></td>
-        <td class="hdct"><%= pluralize(reservation.hdct, "person") %></td>
-        <td class="user"><%= User.find(reservation.user_id).name.truncate(20) %></td>
-        <td class="reqdate"><%= reservation.created_at.strftime("%b %d") %></td>
-        <td class="action">
-          <%= link_to 'Accept', bar_accepts_reservation_path(reservation.id), title: "Organizer will be automotically notifed by email" %> |
-          <%= link_to 'Reject', bar_rejects_reservation_path(reservation.id), title: "Organizer will be automotically notifed by email" %> |
-          <%= link_to 'Message', reservation_path(reservation) %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-<% end %>
+<ul class="nav nav-list" style="float:left;margin:0 15px 0 0;">
+  <li class="active"><a href="#all" data-toggle="tab">All</a></li>
+  <li><a href="#requested" data-toggle="tab">Requested</a></li>
+  <li><a href="#accepted" data-toggle="tab">Accepted</a></li>
+  <li><a href="#confirmed" data-toggle="tab">Confirmed</a></li>
+</ul>
 
-<h3>Accepted Reservations (waiting for customer confirmation)</h3>
-<% if Reservation.of_bar(object).accepted.count == 0 %>
-  <span style="margin-left:10px">None</span>
-<% else %>
-  <table class="pretty_table">
-    <tr>
-      <th class="date">Date</th>
-      <th class="time">Time</th>
-      <th class="rm">Room</th>
-      <th class="hdct">Event size</th>
-      <th class="user">Organizer</th>
-      <th class="reqdate">Requested</th>
-      <th class="action">Action</th>
-    </tr>
-    <% Reservation.of_bar(object).accepted.each do |reservation| %>
-      <tr onmouseover="this.style.cursor='pointer';"
-  onclick="location.href='<%= reservation_path(reservation) %>';"
-  style="cursor: pointer;">
-        <td class="date"><%= reservation.date.strftime("%a, %b %e") %></td>
-        <td class="time"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
-        <td class="rm"><%= Room.find(reservation.room_id).name.truncate(28) %></td>
-        <td class="hdct"><%= pluralize(reservation.hdct, "person") %></td>
-        <td class="user"><%= User.find(reservation.user_id).name.truncate(20) %></td>
-        <td class="reqdate"><%= reservation.created_at.strftime("%b %d") %></td>
-        <td class="action"><%= link_to 'Message', reservation_path(reservation) %></td>
-      </tr>
-    <% end %>
-  </table>
-<% end %>
-
-<h3>Upcomming Confirmed Reservations</h3>
-<% if Reservation.of_bar(object).confirmed.count == 0 %>
-  <span style="margin-left:10px">None</span>
-<% else %>
-  <table class="pretty_table">
-    <tr>
-      <th class="date">Date</th>
-      <th class="time">Time</th>
-      <th class="rm">Room</th>
-      <th class="hdct">Event size</th>
-      <th class="user">Organizer</th>
-      <th class="reqdate">Request date</th>
-      <th class="action">Action</th>
-    </tr>
-    <% Reservation.of_bar(object).confirmed.each do |reservation| %>
-      <tr onmouseover="this.style.cursor='pointer';"
-  onclick="location.href='<%= reservation_path(reservation) %>';"
-  style="cursor: pointer;">
-        <td class="date"><%= reservation.date.strftime("%a, %b %e") %></td>
-        <td class="time"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
-        <td class="rm"><%= Room.find(reservation.room_id).name.truncate(28) %></td>
-        <td class="hdct"><%= pluralize(reservation.hdct, "person") %></td>
-        <td class="user"><%= User.find(reservation.user_id).name.truncate(20) %></td>
-        <td class="reqdate"><%= reservation.created_at.strftime("%b %d") %></td>
-        <td class="action"><%= link_to 'Message', reservation_path(reservation) %></td>
-      </tr>
-    <% end %>
-  </table>
-<% end %><br><br><br>
+<div class="tab-content">
+  <div class="tab-pane active" id="all">
+    <%= render 'bars/reservations_list_requested', object: current_bar %>
+    <%= render 'bars/reservations_list_accepted', object: current_bar %>
+    <%= render 'bars/reservations_list_confirmed', object: current_bar %>
+  </div>
+  <div class="tab-pane" id="requested">
+    <%= render 'bars/reservations_list_requested', object: current_bar %>
+  </div>
+  <div class="tab-pane" id="accepted">
+    <%= render 'bars/reservations_list_accepted', object: current_bar %>
+  </div>
+  <div class="tab-pane" id="confirmed">
+    <%= render 'bars/reservations_list_confirmed', object: current_bar %>
+  </div>
+</div>

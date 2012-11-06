@@ -1,0 +1,29 @@
+<h3>Accepted Reservations (waiting for customer confirmation)</h3>
+<% if Reservation.of_bar(object).accepted.count == 0 %>
+  <span style="margin-left:10px">None</span>
+<% else %>
+  <table class="pretty_table">
+    <tr>
+      <th class="date">Date</th>
+      <th class="time">Time</th>
+      <th class="rm">Room</th>
+      <th class="hdct">Event size</th>
+      <th class="user">Organizer</th>
+      <th class="reqdate">Requested</th>
+      <th class="action">Action</th>
+    </tr>
+    <% Reservation.of_bar(object).accepted.each do |reservation| %>
+      <tr onmouseover="this.style.cursor='pointer';"
+  onclick="location.href='<%= reservation_path(reservation) %>';"
+  style="cursor: pointer;">
+        <td class="date"><%= reservation.date.strftime("%a, %b %e") %></td>
+        <td class="time"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
+        <td class="rm"><%= Room.find(reservation.room_id).name.truncate(28) %></td>
+        <td class="hdct"><%= pluralize(reservation.hdct, "person") %></td>
+        <td class="user"><%= User.find(reservation.user_id).name.truncate(20) %></td>
+        <td class="reqdate"><%= reservation.created_at.strftime("%b %d") %></td>
+        <td class="action"><%= link_to 'Message', reservation_path(reservation) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
