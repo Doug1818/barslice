@@ -1,6 +1,8 @@
 <% provide(:title, 'Add room') %>
 
-<h1>Add a new room!</h1>
+<div style="text-align:right;"><%= link_to "Back to rooms page", rooms_path %></div>
+
+<h1>Add a new room</h1>
 <div>
 	<%= form_for( @room, html: { multipart: true } ) do |f| %>
 		<%= render 'fields', f: f %>

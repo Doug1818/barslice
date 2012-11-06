@@ -1,3 +1,7 @@
+<% provide(:title, 'Edit special') %>
+
+<div style="text-align:right;"><%= link_to "Back to specials page", specials_path %></div>
+
 <h1>Edit special</h1>
 <div>
 	<%= form_for( @special, html: { multipart: true } ) do |f| %>

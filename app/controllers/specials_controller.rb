@@ -63,4 +63,8 @@ before_filter :authenticate_bar!, only: [:create, :edit, :update, :destroy]
   def show
     @special = Special.find(params[:id])
   end
+
+  def index
+    redirect_to root_path(tab: "tab4")
+  end
 end

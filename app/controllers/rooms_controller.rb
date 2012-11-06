@@ -66,5 +66,6 @@ before_filter :authenticate_bar!, only: [:new, :create, :destroy, :edit, :update
   end
 
   def index
+    redirect_to root_path(tab: "tab2")
   end
 end

@@ -1,4 +1,8 @@
-<h1>Add a new special!</h1>
+<% provide(:title, 'Add special') %>
+
+<div style="text-align:right;"><%= link_to "Back to specials page", specials_path %></div>
+
+<h1>Add a new special</h1>
 <div>
 	<%= form_for( @special, html: { multipart: true } ) do |f| %>
 		<%= render 'fields', f: f %><br /><br />
