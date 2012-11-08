@@ -1,11 +1,14 @@
 <% if bar_signed_in? %>
   <%= render 'bars/home' %>
 <% else %>
-  <div class="center">
-    <h1 class="welcome">Welcome to BarSlice</h1>
-    <h2>Booking event space at bars should be easier. BarSlice lets you find the right space to fit your event needs and book it online. Learn more <%= link_to 'here', about_path %></h2>
-  </div>
-
+  <% if user_signed_in? %>
+    <h2><%= link_to "My reservations", '#' %></h2>
+  <% else %>
+    <div class="center">
+      <h1 class="welcome">Welcome to BarSlice</h1>
+      <h2>Booking event space at bars should be easier. BarSlice lets you find the right space to fit your event needs and book it online. Learn more <%= link_to 'here', about_path %></h2>
+    </div>
+  <% end %>
   <h2>Find a bar for your event</h2>
 
   <%= form_for @search do |f| %>
@@ -13,7 +16,7 @@
   	<%= f.submit "Search", class: "btn btn-large" %>
   <% end %><br />
 
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-pills">
     <li class="active"><a href="#tab1" data-toggle="tab">View by bar</a></li>
     <li><a href="#tab2" data-toggle="tab">View by room</a></li>
   </ul>
