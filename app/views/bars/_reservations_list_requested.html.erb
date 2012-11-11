@@ -14,8 +14,8 @@
     </tr>
     <% Reservation.of_bar(object).requested.each do |reservation| %>
       <tr onmouseover="this.style.cursor='pointer';"
-  onclick="location.href='<%= reservation_path(reservation) %>';"
-  style="cursor: pointer;">
+          onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
+          style="cursor: pointer;">
         <td class="date"><%= reservation.date.strftime("%a, %b %e") %></td>
         <td class="tm"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
         <td class="rm"><%= Room.find(reservation.room_id).name.truncate(28) %></td>
@@ -27,7 +27,7 @@
           rel: "tooltip", title: "Organizer will be automatically notifed by email" %> |
           <%= link_to 'Reject', bar_rejects_reservation_path(reservation.id), 
           rel: "tooltip", title: "Organizer will be automotically notifed by email" %> |
-          <%= link_to 'Message', reservation_path(reservation) %>
+          <%= link_to 'Message', bar_show_reservation_path(reservation) %>
         </td>
       </tr>
     <% end %>

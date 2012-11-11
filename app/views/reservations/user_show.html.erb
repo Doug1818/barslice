@@ -1,9 +1,17 @@
-<div style="text-align:right;"><%= link_to "Back to reservations page", reservations_path %></div>
+<div style="text-align:right;"><%= link_to "Back to My Reservations", reservations_path %></div>
 
 <div class="row">
 	<div class="span5">
 		<h3>Reservation details:</h3>
 		<table class="pretty_table">
+	    <tr>
+	    	<th class="user">Bar</th>
+	    	<td class="user"><%= link_to @bar.name.truncate(20), bar_path(@bar) %></td>
+	    </tr>
+	    <tr>
+	    	<th class="rm">Room</th>
+	    	<td class="rm"><%= link_to @room.name.truncate(28), room_path(@room) %></td>
+	    </tr>
 	    <tr>
 	      <th class="date">Date</th>
 	      <td class="date"><%= @reservation.date.strftime("%a, %b %e") %></td>
@@ -13,16 +21,8 @@
 	    	<td class="tm"><%= TIMES.key(@reservation.start_time) %>-<%= TIMES.key(@reservation.end_time) %></td>
 	    </tr>
 	    <tr>
-	    	<th class="rm">Room</th>
-	    	<td class="rm"><%= Room.find(@reservation.room_id).name.truncate(28) %></td>
-	    </tr>
-	    <tr>
 	    	<th class="hdct">Event size</th>
 	    	<td class="hdct"><%= pluralize(@reservation.hdct, "person") %></td>
-	    </tr>
-	    <tr>
-	    	<th class="user">Organizer</th>
-	    	<td class="user"><%= User.find(@reservation.user_id).name.truncate(20) %></td>
 	    </tr>
 	    <tr>
 	    	<th class="reqdate">Requested</th>
@@ -31,17 +31,17 @@
 	  </table>
 	</div>
 
-	<% if !@reservation.bar_response %>
+	<% if @reservation.bar_response && !@reservation.user_response %>
 		<ul class="action_butt_list">
-			<li><%= link_to 'Accept', bar_accepts_reservation_path(@reservation.id), 
+			<li><%= link_to 'Confirm', user_accepts_reservation_path(@reservation.id), 
 			rel: "tooltip", 
 			placement: "right", "data-placement" => "right", 
-			title: "Organizer will be automatically notifed by email", 
+			title: "Bar will be automatically notifed by email", 
 			class: "btn btn-large btn-info",
 			style: "width:70px;" %></li>
-		  <li><%= link_to 'Reject', bar_rejects_reservation_path(@reservation.id), 
+		  <li><%= link_to 'Cancel', user_rejects_reservation_path(@reservation.id), 
 		  rel: "tooltip", "data-placement" => "right", 
-		  title: "Organizer will be automatically notifed by email",
+		  title: "Bar will be automatically notifed by email",
 		  class: "btn btn-large btn-info",
 		  style: "width:70px;" %></li>
 		</ul>
@@ -69,4 +69,5 @@
 	<% end %>
 </div>
 
+<h3>Send a message to <%= @bar.name %></h3>
 <div><%= render 'shared/message_form' %></div>

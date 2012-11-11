@@ -1,6 +1,6 @@
-<% provide(:title, 'Bar sign in') %>
+<% provide(:title, 'Sign in') %>
 
-<h2>Bar sign in</h2>
+<h2>Sign in</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
@@ -15,5 +15,7 @@
 
   <div><%= f.submit "Sign in" %></div>
 <% end %>
+
+<div>If you are a bar, sign in <%= link_to 'here', new_bar_session_path %></div>
 
 <%= render :partial => "devise/shared/links" %>

@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
-before_filter :authenticate_bar!, only: [:bar_accepts, :bar_rejects, :index]
-before_filter :authenticate_user!, only: [:user_accepts, :user_rejects]
+before_filter :authenticate_bar!, only: [:bar_accepts, :bar_rejects, :bar_show]
+before_filter :authenticate_user!, only: [:user_accepts, :user_rejects, :user_show]
 
   def new
   	@reservation = Reservation.new
@@ -31,13 +31,16 @@ before_filter :authenticate_user!, only: [:user_accepts, :user_rejects]
     redirect_to root_path(tab: "tab1")
   end
 
-  def show
+  def bar_show
     @reservation = Reservation.find(params[:id])
-    if bar_signed_in?
-      @message = current_bar.messages.build
-    elsif user_signed_in?
-      @message = current_user.messages.build
-    end      
+    @message = current_bar.messages.build
+  end
+
+  def user_show
+    @reservation = Reservation.find(params[:id])
+    @message = current_user.messages.build
+    @room = Room.find(@reservation.room_id)
+    @bar = Bar.find(@room.bar_id)
   end
 
   def bar_accepts

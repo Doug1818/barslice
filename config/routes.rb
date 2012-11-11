@@ -19,11 +19,12 @@ BarSlice::Application.routes.draw do
   resources :rmsprelationships
   resources :reservations do 
     member do
-      get :bar_accepts, :bar_rejects, :user_accepts, :user_rejects
+      get :bar_accepts, :bar_rejects, :user_accepts, :user_rejects, :bar_show, :user_show
     end
   end
 
-  root              to: 'searches#new'
+  root              to: 'static_pages#home'
+  #root              to: 'searches#new'
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'

@@ -1,0 +1,39 @@
+<h3 style="margin-bottom:2px;">Accepted Reservations (Please confirm ASAP)</h3>
+<div style="font-style:italic;margin-bottom:10px;">Note: other requests for the same night will be automatically cancelled.
+<%= link_to 'Why?', '#', rel: "tooltip", "data-placement" => "right", title: "Many people request resevations at multiple bars for a given night before they know which ones will have availability.  Once you confirm a reservation at a particular bar, we automatically cancel any reservation requests you have with other bars for the same night to save you the trouble of updating them." %></div>
+<% if object.reservations.accepted.count == 0 %>
+  <span style="margin-left:10px">None</span>
+<% else %>
+  <table class="pretty_table">
+    <tr>
+      <th class="user">Bar</th>
+      <th class="rm">Room</th>
+      <th class="date">Date</th>
+      <th class="tm">Time</th>
+      <th class="hdct">Event size</th>
+      <th class="reqdate">Requested</th>
+      <th class="action">Action</th>
+    </tr>
+    <% object.reservations.accepted.each do |reservation| %>
+      <% room = Room.find(reservation.room_id) %>
+      <% bar = Bar.find(room.bar_id) %>
+      <tr onmouseover="this.style.cursor='pointer';"
+          onclick="location.href='<%= user_show_reservation_path(reservation) %>';"
+          style="cursor: pointer;">
+        <td class="user"><%= link_to bar.name.truncate(20), bar_path(bar) %></td>
+        <td class="rm"><%= link_to room.name.truncate(28), room_path(room) %></td>
+        <td class="date"><%= reservation.date.strftime("%a, %b %e") %></td>
+        <td class="tm"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
+        <td class="hdct"><%= pluralize(reservation.hdct, "person") %></td>
+        <td class="reqdate"><%= reservation.created_at.strftime("%b %d") %></td>
+        <td class="action">
+          <%= link_to 'Confirm', user_accepts_reservation_path(reservation.id), 
+          rel: "tooltip", title: "Bar will be automatically notifed by email" %> |
+          <%= link_to 'Cancel', user_rejects_reservation_path(reservation.id), 
+          rel: "tooltip", title: "Bar will be automotically notifed by email" %> |
+          <%= link_to 'Message', user_show_reservation_path(reservation) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

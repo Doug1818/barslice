@@ -1,0 +1,23 @@
+<ul class="nav nav-list" style="float:left;margin:0 15px 0 0;">
+  <li class="active"><a href="#all" data-toggle="tab">All</a></li>
+  <li><a href="#requested" data-toggle="tab">Requested</a></li>
+  <li><a href="#accepted" data-toggle="tab">Accepted</a></li>
+  <li><a href="#confirmed" data-toggle="tab">Confirmed</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="all">
+    <%= render 'users/reservations_list_requested', object: current_user %>
+    <%= render 'users/reservations_list_accepted', object: current_user %>
+    <%= render 'users/reservations_list_confirmed', object: current_user %>
+  </div>
+  <div class="tab-pane" id="requested">
+    <%= render 'users/reservations_list_requested', object: current_user %>
+  </div>
+  <div class="tab-pane" id="accepted">
+    <%= render 'users/reservations_list_accepted', object: current_user %>
+  </div>
+  <div class="tab-pane" id="confirmed">
+    <%= render 'users/reservations_list_confirmed', object: current_user %>
+  </div>
+</div>

@@ -1,3 +1,6 @@
+<% if user_signed_in? %>
+	<div style="text-align:right;"><%= link_to "Back to My Reservations", reservations_path %></div>
+<% end %>
 <h1><%= @bar.name %></h1>
 
 <div class="bar_info_right">
@@ -6,14 +9,14 @@
 
 <ul class="nav nav-tabs span7">
 	<li class="active"><a href="#tab1" data-toggle="tab">Rooms</a></li>
-	<li><a href="#tab2" data-toggle="tab">Reservation policy</a></li>
+	<li><a href="#tab2" data-toggle="tab">Reservation Policy</a></li>
 	<li><a href="#tab3" data-toggle="tab">Specials</a></li>
 </ul>
 <div class="tab-content span7">
 	<div class="tab-pane active" id="tab1">
       <%= render 'bars/room', object: @bar %>
 	</div>
-	<div class="tab-pane" id="tab2" style="margin-left:20px">
+	<div class="tab-pane" id="tab2">
 	<% if bar_signed_in? %>
 		<%= render 'bars/respolicy_tab_signedin' %>
 	<% else %>

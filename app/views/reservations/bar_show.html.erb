@@ -1,0 +1,73 @@
+<div style="text-align:right;"><%= link_to "Back to reservations page", reservations_path %></div>
+
+<div class="row">
+	<div class="span5">
+		<h3>Reservation details:</h3>
+		<table class="pretty_table">
+	    <tr>
+	    	<th class="user">Organizer</th>
+	    	<td class="user"><%= User.find(@reservation.user_id).name.truncate(20) %></td>
+	    </tr>
+	    <tr>
+	      <th class="date">Date</th>
+	      <td class="date"><%= @reservation.date.strftime("%a, %b %e") %></td>
+	    </tr>
+	    <tr>
+	    	<th class="tm">Time</th>
+	    	<td class="tm"><%= TIMES.key(@reservation.start_time) %>-<%= TIMES.key(@reservation.end_time) %></td>
+	    </tr>
+	    <tr>
+	    	<th class="rm">Room</th>
+	    	<td class="rm"><%= Room.find(@reservation.room_id).name.truncate(28) %></td>
+	    </tr>
+	    <tr>
+	    	<th class="hdct">Event size</th>
+	    	<td class="hdct"><%= pluralize(@reservation.hdct, "person") %></td>
+	    </tr>
+	    <tr>
+	    	<th class="reqdate">Requested</th>
+	    	<td class="reqdate"><%= @reservation.created_at.strftime("%b %d") %></td>
+	    </tr>
+	  </table>
+	</div>
+
+	<% if !@reservation.bar_response %>
+		<ul class="action_butt_list">
+			<li><%= link_to 'Accept', bar_accepts_reservation_path(@reservation.id), 
+			rel: "tooltip", 
+			placement: "right", "data-placement" => "right", 
+			title: "Organizer will be automatically notifed by email", 
+			class: "btn btn-large btn-info",
+			style: "width:70px;" %></li>
+		  <li><%= link_to 'Reject', bar_rejects_reservation_path(@reservation.id), 
+		  rel: "tooltip", "data-placement" => "right", 
+		  title: "Organizer will be automatically notifed by email",
+		  class: "btn btn-large btn-info",
+		  style: "width:70px;" %></li>
+		</ul>
+	<% end %>
+</div>
+
+<div>
+	<% if @reservation.messages.any? %>
+		<h3>Message history</h3>
+		<% @reservation.messages.each do |message| %>
+			<div>
+				<div class="msg_info">
+					<span class="strong">
+					<% if message.sent_by == false %>
+						<%= Bar.find(message.bar_id).name %>
+					<% elsif message.sent_by == true %>
+						<%= User.find(message.user_id).name %>
+					<% end %>
+					</span>|
+					<span><%= message.created_at.strftime("%a, %b %e, %l:%M%P") %></span>
+				</div>
+				<div class="content"><%= message.content.gsub(/\n/, '<br/>').html_safe %></div>
+			</div><br>
+		<% end %>
+	<% end %>
+</div>
+
+<h3>Send a message to <%= User.find(@reservation.user_id).name %></h3>
+<div><%= render 'shared/message_form' %></div>

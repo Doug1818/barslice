@@ -1,0 +1,19 @@
+<h2>Find a bar for your event</h2>
+
+  <%= form_for @search do |f| %>
+  	<%= render 'searches/fields', f: f %>
+  	<%= f.submit "Search", class: "btn btn-large" %>
+  <% end %><br />
+
+  <ul class="nav nav-pills">
+    <li class="active"><a href="#tab1" data-toggle="tab">View by bar</a></li>
+    <li><a href="#tab2" data-toggle="tab">View by room</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <%= render 'shared/by_bar' %>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <%= render 'shared/by_room' %>
+    </div>
+  </div>

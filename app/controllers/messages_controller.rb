@@ -2,7 +2,8 @@ class MessagesController < ApplicationController
 
   def create
     @reservation = Reservation.find(params[:message][:reservation_id])
-    @bar = Bar.find(Room.find(@reservation.room_id).bar_id)
+    @room = Room.find(@reservation.room_id)
+    @bar = Bar.find(@room.bar_id)
     @user = User.find(@reservation.user_id)
     if bar_signed_in?
       @message = @bar.messages.build(params[:message])
@@ -15,9 +16,17 @@ class MessagesController < ApplicationController
     end
     if @message.save
       flash[:success] = "Your message has been sent."
-      redirect_to reservation_path(@reservation)
-      else
-      render 'reservations/show'
+      if bar_signed_in?
+        redirect_to bar_show_reservation_path(@reservation)
+      elsif user_signed_in?
+        redirect_to user_show_reservation_path(@reservation)
+      end
+    else
+      if bar_signed_in?
+        render 'reservations/bar_show'
+      elsif user_signed_in?
+        render 'reservations/user_show'
+      end
     end
   end
 end
