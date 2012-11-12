@@ -15,6 +15,12 @@ en:
         amount: "Reservation fee"
       "room/spendmins": "Spend minimum"
       "bar/hrsranges": ""
+      "user/reservations":
+        hdct: "Number of people"
+        date: "Date"
+        end_time: "End time"
+        time: "Time"
+        number_of_people: "Number of people"
     errors:
       models:
         bar:

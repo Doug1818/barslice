@@ -1,8 +1,8 @@
-<h2>Submit request to <%= @bar.name %> to reserve <%= @room.name %></h2>
+<h2>Submit request to <%= link_to @bar.name, bar_path(@bar) %> to reserve <%= link_to @room.name, room_path(@room) %></h2>
 
 <div style="float:left;">
 	<%= form_for( @user, html: { multipart: true } ) do |f| %>
-		<div><%= render 'fields', f: f %></div>
+		<div style="float:left;margin-bottom:15px;"><%= render 'fields', f: f %></div>
 		<div><%= f.submit "Submit", class: "btn btn-large" %></div>
 	<% end %>
 </div>
