@@ -18,8 +18,8 @@
       <tr onmouseover="this.style.cursor='pointer';"
           onclick="location.href='<%= user_show_reservation_path(reservation) %>';"
           style="cursor: pointer;">
-        <td class="user"><%= link_to bar.name.truncate(20), bar_path(bar) %></td>
-        <td class="rm"><%= link_to room.name.truncate(28), room_path(room) %></td>
+        <td class="user"><%= link_to bar.name.truncate(17), bar_path(bar) %></td>
+        <td class="rm"><%= link_to room.name.truncate(18), room_path(room) %></td>
         <td class="date"><%= reservation.date.strftime("%a, %b %e") %></td>
         <td class="tm"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
         <td class="hdct"><%= pluralize(reservation.hdct, "person") %></td>

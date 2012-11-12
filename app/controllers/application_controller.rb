@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 		  end
 		  super
   	elsif resource.is_a?(User)
-  		if x.include?("/users/sign_up.")
+  		if x != nil && x.include?("/users/sign_up.")
 	  		root_path + "reservations/new." + x[x.index(".") + 1, x.length - x.index(".")]
   		else
   			super
