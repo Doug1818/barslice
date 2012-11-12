@@ -1,0 +1,13 @@
+<h2>Find a bar for your event</h2>
+<%= form_for @edit_search do |f| %>
+	<%= render 'fields', f: f %>
+	<%= f.submit "Search", class: "btn btn-large" %>
+<% end %>
+<h2>Results</h2>
+<ul class="rooms">
+	<% if @show_search.rooms.empty? %>
+		<p>No results matched your search</p>
+	<% else %>
+		<%= render @show_search.rooms %>
+	<% end %>
+</ul>

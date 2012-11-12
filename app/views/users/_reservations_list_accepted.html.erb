@@ -1,5 +1,5 @@
-<h3 style="margin-bottom:2px;">Accepted Reservations (Please confirm ASAP)</h3>
-<div style="font-style:italic;margin-bottom:10px;">Note: other requests for the same night will be automatically cancelled.
+<h3 style="margin-bottom:2px;">Accepted Reservations (please confirm ASAP)</h3>
+<div style="font-style:italic;margin-bottom:10px;">Note: other requests for the same night will be automatically cancelled once a reservation is confirmed.
 <%= link_to 'Why?', '#', rel: "tooltip", "data-placement" => "right", title: "Many people request resevations at multiple bars for a given night before they know which ones will have availability.  Once you confirm a reservation at a particular bar, we automatically cancel any reservation requests you have with other bars for the same night to save you the trouble of updating them." %></div>
 <% if object.reservations.accepted.count == 0 %>
   <span style="margin-left:10px">None</span>

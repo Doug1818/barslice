@@ -16,6 +16,7 @@ class UserRegistrationsController < Devise::RegistrationsController
     @user.reservations.last.end_time = TIMES[params[:user][:reservations_attributes].values[0][:end_time]]
     if @user.save
       flash[:success] = "Your reservation request has been sent to #{@bar.name}. You will be notified of their availability by email as soon as possible."
+      sign_in(:user, @user)
       redirect_to root_path
       BarMailer.resrequest(@room, @bar, @user).deliver
       UserMailer.resrequest_confirmation(@user).deliver

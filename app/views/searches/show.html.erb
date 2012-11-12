@@ -1,26 +1,16 @@
-<ul class="nav nav-tabs">
-	<li><a href="#tab-u1" data-toggle="tab">My Reservations</a></li>
-	<li class="active"><a href="#tab-u2" data-toggle="tab">Find Bars</a></li>
-</ul>
-<div class="tab-content">
-	<div class="tab-pane" id="tab-u1">
-		<%= render 'users/reservations_list' %>
+<% if user_signed_in? %>
+	<ul class="nav nav-tabs">
+		<li><a href="#tab-u1" data-toggle="tab">My Reservations</a></li>
+		<li class="active"><a href="#tab-u2" data-toggle="tab">Find Bars</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane" id="tab-u1">
+			<%= render 'users/reservations_list' %>
+		</div>
+		<div class="tab-pane active" id="tab-u2">
+			<%= render 'searches/show_search' %>
+		</div>
 	</div>
-	<div class="tab-pane active" id="tab-u2">
-		
-		<h2>Find a bar for your event</h2>
-		<%= form_for @edit_search do |f| %>
-			<%= render 'fields', f: f %>
-			<%= f.submit "Search", class: "btn btn-large" %>
-		<% end %>
-		<h2>Results</h2>
-		<ul class="rooms">
-			<% if @show_search.rooms.empty? %>
-				<p>No results matched your search</p>
-			<% else %>
-				<%= render @show_search.rooms %>
-			<% end %>
-		</ul>
-
-	</div>
-</div>
+<% else %>
+	<%= render 'searches/show_search' %>
+<% end %>

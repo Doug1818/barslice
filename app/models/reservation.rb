@@ -9,4 +9,6 @@ class Reservation < ActiveRecord::Base
   scope :accepted, where(bar_response: 1, user_response: nil).order("date")
   scope :confirmed, where(bar_response: 1, user_response: 1).order("date")
 
+  
+
 end

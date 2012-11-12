@@ -1,50 +1,52 @@
+<div class="hform" style="margin-top:0;">Have an account already? <%= link_to 'Sign in', new_user_session_path %></div>
+
 <%= render 'shared/error_messages', object: f.object %>
 
-<div class="hform strong">Have an account already? <%= link_to 'Sign in', new_user_session_path %></div>
+<ul class="signup">
+	<li>
+		<div class="hform strong" style="margin-bottom:45px;">Confirm event details</div>
+		<%= f.fields_for :reservations do |builder| %>
+			<div>
+				<%= f.label :date, class: "hform" %>
+				<% if builder.object.date? %>
+					<%= builder.text_field :date, class: "datepicker", value: builder.object.date.strftime("%m/%d/%Y") %>
+				<% else %>
+					<%= builder.text_field :date, class: "datepicker" %>
+				<% end %>
+			</div>
+			<div>
+				<%= f.label :time, class: "hform" %>
+				<% if builder.object.start_time? %>
+					<%= builder.select :start_time, TIMES.keys, { selected: TIMES.key(builder.object.start_time) }, class: "time" %> to
+				<% else %>
+					<%= builder.select :start_time, TIMES.keys, { selected: "9:00pm" }, class: "time" %> to 
+				<% end %>
 
-<div>
-	<div class="hform strong">Confirm event details</div>
-	<%= f.fields_for :reservations do |builder| %>
-		<div class="hform">
-			<span>Date:</span>
-			<% if builder.object.date? %>
-				<%= builder.text_field :date, class: "datepicker", style: "width: 100px", value: builder.object.date.strftime("%m/%d/%Y") %>
-			<% else %>
-				<%= builder.text_field :date, class: "datepicker", style: "width: 100px" %>
-			<% end %>
+				<% if builder.object.end_time? %>
+					<%= builder.select :end_time, TIMES.keys, { selected: TIMES.key(builder.object.end_time) }, class: "time" %>
+				<% else %>
+					<%= builder.select :end_time, TIMES.keys, { selected: "1:00am" }, class: "time" %>
+				<% end %>
+			</div>
+			<div><%= f.label :number_of_people, class: "hform" %><%= builder.text_field :hdct %></div>
+			<div><%= builder.hidden_field :room_id, value: @room.id %></div>
+		<% end %>
+	</li>
+	<li>
+		<div class="hform strong" style="margin-bottom:2px">Create an account</div>
+		<div style="font-style:italic;">Needed to let you track your reservations</div>
+		<div><%= f.label :name, class: "hform" %>
+		<%= f.text_field :name %></div>
+		<div><%= f.label :email, class: "hform" %>
+		<%= f.email_field :email %></div>
+		<div>
+			<div style="float:left;margin-right:20px;"><%= f.label :password, class: "hform" %>
+			<%= f.password_field :password, style: "width:90px;" %></div>
+			<div style="float:left;"><%= f.label :confirmation, class: "hform" %>
+			<%= f.password_field :password_confirmation, style: "width:90px;" %></div>
 		</div>
-		<div class="hform">
-			Time:
-			<% if builder.object.start_time? %>
-				<%= builder.select :start_time, TIMES.keys, { selected: TIMES.key(builder.object.start_time) }, class: "time" %> to
-			<% else %>
-				<%= builder.select :start_time, TIMES.keys, { selected: "9:00pm" }, class: "time" %> to 
-			<% end %>
-
-			<% if builder.object.end_time? %>
-				<%= builder.select :end_time, TIMES.keys, { selected: TIMES.key(builder.object.end_time) }, class: "time" %>
-			<% else %>
-				<%= builder.select :end_time, TIMES.keys, { selected: "1:00am" }, class: "time" %>
-			<% end %>
-		</div>
-		<div class="hform">Number of people: <%= builder.text_field :hdct, style:"width:100px" %></div>
-		<div><%= builder.hidden_field :room_id, value: @room.id %></div>
-	<% end %>
-</div>
-
-<div class="hform strong">Provide your contact info</div>
-<div><%= f.label :name, class: "hform" %>
-<%= f.text_field :name %></div>  
-<div><%= f.label :email, class: "hform" %>
-<%= f.email_field :email %></div>
-<div><%= f.label :phone, "Phone number", class: "hform" %>
-<%= f.text_field :phone %></div>
-
-<div class="hform strong">Create an account (optional, but will simplify additional reservations)</div>
-<div><%= f.label :password, class: "hform" %>
-<%= f.password_field :password %></div>  
-<div><%= f.label :password_confirmation, class: "hform" %>
-<%= f.password_field :password_confirmation %></div>
+	</li>
+</ul>
 
 <script type="text/javascript">
 	$(function() {

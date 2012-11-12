@@ -1,12 +1,16 @@
-<ul class="nav nav-tabs">
-  <li><a href="#tab-u1" data-toggle="tab">My Reservations</a></li>
-  <li class="active"><a href="#tab-u2" data-toggle="tab">Find Bars</a></li>
-</ul>
-<div class="tab-content">
-  <div class="tab-pane" id="tab-u1">
-    <%= render 'users/reservations_list' %>
-  </div>
-  <div class="tab-pane active" id="tab-u2">
-    <%= render 'searches/new_search' %>
-  </div>
-</div>
+<% if user_signed_in? %>
+	<ul class="nav nav-tabs">
+	  <li><a href="#tab-u1" data-toggle="tab">My Reservations</a></li>
+	  <li class="active"><a href="#tab-u2" data-toggle="tab">Find Bars</a></li>
+	</ul>
+	<div class="tab-content">
+	  <div class="tab-pane" id="tab-u1">
+	    <%= render 'users/reservations_list' %>
+	  </div>
+	  <div class="tab-pane active" id="tab-u2">
+	    <%= render 'searches/new_search' %>
+	  </div>
+	</div>
+<% else %>
+	<%= render 'searches/new_search' %>
+<% end %>
