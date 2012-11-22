@@ -21,6 +21,9 @@ BarSlice::Application.routes.draw do
     member do
       get :bar_accepts, :bar_rejects, :user_accepts, :user_rejects, :bar_show, :user_show
     end
+    collection do
+      get :bar_index, :user_index
+    end
   end
 
   root              to: 'static_pages#home'

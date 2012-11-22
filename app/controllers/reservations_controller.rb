@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
-before_filter :authenticate_bar!, only: [:bar_accepts, :bar_rejects, :bar_show]
-before_filter :authenticate_user!, only: [:user_accepts, :user_rejects, :user_show]
+before_filter :authenticate_bar!, only: [:bar_accepts, :bar_rejects, :bar_show, :bar_index]
+before_filter :authenticate_user!, only: [:user_accepts, :user_rejects, :user_show, :user_index]
 
   def new
   	@reservation = Reservation.new
@@ -27,7 +27,11 @@ before_filter :authenticate_user!, only: [:user_accepts, :user_rejects, :user_sh
     end
   end
 
-  def index
+  def bar_index
+    redirect_to root_path(tab: "tab1")
+  end
+
+  def user_index
     redirect_to root_path(tab: "tab1")
   end
 

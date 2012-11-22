@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-	<div style="text-align:right;"><%= link_to "Back to My Reservations", reservations_path %></div>
+	<div style="text-align:right;"><%= link_to "Back to My Reservations", user_index_reservations_path %></div>
 <% end %>
 <h1><%= @bar.name %></h1>
 
