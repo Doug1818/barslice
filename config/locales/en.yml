@@ -19,8 +19,10 @@ en:
         hdct: "Number of people"
         date: "Date"
         end_time: "End time"
-        time: "Time"
+        date_and_time: "Date and time"
         number_of_people: "Number of people"
+      reservation:
+        hdct: "Number of people"  
     errors:
       models:
         bar:

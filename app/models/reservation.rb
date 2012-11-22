@@ -47,7 +47,7 @@ class Reservation < ActiveRecord::Base
   	x = bar.hrsranges.where("open <= ? AND close >= ? AND hrsranges.#{Date::DAYNAMES[self.date.wday].downcase} = ?", 
   		self.start_time, self.end_time, true) if self.date.present?
   	if x.empty?
-  		self.errors[:time] << "must fall within bar hours (check bar hours by clicking on the bar profile link above)"
+  		self.errors[:date_and_time] << "must fall within bar hours (check bar hours by clicking on the bar profile link above)"
 	end
   end
 
