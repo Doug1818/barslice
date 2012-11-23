@@ -1,7 +1,7 @@
 <p><%= @bar.name %>,</p>
 
 <p><%= @user.name %> sent you the following message:</p>
-<p><%= "#{@message.content.gsub(/\n/, '<br/>').html_safe}" %></p>
+<p>"<%= @message.content.gsub(/\n/, '<br/>').html_safe %>"</p>
 
 <p>You can reply by clicking <%= link_to 'here', bar_show_reservation_url(@reservation), target: "_blank" %>.</p>
 

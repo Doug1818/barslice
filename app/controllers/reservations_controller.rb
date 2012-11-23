@@ -63,7 +63,14 @@ before_filter :authenticate_user!, only: [:user_accepts, :user_rejects, :user_sh
 
   def user_accepts
     @reservation = Reservation.find(params[:id])
+    @user = User.find(@reservation.user_id)
     @reservation.update_attributes(user_response: 1)
+    @user.reservations.each do |reservation|
+      if reservation.date == @reservation.date && reservation != @reservation
+        reservation.update_attributes(user_response: 2)
+        BarMailer.resrejected(reservation).deliver
+      end
+    end
     redirect_to root_path(tab: "tab1")
     BarMailer.resaccepted(@reservation).deliver
   end

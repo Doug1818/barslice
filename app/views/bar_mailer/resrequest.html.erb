@@ -5,7 +5,7 @@
 <p>Reservation request details:</p>
 <ul>
 	<li>Room: <%= @room.name %></li>
-	<li>Date: <%= @reservation.date.strftime("%m/%d/%Y") %></li>
+	<li>Date: <%= @reservation.date.strftime("%A, %B %d") %></li>
 	<li>Time: <%= TIMES.key(@reservation.start_time) %>-<%= TIMES.key(@reservation.end_time) %></li>
 	<li>Number of people: <%= @reservation.hdct %></li>
 </ul>
