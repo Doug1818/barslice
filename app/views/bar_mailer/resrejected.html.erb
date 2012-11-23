@@ -1,0 +1,14 @@
+<p><%= @bar.name %>,</p>
+
+<p><%= @user.name %> cancelled a reservation with the following details:</p>
+<ul>
+	<li>Room: <%= @room.name %></li>
+	<li>Date: <%= @reservation.date.strftime("%A, %B %d") %></li>
+	<li>Time: <%= TIMES.key(@reservation.start_time) %>-<%= TIMES.key(@reservation.end_time) %></li>
+	<li>Number of people: <%= @reservation.hdct %></li>
+</ul>
+
+<p>You can message the organizer by clicking <%= link_to 'here', bar_show_reservation_url(@reservation), target: "_blank" %> if you would like to find out the cause of the cancellation.</p>
+
+<p>Cheers,<br>
+The BarSlice Team</p>

@@ -51,23 +51,27 @@ before_filter :authenticate_user!, only: [:user_accepts, :user_rejects, :user_sh
     @reservation = Reservation.find(params[:id])
     @reservation.update_attributes(bar_response: 1)
     redirect_to root_path(tab: "tab1")
+    UserMailer.resaccepted(@reservation).deliver
   end
 
   def bar_rejects
     @reservation = Reservation.find(params[:id])
     @reservation.update_attributes(bar_response: 2)
     redirect_to root_path(tab: "tab1")
+    UserMailer.resrejected(@reservation).deliver
   end
 
   def user_accepts
     @reservation = Reservation.find(params[:id])
     @reservation.update_attributes(user_response: 1)
-    redirect_to :back
+    redirect_to root_path(tab: "tab1")
+    BarMailer.resaccepted(@reservation).deliver
   end
 
   def user_rejects
     @reservation = Reservation.find(params[:id])
     @reservation.update_attributes(user_response: 2)
-    redirect_to :back
+    redirect_to root_path(tab: "tab1")
+    BarMailer.resrejected(@reservation).deliver
   end
 end

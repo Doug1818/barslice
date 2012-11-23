@@ -18,8 +18,10 @@ class MessagesController < ApplicationController
       flash[:success] = "Your message has been sent."
       if bar_signed_in?
         redirect_to bar_show_reservation_path(@reservation)
+        UserMailer.message_received(@message).deliver
       elsif user_signed_in?
         redirect_to user_show_reservation_path(@reservation)
+        BarMailer.message_received(@message).deliver
       end
     else
       if bar_signed_in?

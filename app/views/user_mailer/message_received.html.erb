@@ -1,0 +1,9 @@
+<p><%= @user.name %>,</p>
+
+<p><%= @bar.name %> sent you the following message:</p>
+<p><%= "#{@message.content.gsub(/\n/, '<br/>').html_safe}" %></p>
+
+<p>You can reply by clicking <%= link_to 'here', user_show_reservation_url(@reservation), target: "_blank" %>.</p>
+
+<p>Cheers,<br>
+The BarSlice Team</p>

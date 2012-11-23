@@ -1,0 +1,14 @@
+<p><%= @bar.name %>,</p>
+
+<p><%= @user.name %> confirmed a reservation with the following details:</p>
+<ul>
+	<li>Room: <%= @room.name %></li>
+	<li>Date: <%= @reservation.date.strftime("%A, %B %d") %></li>
+	<li>Time: <%= TIMES.key(@reservation.start_time) %>-<%= TIMES.key(@reservation.end_time) %></li>
+	<li>Number of people: <%= @reservation.hdct %></li>
+</ul>
+
+<p>No further action should be required in finalizing this reservation and we hope that the event is a success.  If there is a no show or the number of people in attendance is significantly below the level in the reservation, please let us know (email <a href="mailto:contact@barslice.com">contact@barslice.com)</a> so that we can follow up with the organizer and inform other bars about his/her track record in the future.</p>
+
+<p>Cheers,<br>
+The BarSlice Team</p>
