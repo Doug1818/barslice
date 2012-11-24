@@ -1,51 +1,81 @@
 <div style="text-align:right;"><%= link_to "Back to reservations page", bar_index_reservations_path %></div>
 
 <div class="row">
-	<div class="span5">
+	<div class="span4">
 		<h3>Reservation details:</h3>
 		<table class="pretty_table">
 	    <tr>
 	    	<th class="user">Organizer</th>
-	    	<td class="user"><%= User.find(@reservation.user_id).name.truncate(20) %></td>
+	    	<td><%= User.find(@reservation.user_id).name.truncate(20) %></td>
 	    </tr>
 	    <tr>
 	      <th class="date">Date</th>
-	      <td class="date"><%= @reservation.date.strftime("%a, %b %e") %></td>
+	      <td><%= @reservation.date.strftime("%a, %b %e") %></td>
 	    </tr>
 	    <tr>
 	    	<th class="tm">Time</th>
-	    	<td class="tm"><%= TIMES.key(@reservation.start_time) %>-<%= TIMES.key(@reservation.end_time) %></td>
+	    	<td><%= TIMES.key(@reservation.start_time) %>-<%= TIMES.key(@reservation.end_time) %></td>
 	    </tr>
 	    <tr>
 	    	<th class="rm">Room</th>
-	    	<td class="rm"><%= Room.find(@reservation.room_id).name.truncate(28) %></td>
+	    	<td><%= Room.find(@reservation.room_id).name.truncate(28) %></td>
 	    </tr>
 	    <tr>
 	    	<th class="hdct">Event size</th>
-	    	<td class="hdct"><%= pluralize(@reservation.hdct, "person") %></td>
-	    </tr>
-	    <tr>
-	    	<th class="reqdate">Requested</th>
-	    	<td class="reqdate"><%= @reservation.created_at.strftime("%b %d") %></td>
+	    	<td><%= pluralize(@reservation.hdct, "person") %></td>
 	    </tr>
 	  </table>
 	</div>
 
-	<% if !@reservation.bar_response %>
-		<ul class="action_butt_list">
-			<li><%= link_to 'Accept', bar_accepts_reservation_path(@reservation.id), 
-			rel: "tooltip", 
-			placement: "right", "data-placement" => "right", 
-			title: "Organizer will be automatically notifed by email", 
-			class: "btn btn-large btn-info",
-			style: "width:70px;" %></li>
-		  <li><%= link_to 'Reject', bar_rejects_reservation_path(@reservation.id), 
-		  rel: "tooltip", "data-placement" => "right", 
-		  title: "Organizer will be automatically notifed by email",
-		  class: "btn btn-large btn-info",
-		  style: "width:70px;" %></li>
-		</ul>
-	<% end %>
+	<div class="span6">
+		<h3>Reservation status:</h3>
+		<table class="pretty_table">
+	    <tr>
+	    	<td><%= image_tag("glyphicons_152_check.png") %></td>
+	    	<td>Requested by <%= @user.name %></td>
+	    	<td><%= @reservation.created_at.strftime("%a, %b %e, %l:%M%P") %></td>
+	    </tr>
+	    <tr>
+	    	<td>
+	    		<% if @reservation.bar_response == 1 %>
+	    			<%= image_tag("glyphicons_152_check.png") %>
+    			<% else %>
+    				<%= image_tag("glyphicons_153_unchecked.png") %>
+    			<% end %>
+    		</td>
+	    	<td>Accepted by <%= current_bar.name %></td>
+	    	<td>
+	    		<% if @reservation.bar_response != 1 %>
+	    			<%= link_to 'Accept', bar_accepts_reservation_path(@reservation.id), 
+					rel: "tooltip", title: "Organizer will be automatically notifed by email" %> |
+					<%= link_to 'Reject', bar_rejects_reservation_path(@reservation.id), 
+					rel: "tooltip", title: "Organizer will be automotically notifed by email" %>
+	    		<% elsif @reservation.bar_response == 1 %>
+	    			<%= @reservation.bar_accepts_date.strftime("%a, %b %e, %l:%M%P")%>
+    			<% else %>
+    				Pending
+				<% end %>
+	    	</td>
+	    </tr>
+	    <tr>
+	    	<td>
+	    		<% if @reservation.user_response == 1 %>
+	    			<%= image_tag("glyphicons_152_check.png") %>
+    			<% else %>
+    				<%= image_tag("glyphicons_153_unchecked.png") %>
+    			<% end %>
+    		</td>
+	    	<td>Confirmed by <%= @user.name %></td>
+	    	<td>
+	    		<% if @reservation.user_response == 1 %>
+	    			<%= @reservation.user_accepts_date.strftime("%a, %b %e, %l:%M%P")%>
+	    		<% else %>
+    				Pending
+				<% end %>
+	    	</td>
+	    </tr>
+	  </table>
+	</div>
 </div>
 
 <div>

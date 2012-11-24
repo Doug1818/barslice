@@ -37,6 +37,7 @@ before_filter :authenticate_user!, only: [:user_accepts, :user_rejects, :user_sh
 
   def bar_show
     @reservation = Reservation.find(params[:id])
+    @user = User.find(@reservation.user_id)
     @message = current_bar.messages.build
   end
 
@@ -49,36 +50,57 @@ before_filter :authenticate_user!, only: [:user_accepts, :user_rejects, :user_sh
 
   def bar_accepts
     @reservation = Reservation.find(params[:id])
-    @reservation.update_attributes(bar_response: 1)
-    redirect_to root_path(tab: "tab1")
+    @user = User.find(@reservation.user_id)
+    @reservation.update_attributes(bar_response: 1, bar_accepts_date: Time.now)
+    flash[:success] = "A notification email has been sent to #{@user.name} letting them know you have accepted their reservation request for #{@reservation.date.strftime("%A, %B %e")}."
+    redirect_back_or_root_path
     UserMailer.resaccepted(@reservation).deliver
   end
 
   def bar_rejects
     @reservation = Reservation.find(params[:id])
-    @reservation.update_attributes(bar_response: 2)
-    redirect_to root_path(tab: "tab1")
+    @user = User.find(@reservation.user_id)
+    @reservation.update_attributes(bar_response: 2, bar_rejects_date: Time.now)
+    flash[:success] = "A notification email has been sent to #{@user.name} letting them know you are unable to accomodate their reservation on #{@reservation.date.strftime("%A, %B %e")}."
+    redirect_back_or_root_path
     UserMailer.resrejected(@reservation).deliver
   end
 
   def user_accepts
     @reservation = Reservation.find(params[:id])
     @user = User.find(@reservation.user_id)
-    @reservation.update_attributes(user_response: 1)
+    @room = Room.find(@reservation.room_id)
+    @bar = Bar.find(@room.bar_id)
+    @reservation.update_attributes(user_response: 1, user_accepts_date: Time.now)
     @user.reservations.each do |reservation|
       if reservation.date == @reservation.date && reservation != @reservation
         reservation.update_attributes(user_response: 2)
         BarMailer.resrejected(reservation).deliver
       end
     end
-    redirect_to root_path(tab: "tab1")
+    flash[:success] = "A notification email has been sent to #{@bar.name} letting them know you have confirmed your reservation for #{@reservation.date.strftime("%A, %B %e")}."
+    redirect_back_or_root_path
     BarMailer.resaccepted(@reservation).deliver
   end
 
   def user_rejects
     @reservation = Reservation.find(params[:id])
-    @reservation.update_attributes(user_response: 2)
-    redirect_to root_path(tab: "tab1")
+    @room = Room.find(@reservation.room_id)
+    @bar = Bar.find(@room.bar_id)
+    @reservation.update_attributes(user_response: 2, user_rejects_date: Time.now)
+    flash[:success] = "A notification email has been sent to #{@bar.name} letting them know you have cancelled your reservation for #{@reservation.date.strftime("%A, %B %e")}."
+    redirect_back_or_root_path
     BarMailer.resrejected(@reservation).deliver
+  end
+
+ private
+  def redirect_back_or_root_path
+    if request.referrer.include?("bars/sign_in") || request.referrer.include?("users/sign_in")
+      redirect_to root_path(tab: "tab1")
+    else
+      redirect_to :back
+    end
+  rescue ActionController::RedirectBackError
+    redirect_to root_path(tab: "tab1")
   end
 end

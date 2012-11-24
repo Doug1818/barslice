@@ -1,5 +1,5 @@
 class Reservation < ActiveRecord::Base
-  attr_accessible :date, :email, :end_time, :hdct, :name, :phone, :start_time, :room_id, :bar_response, :user_response
+  attr_accessible :date, :email, :end_time, :hdct, :name, :phone, :start_time, :room_id, :bar_response, :user_response, :bar_accepts_date, :bar_rejects_date, :user_accepts_date, :user_rejects_date
   belongs_to :room
   belongs_to :user
   has_many :messages, dependent: :destroy
