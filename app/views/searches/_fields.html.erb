@@ -1,8 +1,8 @@
 <%= render 'shared/error_messages', object: f.object %>
 
 <div>
-	<div class="search_form">
-		<div class="search_sections">
+	<div class="search_form row">
+		<div class="span3 search_sections" style="padding-left:20px">
 			<div class="hform strong">Event Details</div>
 
 			<div>
@@ -35,18 +35,19 @@
 			</div>
 		</div>
 
-		<div class="search_sections">
+		<div class="span3 search_sections">
 			<%= f.label :location, "By Location", class: "hform strong" %>
-			<%= f.select :location, Bar::NEIGHBORHOODS, style: "width:100px", include_blank: true %><br><br>
+			<%= f.select :location, Bar::NEIGHBORHOODS, { include_blank: true }, style: "width:220px" %><br><br>
 
 			<%= f.label :bar_name, "By Bar", class: "hform strong" %>
 			<%= f.text_field :bar_name, style: "width: 210px" %>
 		</div>
 
-		<div class="search_sections">
+		<div class="span3 search_sections">
 			<div class="hform strong">Optional Filters</div>
 			<div>
-				Privacy:
+				<!--Privacy:
+				<%= f.select :privacy, ["Private", "Semi-private", "Shared space"], { include_blank: true }, style: "width:165px;margin-left:5px" %>-->
 				<%= f.radio_button :privacy, 1 %> Private
 				<%= f.radio_button :privacy, 2 %> Semi-private
 				<%= f.radio_button :privacy, 3 %> Shared space
