@@ -15,17 +15,17 @@
 			</div><br>
 
 			<div>
-				<i class="icon-time" style="font-size:2em;margin-right:5px;position:relative;top:7px;"></i>
+				<i class="icon-time" style="font-size:2em;margin-right:5px;position:relative;top:3px;"></i>
 				<% if f.object.start_time? %>
-					<%= f.select :start_time, TIMES.keys, { selected: TIMES.key(f.object.start_time) }, class: "time" %> to
+					<%= f.select :start_time, TIMES.keys, { selected: TIMES.key(f.object.start_time) }, class: "stime" %> to
 				<% else %>
-					<%= f.select :start_time, TIMES.keys, { selected: "9:00pm" }, class: "time" %> to 
+					<%= f.select :start_time, TIMES.keys, { selected: "9:00pm" }, class: "stime" %> to 
 				<% end %>
 
 				<% if f.object.end_time? %>
-					<%= f.select :end_time, TIMES.keys, { selected: TIMES.key(f.object.end_time) }, class: "time" %>
+					<%= f.select :end_time, TIMES.keys, { selected: TIMES.key(f.object.end_time) }, class: "stime" %>
 				<% else %>
-					<%= f.select :end_time, TIMES.keys, { selected: "1:00am" }, class: "time" %>
+					<%= f.select :end_time, TIMES.keys, { selected: "1:00am" }, class: "stime" %>
 				<% end %>
 			</div><br>
 
