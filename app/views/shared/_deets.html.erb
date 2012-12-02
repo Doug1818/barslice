@@ -1,11 +1,7 @@
 <ul class="deets">
-	<% if room.roompics.count == 1 %>
-		<li class="deet">
-			<% room.roompics.each do |roompic| %>
-				<%= link_to(image_tag(roompic.pic.url(:thumb)), roompic.pic.url(:large), target: "_blank") if roompic.pic_content_type %>
-			<% end %>
-		</li>
-	<% end %>
+	<li class="deet">
+		<%= render 'shared/roompics_modal', room: room %>
+	</li>	
 	<li class="deet">
 		<strong>Number of people:</strong><br />
 		<ul>
@@ -84,10 +80,3 @@
 		</ul>					
 	</li>
 </ul>
-<% if room.roompics.count > 1 %>
-	<div class="nofl">
-		<% room.roompics.each do |roompic| %>
-			<%= link_to(image_tag(roompic.pic.url(:thumb)), roompic.pic.url(:large), target: "_blank") if roompic.pic_content_type %>
-		<% end %>
-	</div>
-<% end %>

@@ -1,0 +1,41 @@
+<%= link_to(image_tag(room.roompics.first.pic.url(:thumb)), "#roompicsModal-#{room.id}", "data-toggle" => "modal" ) if room.roompics.first.pic_content_type %>
+
+<div class="modal hide" id="roompicsModal-<%= room.id %>">
+  <!--<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>Room name | Privacy</h3>
+  </div>-->
+  <div class="modal-body">
+    <div id="myCarousel-<%= room.id %>" class="carousel slide">
+      <!-- Carousel items -->
+      <div class="carousel-inner">
+        <div class="active item"><%= image_tag(room.roompics.first.pic.url(:large)) %></div>
+        <% room.roompics[1..-1].each do |roompic| %>
+          <div class="item"><%= image_tag(roompic.pic.url(:large)) if roompic.pic_content_type %></div>
+        <% end %>
+      </div>
+      <!-- Carousel nav -->
+      <a class="carousel-control left" href="#myCarousel-<%= room.id %>" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#myCarousel-<%= room.id %>" data-slide="next">&rsaquo;</a>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+$("#roompicsModal-<%= room.id %>").on('show resize', function () {
+    var modal = $(this);
+    modal.css({"left":0}).css({"max-width":"100%","max-height":"100%","margin-left": (- modal.outerWidth() / 2), "margin-top": (- modal.outerHeight() / 2), "left":"50%"});})
+</script>
+
+<style type="text/css">
+  #roompicsModal-<%= room.id %> .modal-body {
+    max-height: 600px;
+  }
+  #roompicsModal-<%= room.id %> {
+  width: 900px; /* SET THE WIDTH OF THE MODAL */
+  /*margin: -250px 0 0 -450px; /* CHANGE MARGINS TO ACCOMODATE THE NEW WIDTH (original = margin: -250px 0 0 -280px;) */
+  }
+</style>
