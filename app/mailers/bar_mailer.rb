@@ -27,7 +27,10 @@ class BarMailer < ActionMailer::Base
     @bar = bar
     @user = user
     @reservation = @user.reservations.last
-    mail from:"contact@barslice.com", to: bar.email, subject: "You have a new reservation request"
+    
+    mail from:"contact@barslice.com", 
+    to: bar.claimed == true ? bar.email : "doug@barslice.com",
+    subject: "You have a new reservation request"
   end
 
   def resaccepted(reservation)
@@ -35,7 +38,10 @@ class BarMailer < ActionMailer::Base
     @user = User.find(@reservation.user_id)
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    mail from:"contact@barslice.com", to: @bar.email, subject: "#{@user.name} confirmed a reservation"
+    
+    mail from:"contact@barslice.com", 
+    to: @bar.claimed == true ? @bar.email : "doug@barslice.com",
+    subject: "#{@user.name} confirmed a reservation"
   end
 
   def resrejected(reservation)
@@ -43,7 +49,10 @@ class BarMailer < ActionMailer::Base
     @user = User.find(@reservation.user_id)
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    mail from:"contact@barslice.com", to: @bar.email, subject: "#{@user.name} cancelled a reservation"
+    
+    mail from:"contact@barslice.com",
+    to: @bar.claimed == true ? @bar.email : "doug@barslice.com",
+    subject: "#{@user.name} cancelled a reservation"
   end
 
   def message_received(message)
@@ -52,6 +61,9 @@ class BarMailer < ActionMailer::Base
     @user = User.find(@reservation.user_id)
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    mail from:"contact@barslice.com", to: @bar.email, subject: "#{@user.name} sent you a message"
+    
+    mail from:"contact@barslice.com", 
+    to: @bar.claimed == true ? @bar.email : "doug@barslice.com",
+    subject: "#{@user.name} sent you a message"
   end
 end

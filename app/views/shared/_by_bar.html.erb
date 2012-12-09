@@ -2,23 +2,21 @@
   <% Bar.all.each do |bar| %>
       <li class="bar">
         <span class="title">
-          <span class="strong"><%= link_to bar.name, bar_path(bar) %></span> | 
-          <%= bar.neighborhood %>
+          <span class="strong"><%= link_to bar.name, bar_path(bar) %></span> | <%= bar.neighborhood %>
+          <% if bar.claimed == false %>
+            <a data-toggle="modal" style="font-size:0.7em" href="#claimbarModal-<%= bar.id %>">(Your bar?)</a>
+            <%= render 'shared/claim_bar_modal', object: bar, room: bar %>
+          <% end %>
         </span>
         <ul class="rooms">
           <% bar.rooms.each do |room| %>
             <li class="room">
               <% if !bar_signed_in? %>
                 <span style="float:right;margin-top:5px;">
-                  <% if bar.claimed == true %>
-                    <% if user_signed_in? %>
-                      <%= link_to "Reserve", new_reservation_path(room), class: "btn btn-small btn-info reserve" %>
-                    <% else %>
-                      <%= link_to "Reserve", new_user_registration_path(room), class: "btn btn-small btn-info reserve" %>
-                    <% end %>
+                  <% if user_signed_in? %>
+                    <%= link_to "Reserve", new_reservation_path(room), class: "btn btn-small btn-info reserve" %>
                   <% else %>
-                    <%= render 'shared/reserve_modal', object: bar, room: room %><br>
-                    <%= render 'shared/claim_bar_modal', object: bar, room: room %>
+                    <%= link_to "Reserve", new_user_registration_path(room), class: "btn btn-small btn-info reserve" %>
                   <% end %>
                 </span>
               <% end %>

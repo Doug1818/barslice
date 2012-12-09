@@ -10,16 +10,11 @@
 	<div class="room_show span7">
 		<% if !bar_signed_in? %>
 			<span style="float:right;margin-top:10px;">
-				<% if Bar.find(@room.bar_id).claimed == true %>
-		    	<% if user_signed_in? %>
-		    		<%= link_to "Reserve", new_reservation_path(@room), class: "btn btn-small btn-info reserve" %>
-		    	<% else %>
-		    		<%= link_to "Reserve", new_user_registration_path(@room), class: "btn btn-small btn-info reserve" %>
-		  		<% end %>
-    		<% else %>
-					<%= render 'shared/reserve_modal', object: Bar.find(@room.bar_id), room: @room %><br>
-					<%= render 'shared/claim_bar_modal', object: Bar.find(@room.bar_id), room: @room %>
-				<% end %>
+				<% if user_signed_in? %>
+	    		<%= link_to "Reserve", new_reservation_path(@room), class: "btn btn-small btn-info reserve" %>
+	    	<% else %>
+	    		<%= link_to "Reserve", new_user_registration_path(@room), class: "btn btn-small btn-info reserve" %>
+	  		<% end %>
 			</span>
 		<% end %>
 		<span style="float:left;width:85%;">

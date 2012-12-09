@@ -18,7 +18,11 @@ before_filter :authenticate_user!, only: [:user_accepts, :user_rejects, :user_sh
     @reservation.end_time = TIMES[params[:reservation][:end_time]]
     @reservation.user_id = @user.id
     if @reservation.save
-      flash[:success] = "Your reservation request has been sent to #{@bar.name}. You will be notified of their availability by email as soon as possible."
+      if @bar.claimed == true
+        flash[:success] = "Your reservation request has been sent to #{@bar.name}. You will be notified of their availability by email as soon as possible."
+      else
+        flash[:success] = "A reservation request is being sent to #{@bar.name}. You will be notified of their availability by email as soon as possible."
+      end
       redirect_to root_path
       BarMailer.resrequest(@room, @bar, @user).deliver
       UserMailer.resrequest_confirmation(@user).deliver

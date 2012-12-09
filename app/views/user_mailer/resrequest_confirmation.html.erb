@@ -1,6 +1,12 @@
 <p><%= @user.name %>,</p>
 
-<p>Your reservation request has been sent to <%= @bar.name %>. You will be notified of their availability by email as soon as possible.</p>
+<p>
+	<% if @bar.claimed == true %>
+		<%= "Your reservation request has been sent to #{@bar.name}." %>
+	<% else %>
+		<%= "A reservation request is being sent to #{@bar.name}." %>
+	<% end %> You will be notified of their availability by email as soon as possible.
+</p>
 
 <p>Reservation request details:</p>
 <ul>

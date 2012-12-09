@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
     @reservation = @user.reservations.last
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    mail from:"contact@barslice.com", to: user.email, subject: "#{@bar.name} has received your reservation request"
+    mail from:"contact@barslice.com", to: user.email, subject: @bar.claimed == true ? "#{@bar.name} has received your reservation request" : "A reservation request is being sent to #{@bar.name}"
   end
 
   def resaccepted(reservation)
