@@ -1,8 +1,24 @@
 <%= form_for(@message) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
-	<div class="field">
+	<div class="field" id="msgform">
 		<%= f.text_area :content, placeholder: "Compose new message...", style: "height:150px;width:99%" %>
+		Upload attachment: <%= f.file_field :attachment %>
 		<%= f.hidden_field :reservation_id, value: @reservation.id %>
-	</div>
+	</div><br>
 	<%= f.submit "Send", class: "btn btn-med" %>
 <% end %>
+
+<script type="text/javascript">
+
+// button state demo
+$('#btn')
+    .click(function () {
+        var btn = $(this)
+        btn.button('loading')
+        setTimeout(function () {
+            btn.button('reset')
+        }, 3000)
+    });
+
+</script>
+

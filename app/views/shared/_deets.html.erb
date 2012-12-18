@@ -1,6 +1,10 @@
 <ul class="deets">
 	<li class="deet">
-		<%= render 'shared/roompics_modal', room: room %>
+		<% if room.roompics.any? %>
+			<% if room.roompics.first.pic_file_name != nil %>
+				<%= render 'shared/roompics_modal', room: room %>
+			<% end %>
+		<% end %>
 	</li>	
 	<li class="deet">
 		<strong>Number of people:</strong><br />

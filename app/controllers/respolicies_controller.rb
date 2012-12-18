@@ -5,7 +5,7 @@ class RespoliciesController < ApplicationController
   	@respolicy = current_bar.build_respolicy(params[:respolicy])
   	if @respolicy.save
   		flash[:success] = "Reservation policy added"
-  		redirect_to root_path
+  		redirect_to root_path(tab: "tab3")
 	else
 		render 'new'
 	end
@@ -19,7 +19,7 @@ class RespoliciesController < ApplicationController
   	@respolicy = current_bar.respolicy(params[:id])
   	if @respolicy.update_attributes(params[:respolicy])
     	flash[:success] = "Reservation policy updated"
-    	redirect_to root_path
+    	redirect_to root_path(tab: "tab3")
     else
       render 'edit'
     end
@@ -29,6 +29,6 @@ class RespoliciesController < ApplicationController
     @respolicy = current_bar.respolicy(params[:id])
     @respolicy.destroy
     flash[:notice] = "Reservation policy deleted"
-    redirect_to root_path
+    redirect_to root_path(tab: "tab3")
   end
 end

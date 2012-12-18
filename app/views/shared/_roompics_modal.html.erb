@@ -1,4 +1,4 @@
-<%= link_to(image_tag(room.roompics.first.pic.url(:thumb)), "#roompicsModal-#{room.id}", "data-toggle" => "modal" ) if room.roompics.first.pic_content_type %>
+<%= link_to(image_tag(room.roompics.first.pic.url(:thumb)), "#roompicsModal-#{room.id}", "data-toggle" => "modal" ) if room.roompics.any? %>
 
 <div class="modal hide" id="roompicsModal-<%= room.id %>">
   <!--<div class="modal-header">

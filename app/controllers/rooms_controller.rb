@@ -28,7 +28,7 @@ before_filter :authenticate_bar!, only: [:new, :create, :destroy, :edit, :update
     end if params[:room][:restrictions_attributes]
     if @room.save
       flash[:success] = "Room added"
-      redirect_to root_path
+      redirect_to root_path(tab: "tab2")
     else
       render 'new'
     end
@@ -48,7 +48,7 @@ before_filter :authenticate_bar!, only: [:new, :create, :destroy, :edit, :update
     end if params[:room][:restrictions_attributes]
     if @room.update_attributes(params[:room])
       flash[:success] = "Room updated"
-      redirect_to root_path
+      redirect_to root_path(tab: "tab2")
     else
       render 'edit'
     end
@@ -58,7 +58,7 @@ before_filter :authenticate_bar!, only: [:new, :create, :destroy, :edit, :update
     @room = current_bar.rooms.find(params[:id])
     @room.destroy
     flash[:notice] = "Room deleted"
-    redirect_to root_path
+    redirect_to root_path(tab: "tab2")
   end
 
   def show

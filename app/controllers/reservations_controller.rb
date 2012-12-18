@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
 before_filter :authenticate_bar!, only: [:bar_accepts, :bar_rejects, :bar_show, :bar_index]
-before_filter :authenticate_user!, only: [:user_accepts, :user_rejects, :user_show, :user_index]
+before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_rejects, :user_show, :user_index]
 
   def new
   	@reservation = Reservation.new

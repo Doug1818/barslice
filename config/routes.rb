@@ -12,7 +12,11 @@ BarSlice::Application.routes.draw do
     end
   end
   resources :rooms
-  resources :messages
+  resources :messages do
+    member do
+      get :bar_view_attachment, :user_view_attachment
+    end
+  end
   resources :searches
   resources :respolicies
   resources :specials
@@ -27,7 +31,6 @@ BarSlice::Application.routes.draw do
   end
 
   root              to: 'static_pages#home'
-  #root              to: 'searches#new'
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'

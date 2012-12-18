@@ -93,7 +93,14 @@
 					</span>|
 					<span><%= message.created_at.strftime("%a, %b %e, %l:%M%P") %></span>
 				</div>
-				<div class="content"><%= message.content.gsub(/\n/, '<br/>').html_safe %></div>
+				<div class="content">
+					<%= message.content.gsub(/\n/, '<br/>').html_safe %>
+					<% if message.attachment_file_name? %>
+						<br><br>
+						<%= image_tag("glyphicons_062_paperclip.png", size: "14x14", style: "position:relative;bottom:2px;") %>
+						<%= link_to(message.attachment_file_name, user_view_attachment_message_path(message.id), target: "_blank") %>
+					<% end %>
+				</div>
 			</div><br>
 		<% end %>
 	<% end %>

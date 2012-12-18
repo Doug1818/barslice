@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121124050630) do
+ActiveRecord::Schema.define(:version => 20121209232054) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -123,8 +123,12 @@ ActiveRecord::Schema.define(:version => 20121124050630) do
     t.integer  "bar_id"
     t.integer  "reservation_id"
     t.boolean  "sent_by"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "reservations", :force => true do |t|

@@ -21,7 +21,7 @@ before_filter :authenticate_bar!, only: [:create, :edit, :update, :destroy]
   	end
     if @special.save
       flash[:success] = "Special added"
-      redirect_to root_path
+      redirect_to root_path(tab: "tab4")
     else
       render 'new'
     end
@@ -47,7 +47,7 @@ before_filter :authenticate_bar!, only: [:create, :edit, :update, :destroy]
     end
     if @special.update_attributes(params[:special])
       flash[:success] = "Special updated"
-      redirect_to root_path
+      redirect_to root_path(tab: "tab4")
     else
       render 'edit'
     end
@@ -57,7 +57,7 @@ before_filter :authenticate_bar!, only: [:create, :edit, :update, :destroy]
   	@special = current_bar.specials.find(params[:id])
     @special.destroy
     flash[:notice] = "Special deleted"
-    redirect_to root_path
+    redirect_to root_path(tab: "tab4")
   end
 
   def show

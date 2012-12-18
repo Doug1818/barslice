@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+before_filter :authenticate_bar!, only: [:bar_view_attachment]
+before_filter :authenticate_user!, only: [:user_view_attachment]
 
   def create
     @reservation = Reservation.find(params[:message][:reservation_id])
@@ -25,10 +27,24 @@ class MessagesController < ApplicationController
       end
     else
       if bar_signed_in?
+        flash[:error] = "Message can't be blank."
         render 'reservations/bar_show'
+        #redirect_to root_path + "reservations/" + "#{@reservation.id}" + "/bar_show#msgform"
       elsif user_signed_in?
+        flash[:error] = "Message can't be blank."
         render 'reservations/user_show'
+        #redirect_to root_path + "reservations/" + "#{@reservation.id}" + "/user_show#msgform"
       end
     end
+  end
+
+  def bar_view_attachment
+    @message = Message.find(params[:id])
+    redirect_to @message.attachment.expiring_url(10)
+  end
+
+  def user_view_attachment
+    @message = Message.find(params[:id])
+    redirect_to @message.attachment.expiring_url(10)
   end
 end

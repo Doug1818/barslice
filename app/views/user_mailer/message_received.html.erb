@@ -2,6 +2,9 @@
 
 <p><%= @bar.name %> sent you the following message:</p>
 <p>"<%= @message.content.gsub(/\n/, '<br/>').html_safe %>"</p>
+<% if @message.attachment_file_name? %>
+	<p>Attachment: <%= link_to(@message.attachment_file_name, user_view_attachment_message_url(@message.id), target: "_blank") %></p>
+<% end %>
 
 <p>You can reply by clicking <%= link_to 'here', user_show_reservation_url(@reservation), target: "_blank" %>.</p>
 
