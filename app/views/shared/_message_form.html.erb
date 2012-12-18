@@ -7,18 +7,3 @@
 	</div><br>
 	<%= f.submit "Send", class: "btn btn-med" %>
 <% end %>
-
-<script type="text/javascript">
-
-// button state demo
-$('#btn')
-    .click(function () {
-        var btn = $(this)
-        btn.button('loading')
-        setTimeout(function () {
-            btn.button('reset')
-        }, 3000)
-    });
-
-</script>
-
