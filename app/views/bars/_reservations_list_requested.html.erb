@@ -13,18 +13,39 @@
       <th class="action">Action</th>
     </tr>
     <% Reservation.of_bar(object).requested.each do |reservation| %>
-      <tr onmouseover="this.style.cursor='pointer';"
+      <tr>
+        <td class="date"
+          onmouseover="this.style.cursor='pointer';"
           onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
           style="cursor: pointer;">
-        <td class="date"><%= reservation.date.strftime("%a, %b %e") %></td>
-        <td class="tm"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
-        <td class="rm"><%= Room.find(reservation.room_id).name.truncate(28) %></td>
-        <td class="hdct"><%= pluralize(reservation.hdct, "person") %></td>
-        <td class="user"><%= User.find(reservation.user_id).name.truncate(20) %></td>
-        <td class="reqdate"><%= reservation.created_at.strftime("%b %d") %></td>
+          <%= reservation.date.strftime("%a, %b %e") %></td>
+        <td class="tm"
+          onmouseover="this.style.cursor='pointer';"
+          onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
+          style="cursor: pointer;">
+          <%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
+        <td class="rm"
+          onmouseover="this.style.cursor='pointer';"
+          onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
+          style="cursor: pointer;">
+          <%= Room.find(reservation.room_id).name.truncate(28) %></td>
+        <td class="hdct"
+          onmouseover="this.style.cursor='pointer';"
+          onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
+          style="cursor: pointer;">
+          <%= pluralize(reservation.hdct, "person") %></td>
+        <td class="user"
+          onmouseover="this.style.cursor='pointer';"
+          onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
+          style="cursor: pointer;">
+          <%= User.find(reservation.user_id).name.truncate(20) %></td>
+        <td class="reqdate"
+          onmouseover="this.style.cursor='pointer';"
+          onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
+          style="cursor: pointer;">
+          <%= reservation.created_at.strftime("%b %d") %></td>
         <td class="action">
-          <%= link_to 'Accept', bar_accepts_reservation_path(reservation.id), 
-          rel: "tooltip", title: "Organizer will be automatically notifed by email" %> |
+          <%= render 'shared/bar_accepts_modal', reservation: reservation %> |
           <%= link_to 'Reject', bar_rejects_reservation_path(reservation.id), 
           rel: "tooltip", title: "Organizer will be automotically notifed by email" %> |
           <%= link_to 'Message', bar_show_reservation_path(reservation) %>

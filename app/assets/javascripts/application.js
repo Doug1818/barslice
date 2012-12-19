@@ -21,3 +21,4 @@
 //= require jquery.fileupload-fp
 //= require jquery.fileupload-ui
 //= require rooms
+//= require reservations

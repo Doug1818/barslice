@@ -46,8 +46,7 @@
 	    	<td>Accepted by <%= current_bar.name %></td>
 	    	<td>
 	    		<% if @reservation.bar_response != 1 %>
-	    			<%= link_to 'Accept', bar_accepts_reservation_path(@reservation.id), 
-					rel: "tooltip", title: "Organizer will be automatically notifed by email" %> |
+	    			<%= render 'shared/bar_accepts_modal', reservation: @reservation %> |
 					<%= link_to 'Reject', bar_rejects_reservation_path(@reservation.id), 
 					rel: "tooltip", title: "Organizer will be automotically notifed by email" %>
 	    		<% elsif @reservation.bar_response == 1 %>

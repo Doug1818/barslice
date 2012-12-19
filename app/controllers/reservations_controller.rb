@@ -31,6 +31,15 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
     end
   end
 
+  def update
+    @reservation = Reservation.find(params[:id])
+    @reservation.update_attributes!(params[:reservation])
+    respond_to do |format|
+      format.html { redirect_to bar_show_reservation_path(@reservation) }
+      format.js
+    end
+  end
+
   def bar_index
     redirect_to root_path(tab: "tab1")
   end
