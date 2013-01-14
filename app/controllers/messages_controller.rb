@@ -27,11 +27,9 @@ before_filter :authenticate_user!, only: [:user_view_attachment]
       end
     else
       if bar_signed_in?
-        flash[:error] = "Message can't be blank."
         render 'reservations/bar_show'
         #redirect_to root_path + "reservations/" + "#{@reservation.id}" + "/bar_show#msgform"
       elsif user_signed_in?
-        flash[:error] = "Message can't be blank."
         render 'reservations/user_show'
         #redirect_to root_path + "reservations/" + "#{@reservation.id}" + "/user_show#msgform"
       end

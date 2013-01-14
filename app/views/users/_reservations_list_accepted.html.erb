@@ -1,7 +1,7 @@
 <h3 style="margin-bottom:2px;">Accepted Reservations (please confirm ASAP)</h3>
 <div style="font-style:italic;margin-bottom:10px;">Note: other requests for the same night will be automatically cancelled once a reservation is confirmed.
-<%= link_to 'Why?', '#', rel: "tooltip", "data-placement" => "right", title: "Many people request resevations at multiple bars for a given night before they know which ones will have availability.  Once you confirm a reservation at a particular bar, we automatically cancel any reservation requests you have with other bars for the same night to save you the trouble of updating them and minimize 'no show' reservations." %></div>
-<% if object.reservations.accepted.count == 0 %>
+<%= link_to 'Why?', '#', rel: "tooltip", "data-placement" => "right", title: "Many people request resevations at multiple bars for a given night before they know which ones will have availability.  Once you confirm a reservation at a particular bar, BarSlice automatically cancels any reservation requests you have with other bars for the same night to save you the trouble of updating them and minimize 'no show' reservations." %></div>
+<% if object.reservations.accepted.future.count == 0 %>
   <span style="margin-left:10px">None</span>
 <% else %>
   <table class="pretty_table">
@@ -14,21 +14,42 @@
       <th class="reqdate">Requested</th>
       <th class="action">Action</th>
     </tr>
-    <% object.reservations.accepted.each do |reservation| %>
+    <% object.reservations.accepted.future.each do |reservation| %>
       <% room = Room.find(reservation.room_id) %>
       <% bar = Bar.find(room.bar_id) %>
-      <tr onmouseover="this.style.cursor='pointer';"
+      <tr>
+        <td class="user"
+          onmouseover="this.style.cursor='pointer';"
           onclick="location.href='<%= user_show_reservation_path(reservation) %>';"
           style="cursor: pointer;">
-        <td class="user"><%= link_to bar.name.truncate(17), bar_path(bar) %></td>
-        <td class="rm"><%= link_to room.name.truncate(18), room_path(room) %></td>
-        <td class="date"><%= reservation.date.strftime("%a, %b %e") %></td>
-        <td class="tm"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
-        <td class="hdct"><%= pluralize(reservation.hdct, "person") %></td>
-        <td class="reqdate"><%= reservation.created_at.strftime("%b %d") %></td>
+          <%= link_to bar.name.truncate(17), bar_path(bar) %></td>
+        <td class="rm"
+          onmouseover="this.style.cursor='pointer';"
+          onclick="location.href='<%= user_show_reservation_path(reservation) %>';"
+          style="cursor: pointer;">
+          <%= link_to room.name.truncate(18), room_path(room) %></td>
+        <td class="date"
+          onmouseover="this.style.cursor='pointer';"
+          onclick="location.href='<%= user_show_reservation_path(reservation) %>';"
+          style="cursor: pointer;">
+          <%= reservation.date.strftime("%a, %b %e") %></td>
+        <td class="tm"
+          onmouseover="this.style.cursor='pointer';"
+          onclick="location.href='<%= user_show_reservation_path(reservation) %>';"
+          style="cursor: pointer;">
+          <%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
+        <td class="hdct"
+          onmouseover="this.style.cursor='pointer';"
+          onclick="location.href='<%= user_show_reservation_path(reservation) %>';"
+          style="cursor: pointer;">
+          <%= pluralize(reservation.hdct, "person") %></td>
+        <td class="reqdate"
+          onmouseover="this.style.cursor='pointer';"
+          onclick="location.href='<%= user_show_reservation_path(reservation) %>';"
+          style="cursor: pointer;">
+          <%= reservation.created_at.strftime("%b %d") %></td>
         <td class="action">
-          <%= link_to 'Confirm', user_accepts_reservation_path(reservation.id), 
-          rel: "tooltip", title: "Bar will be automatically notifed by email" %> |
+          <%= render 'shared/user_accepts_modal', reservation: reservation %> |
           <%= link_to 'Cancel', user_rejects_reservation_path(reservation.id), 
           rel: "tooltip", title: "Bar will be automotically notifed by email" %> |
           <%= link_to 'Message', user_show_reservation_path(reservation) %>

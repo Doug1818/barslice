@@ -1,5 +1,5 @@
 <h3>Reservations Requests (waiting for bar response)</h3>
-<% if object.reservations.requested.count == 0 %>
+<% if object.reservations.requested.future.count == 0 %>
   <span style="margin-left:10px">None</span>
 <% else %>
   <table class="pretty_table">
@@ -12,7 +12,7 @@
       <th class="reqdate">Requested</th>
       <th class="action">Action</th>
     </tr>
-    <% object.reservations.requested.each do |reservation| %>
+    <% object.reservations.requested.future.each do |reservation| %>
       <% room = Room.find(reservation.room_id) %>
       <% bar = Bar.find(room.bar_id) %>
       <tr onmouseover="this.style.cursor='pointer';"

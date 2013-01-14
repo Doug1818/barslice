@@ -6,16 +6,17 @@
     <h3>Accept this reservation?</h3>
   </div>
   <div class="modal-body">
-    <p>Click yes to accept this reservation.  The organizer will be automatically notifed by email.  If you require a credit card number to hold the reservation, please check the box below before clicking accept.</p>
+    <p>If you require a credit card number to hold the reservation, please check the box below before clicking accept. The organizer will be automatically notifed by email.</p>
     <p>
       <%= form_for(reservation, remote: true) do |f| %>
-        <%= f.check_box :cc_required %> Credit card required to hold reservation
+        <%= f.check_box :cc_required, style: "float:left;margin-right:5px;" %>
+        <%= f.label :cc_required, "Credit card required to hold reservation", style: "float:left;cursor:pointer;" %>
         <%= f.submit %>
       <% end %>
     </p>
   </div>
   <div class="modal-footer">
     <%= link_to "Accept", bar_accepts_reservation_path(reservation.id), class: "btn" %>
-    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
   </div>
 </div>

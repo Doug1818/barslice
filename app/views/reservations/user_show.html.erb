@@ -63,8 +63,7 @@
 	    	<td>Confirmed by <%= current_user.name %></td>
 	    	<td>
 	    		<% if @reservation.bar_response == 1 && @reservation.user_response != 1 %>
-	    			<%= link_to 'Confirm', user_accepts_reservation_path(@reservation.id), 
-					rel: "tooltip", title: "Bar will be automatically notifed by email" %> |
+	    			<%= render 'shared/user_accepts_modal', reservation: @reservation %> |
 					<%= link_to 'Cancel', user_rejects_reservation_path(@reservation.id), 
 					rel: "tooltip", title: "Bar will be automotically notifed by email" %>
 	    		<% elsif @reservation.user_response == 1 %>

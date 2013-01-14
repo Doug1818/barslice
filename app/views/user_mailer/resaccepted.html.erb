@@ -9,7 +9,7 @@
 </ul>
 
 <p>If you still want this reservation, confirm it ASAP (if not, then cancel it). Note that other requests for the same night will be automatically cancelled once a reservation is confirmed.<br>
-<%= link_to 'Confirm', user_accepts_reservation_url(@reservation.id), target: "_blank" %> | 
+<%= link_to 'Confirm', user_show_reservation_url(@reservation), target: "_blank" %> | 
 <%= link_to 'See all reservations', user_index_reservations_url, target: "_blank" %>
 </p>
 

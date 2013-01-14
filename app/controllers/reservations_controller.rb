@@ -34,6 +34,7 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
   def update
     @reservation = Reservation.find(params[:id])
     @reservation.update_attributes!(params[:reservation])
+    #binding.pry
     respond_to do |format|
       format.html { redirect_to bar_show_reservation_path(@reservation) }
       format.js
@@ -84,16 +85,21 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
     @user = User.find(@reservation.user_id)
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    @reservation.update_attributes(user_response: 1, user_accepts_date: Time.now)
-    @user.reservations.each do |reservation|
-      if reservation.date == @reservation.date && reservation != @reservation
-        reservation.update_attributes(user_response: 2)
-        BarMailer.resrejected(reservation).deliver
+    if @reservation.update_attributes(user_response: 1, user_accepts_date: Time.now)
+      @user.reservations.each do |reservation|
+        if reservation.date == @reservation.date && reservation != @reservation
+          reservation.update_attributes(user_response: 2)
+          BarMailer.resrejected(reservation).deliver
+        end
       end
+      flash[:success] = "A notification email has been sent to #{@bar.name} letting them know you have confirmed your reservation for #{@reservation.date.strftime("%A, %B %e")}."
+      redirect_back_or_root_path
+      BarMailer.resaccepted(@reservation).deliver
+    else
+      #render 'reservations/user_show'
+      redirect_to root_path + "reservations/" + "#{@reservation.id}" + "/user_show#useracceptsModal-#{@reservation.id}"
     end
-    flash[:success] = "A notification email has been sent to #{@bar.name} letting them know you have confirmed your reservation for #{@reservation.date.strftime("%A, %B %e")}."
-    redirect_back_or_root_path
-    BarMailer.resaccepted(@reservation).deliver
+    ##binding.pry
   end
 
   def user_rejects

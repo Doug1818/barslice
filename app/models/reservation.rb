@@ -1,13 +1,17 @@
 class Reservation < ActiveRecord::Base
-  attr_accessible :date, :email, :end_time, :hdct, :name, :phone, :start_time, :room_id, :bar_response, :user_response, :bar_accepts_date, :bar_rejects_date, :user_accepts_date, :user_rejects_date, :cc_required
+  attr_accessible :date, :email, :end_time, :hdct, :name, :phone, :start_time, :room_id, :bar_response, :user_response, :bar_accepts_date, :bar_rejects_date, :user_accepts_date, :user_rejects_date, :cc_required, :respolicy_accepted, :cc_number, :cc_exp_month, :cc_exp_year
+  attr_accessor :cc_number, :cc_exp_month, :cc_exp_year
   belongs_to :room
   belongs_to :user
   has_many :messages, dependent: :destroy
+
+  #attr_writer :cc_number
 
   scope :of_bar, lambda { |bar| joins(:room).where("rooms.bar_id = ?", bar.id) }
   scope :requested, where(bar_response: nil).order("created_at desc")
   scope :accepted, where(bar_response: 1, user_response: nil).order("date")
   scope :confirmed, where(bar_response: 1, user_response: 1).order("date")
+  scope :future, where("date >= ?", Time.now.to_date)
 
   validates :date, presence: true
   validates :hdct, presence: true, numericality: { only_integer: true }
@@ -16,6 +20,20 @@ class Reservation < ActiveRecord::Base
   validate  :capacity
   validate  :bar_date_time
   validate  :room_date_time
+  validate  :respolicy_is_accepted
+  validates :cc_number, presence: true, numericality: { only_integer: true }, length: { minimum: 15, maximum: 15 }, :if => :should_validate_cc?
+  validates :cc_exp_month, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 13 }, :if => :should_validate_cc?
+  validates :cc_exp_year, presence: true, numericality: { only_integer: true }, length: { minimum: 4, maximum: 4 }, :if => :should_validate_cc?
+
+  def should_validate_cc?
+    cc_required == true && :bar_response == 1
+  end
+
+  def respolicy_is_accepted
+    if self.user_response == 1 && self.respolicy_accepted == false
+      self.errors[:reservation_policy] << "must be accepted"
+    end
+  end
 
   def future_date
     if self.date != nil && self.date < Time.now.to_date
@@ -37,7 +55,7 @@ class Reservation < ActiveRecord::Base
   	if x.empty?
   		self.errors[:number_of_people] << "must fall within room minimum / maximum 
   		(check room capacity by clicking on the room profile link above)"
-	end
+	  end
   end
 
   def bar_date_time
@@ -48,7 +66,7 @@ class Reservation < ActiveRecord::Base
   		self.start_time, self.end_time, true) if self.date.present?
   	if x.empty?
   		self.errors[:date_and_time] << "must fall within bar hours (check bar hours by clicking on the bar profile link above)"
-	end
+	  end
   end
 
   def room_date_time
@@ -69,6 +87,6 @@ class Reservation < ActiveRecord::Base
   	if bad_restriction != nil && bad_restriction.any?
   		self.errors[:date] << "/ time must not fall while room availability is restricted 
   		(check restrictions by clicking on the room profile link above)"
-	end
+	  end
   end
 end

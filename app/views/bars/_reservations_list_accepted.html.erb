@@ -1,5 +1,5 @@
 <h3>Accepted Reservations (waiting for customer confirmation)</h3>
-<% if Reservation.of_bar(object).accepted.count == 0 %>
+<% if Reservation.of_bar(object).accepted.future.count == 0 %>
   <span style="margin-left:10px">None</span>
 <% else %>
   <table class="pretty_table">
@@ -12,7 +12,7 @@
       <th class="reqdate">Requested</th>
       <th class="action">Action</th>
     </tr>
-    <% Reservation.of_bar(object).accepted.each do |reservation| %>
+    <% Reservation.of_bar(object).accepted.future.each do |reservation| %>
       <tr onmouseover="this.style.cursor='pointer';"
           onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
           style="cursor: pointer;">

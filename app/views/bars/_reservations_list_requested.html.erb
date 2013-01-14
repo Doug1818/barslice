@@ -1,5 +1,5 @@
 <h3>Reservations Requests (please respond ASAP)</h3>
-<% if Reservation.of_bar(object).requested.count == 0 %>
+<% if Reservation.of_bar(object).requested.future.count == 0 %>
   <span style="margin-left:10px">None</span>
 <% else %>
   <table class="pretty_table">
@@ -12,7 +12,7 @@
       <th class="reqdate">Requested</th>
       <th class="action">Action</th>
     </tr>
-    <% Reservation.of_bar(object).requested.each do |reservation| %>
+    <% Reservation.of_bar(object).requested.future.each do |reservation| %>
       <tr>
         <td class="date"
           onmouseover="this.style.cursor='pointer';"
