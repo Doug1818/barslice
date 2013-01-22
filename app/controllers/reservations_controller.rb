@@ -34,7 +34,6 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
   def update
     @reservation = Reservation.find(params[:id])
     @reservation.update_attributes!(params[:reservation])
-    #binding.pry
     respond_to do |format|
       format.html { redirect_to bar_show_reservation_path(@reservation) }
       format.js
@@ -85,7 +84,23 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
     @user = User.find(@reservation.user_id)
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    if @reservation.update_attributes(user_response: 1, user_accepts_date: Time.now)
+    if @reservation.update_attributes(respolicy_accepted: params[:reservation][:respolicy_accepted], user_response: 1, user_accepts_date: Time.now)
+      # Generate pdf contract and load to aws
+        #@cc_number = params[:reservation][:cc_number]
+        #@cc_exp_month = params[:reservation][:cc_exp_month]
+        #@cc_exp_year = params[:reservation][:cc_exp_year]
+        #pdf = WickedPdf.new.pdf_from_string("
+        #  <h1>#{@bar.name}</h1>
+        #  <p>#{@user.name}</p>
+        #  <p>#{@cc_number}</p>
+        #  ")
+        #save_path = Rails.root.join("pdfs/agreement_#{@reservation.id}.pdf")
+        #File.open(save_path, 'wb') do |file|
+        #  file << pdf
+        #end
+        #@reservation.agreement = File.open("pdfs/agreement_#{@reservation.id}.pdf")
+        #@reservation.save!
+      # Delete same night reservations still pending at other bars
       @user.reservations.each do |reservation|
         if reservation.date == @reservation.date && reservation != @reservation
           reservation.update_attributes(user_response: 2)
@@ -99,7 +114,6 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
       #render 'reservations/user_show'
       redirect_to root_path + "reservations/" + "#{@reservation.id}" + "/user_show#useracceptsModal-#{@reservation.id}"
     end
-    ##binding.pry
   end
 
   def user_rejects

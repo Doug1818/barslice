@@ -23,7 +23,8 @@ BarSlice::Application.routes.draw do
   resources :rmsprelationships
   resources :reservations do 
     member do
-      get :bar_accepts, :bar_rejects, :user_accepts, :user_rejects, :bar_show, :user_show
+      get :bar_show, :user_show
+      put :bar_accepts, :bar_rejects, :user_accepts, :user_rejects
     end
     collection do
       get :bar_index, :user_index

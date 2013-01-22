@@ -9,12 +9,13 @@
     <p class=strong>Reservation policy:</p>
     <%= Bar.find(Room.find(reservation.room_id).id).respolicy.description.gsub(/\n/, '<br/>').html_safe %>
   </div>
-  <div class="modal-footer">
-    <%= form_for(reservation, remote: true) do |f| %>
+  <%= form_for(reservation, url: user_accepts_reservation_path(reservation.id)) do |f| %>
+    <div class="modal-footer">
       <%= render 'shared/error_messages', object: f.object %>
       <%= f.check_box :respolicy_accepted, style: "float:left;margin-right:10px;" %>
       <%= f.label :respolicy_accepted, "I agree to #{Bar.find(Room.find(reservation.room_id).id).name}'s reservation policy", 
         class: "strong", style: "float:left;font-weight:bold;cursor:pointer;" %>
+      <!--
       <% if reservation.cc_required == true %>
         <div style="float:right;text-align:left;">
           <div class="strong" style="margin-bottom:10px;"><%= "#{Bar.find(Room.find(reservation.room_id).id).name} requires a credit card number to confirm this reservation" %></div>
@@ -31,13 +32,11 @@
           </div>
         </div>
       <% end %>
-      <%= f.submit %>
-    <% end %>
-  </div>
-  <div class="modal-footer">
-    <%= link_to "Confirm reservation", user_accepts_reservation_path(reservation.id), class: "btn" %>
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
-  </div>
+      -->
+      <%= f.submit "Confirm reservation", class: "btn" %>
+      <a href="#" class="btn" data-dismiss="modal">Close</a>
+    </div>
+  <% end %>
 </div>
 
 <style type="text/css">

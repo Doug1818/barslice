@@ -16,6 +16,8 @@ gem 'meta_search'
 #gem 'bootswatch-rails'
 gem 'mail'
 gem 'rufus-mnemo'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
 
 group :development do
   gem 'rspec-rails', '2.9.0'

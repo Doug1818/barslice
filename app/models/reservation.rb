@@ -1,14 +1,16 @@
 class Reservation < ActiveRecord::Base
-  attr_accessible :date, :email, :end_time, :hdct, :name, :phone, :start_time, :room_id, :bar_response, :user_response, :bar_accepts_date, :bar_rejects_date, :user_accepts_date, :user_rejects_date, :cc_required, :respolicy_accepted, :cc_number, :cc_exp_month, :cc_exp_year
+  attr_accessible :date, :start_time, :end_time, :hdct, :room_id, :bar_response, :user_response, :bar_accepts_date, :bar_rejects_date, :user_accepts_date, :user_rejects_date, :cc_required, :respolicy_accepted, :cc_number, :cc_exp_month, :cc_exp_year, :agreement
   attr_accessor :cc_number, :cc_exp_month, :cc_exp_year
   belongs_to :room
   belongs_to :user
   has_many :messages, dependent: :destroy
-
-  #attr_writer :cc_number
+  has_attached_file :agreement, 
+            storage: :s3,
+            s3_credentials: "#{Rails.root}/config/s3.yml",
+            path: "agreements/:id/:filename"
 
   scope :of_bar, lambda { |bar| joins(:room).where("rooms.bar_id = ?", bar.id) }
-  scope :requested, where(bar_response: nil).order("created_at desc")
+  scope :requested, where(bar_response: nil, user_response: nil).order("created_at desc")
   scope :accepted, where(bar_response: 1, user_response: nil).order("date")
   scope :confirmed, where(bar_response: 1, user_response: 1).order("date")
   scope :future, where("date >= ?", Time.now.to_date)

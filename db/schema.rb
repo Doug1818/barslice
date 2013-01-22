@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121219063900) do
+ActiveRecord::Schema.define(:version => 20130121014917) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -136,8 +136,8 @@ ActiveRecord::Schema.define(:version => 20121219063900) do
     t.integer  "start_time"
     t.integer  "end_time"
     t.integer  "hdct"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "room_id"
     t.integer  "user_id"
     t.integer  "bar_response"
@@ -146,8 +146,12 @@ ActiveRecord::Schema.define(:version => 20121219063900) do
     t.datetime "bar_rejects_date"
     t.datetime "user_accepts_date"
     t.datetime "user_rejects_date"
-    t.boolean  "cc_required",        :default => false
-    t.boolean  "respolicy_accepted", :default => false
+    t.boolean  "cc_required",            :default => false
+    t.boolean  "respolicy_accepted",     :default => false
+    t.string   "agreement_file_name"
+    t.string   "agreement_content_type"
+    t.integer  "agreement_file_size"
+    t.datetime "agreement_updated_at"
   end
 
   create_table "respolicies", :force => true do |t|
