@@ -1,4 +1,7 @@
 BarSlice::Application.routes.draw do
+  #get "errors/error_404"
+  #get "errors/error_500"
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -35,6 +38,10 @@ BarSlice::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+
+  unless Rails.application.config.consider_all_requests_local
+    match '*not_found', to: 'errors#error_404'
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
