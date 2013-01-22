@@ -7,13 +7,13 @@
 	<%= render 'shared/bar_info', object: Bar.find_by_id(@room.bar_id) %>
 </div>
 <div class="rooms">
-	<div class="room_show span7">
+	<div class="room_show span8">
 		<% if !bar_signed_in? %>
 			<span style="float:right;margin-top:10px;">
 				<% if user_signed_in? %>
-	    		<%= link_to "Reserve", new_reservation_path(@room), class: "btn btn-small btn-info reserve" %>
+	    		<%= link_to "Reserve", new_reservation_path(@room), class: "btn btn-small btn-info reserve", style: "margin-right:30px;" %>
 	    	<% else %>
-	    		<%= link_to "Reserve", new_user_registration_path(@room), class: "btn btn-small btn-info reserve" %>
+	    		<%= link_to "Reserve", new_user_registration_path(@room), class: "btn btn-small btn-info reserve", style: "margin-right:30px;" %>
 	  		<% end %>
 			</span>
 		<% end %>
