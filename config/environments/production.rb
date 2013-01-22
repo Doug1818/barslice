@@ -86,7 +86,7 @@ BarSlice::Application.configure do
   #:port                 => 587,
   #:domain               => 'barslice.com',
   #:user_name            => 'doug@barslice.com',
-  #:password             => '44203905',
+  #:password             => 'xxxxxxxx',
   #:authentication       => 'plain',
   #:enable_starttls_auto => true  }
 
