@@ -65,6 +65,20 @@ BarSlice::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+  # Mailgun smtp settings
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_charset = "utf-8"
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+    :port           => ENV['MAILGUN_SMTP_PORT'], 
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    :domain         => 'barslice.com',
+    :authentication => :plain,
+  }
+
   # Change mail delvery to either :smtp, :sendmail, :file, :test
   #config.action_mailer.delivery_method = :smtp
   #config.action_mailer.smtp_settings = {
