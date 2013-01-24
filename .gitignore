@@ -17,3 +17,5 @@
 # Ignore keys files
 /config/s3.yml
 /config/initializers/stripe.rb
+# Ignore application configuration
+/config/application.yml
