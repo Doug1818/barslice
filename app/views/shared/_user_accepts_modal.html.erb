@@ -9,39 +9,72 @@
     <p class=strong>Reservation policy:</p>
     <%= Bar.find(Room.find(reservation.room_id).id).respolicy.description.gsub(/\n/, '<br/>').html_safe %>
   </div>
-  <%= form_for(reservation, url: user_accepts_reservation_path(reservation.id)) do |f| %>
-    <div class="modal-footer">
-      <%= render 'shared/error_messages', object: f.object %>
-      <%= f.check_box :respolicy_accepted, style: "float:left;margin-right:10px;" %>
-      <%= f.label :respolicy_accepted, "I agree to #{Bar.find(Room.find(reservation.room_id).id).name}'s reservation policy", 
-        class: "strong", style: "float:left;font-weight:bold;cursor:pointer;" %>
-      <!--
-      <% if reservation.cc_required == true %>
-        <div style="float:right;text-align:left;">
-          <div class="strong" style="margin-bottom:10px;"><%= "#{Bar.find(Room.find(reservation.room_id).id).name} requires a credit card number to confirm this reservation" %></div>
+  <div class="modal-footer">
+    <%= form_for(reservation, url: user_accepts_reservation_path(reservation.id)) do |f| %>
+      <div><% if reservation.cc_required == false %><br><% end %>
+        <div style="float:left;">
           <div>
-            <div style="float:left;margin-right:25px;">
-              <%= f.label :card_number %>
-              <%= f.text_field :cc_number %>
-            </div>
-            <div>
-              <%= f.label :expiration_date %>
-              <%= f.text_field :cc_exp_month, placeholder: "mm", style: "width:40px" %>
-              <%= f.text_field :cc_exp_year, placeholder: "yyyy", style: "width:50px;margin-left:10px;" %>
-            </div>
+            <%= render 'shared/error_messages', object: f.object %>
+            <%= f.check_box :respolicy_accepted, style: "float:left;margin-right:10px;" %>
+            <%= f.label :respolicy_accepted, "I agree to #{Bar.find(Room.find(reservation.room_id).id).name}'s reservation policy",
+              class: "strong", style: "float:left;font-weight:bold;cursor:pointer;" %>
+          </div>
+          <div id="respolicy_error" class="jquery_validation" style="text-align:left;">
+            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
           </div>
         </div>
-      <% end %>
-      -->
-      <%= f.submit "Confirm reservation", class: "btn" %>
-      <a href="#" class="btn" data-dismiss="modal">Close</a>
-    </div>
-  <% end %>
+        <div style="float:right;text-align:left;">
+          <% if reservation.cc_required == true %>
+            <div class="strong" style="margin-bottom:10px;"><%= "#{Bar.find(Room.find(reservation.room_id).id).name} requires a credit card number to confirm this reservation" %></div>
+            <% if current_user.stripe_customer_id? %>
+              <%= "Your #{@customer.active_card.type}: xxxxxx#{@customer.active_card.last4}" %> |
+              <a href="javascript:void(0);" id="togglediv">Edit card info</a>
+              <div id="editcard" style="display:none;margin-top:10px;">
+                <div style="float:left;margin-right:25px;">
+                  <%= label_tag :card_number, "Credit Card Number" %>
+                  <%= text_field_tag :card_number, nil, name: nil %>
+                </div>
+                <div>
+                  <%= label_tag :card_month, "Card Expiration" %>
+                  <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month", style: "width:100px"} %>
+                  <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", style: "width:70px;margin-left:10px;"} %>
+                </div>
+                <div id="stripe_error" class="jquery_validation">
+                  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+                </div>
+                <%= f.hidden_field :stripe_card_token %>
+              </div>
+            <% else %>
+              <div>
+                <div style="float:left;margin-right:25px;">
+                  <%= label_tag :card_number, "Credit Card Number" %>
+                  <%= text_field_tag :card_number, nil, name: nil %>
+                </div>
+                <div>
+                  <%= label_tag :card_month, "Card Expiration" %>
+                  <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month", style: "width:100px"} %>
+                  <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year", style: "width:70px;margin-left:10px;" } %>
+                </div>
+              </div>
+              <div id="stripe_error" class="jquery_validation">
+                <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+              </div>
+              <%= f.hidden_field :stripe_card_token %>
+            <% end %>
+          <% end %>
+          <div style="float:right;margin-top:30px;">
+            <%= f.submit "Confirm reservation", class: "btn" %>
+            <a href="#" class="btn" data-dismiss="modal">Close</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <style type="text/css">
   #useracceptsModal-<%= reservation.id %> .modal-body {
-    max-height: 200px;
+    max-height: 250px;
   }
   #useracceptsModal-<%= reservation.id %> {
     width: 900px; /* SET THE WIDTH OF THE MODAL */
@@ -50,15 +83,9 @@
 </style>
 
 <script type="text/javascript">
-  $('document').ready(function() {
-    if ($('#error_explanation').length > 0) {
-      $("#useracceptsModal-<%= reservation.id %>").css("display", "block");
-    }
-  })
-
-  $('document').ready(function() {
-    if ($('#error_explanation').length > 0) {
-      $("#useracceptsModal-<%= reservation.id %>").modal('toggle');
-    }
-  })
+  $(function(){
+    $('#togglediv').click(function(){
+       $('#editcard').toggle();
+    });
+  });
 </script>

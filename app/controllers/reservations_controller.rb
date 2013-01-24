@@ -59,6 +59,7 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
     @message = current_user.messages.build
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
+    @customer = Stripe::Customer.retrieve(current_user.stripe_customer_id) if current_user.stripe_customer_id?
   end
 
   def bar_accepts
@@ -84,25 +85,27 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
     @user = User.find(@reservation.user_id)
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    if @reservation.update_attributes(respolicy_accepted: params[:reservation][:respolicy_accepted], user_response: 1, user_accepts_date: Time.now)
-      # Generate pdf contract and load to aws
-        #@cc_number = params[:reservation][:cc_number]
-        #@cc_exp_month = params[:reservation][:cc_exp_month]
-        #@cc_exp_year = params[:reservation][:cc_exp_year]
-        #pdf = WickedPdf.new.pdf_from_string("
-        #  <h1>#{@bar.name}</h1>
-        #  <p>#{@user.name}</p>
-        #  <p>#{@cc_number}</p>
-        #  ")
-        #save_path = Rails.root.join("pdfs/agreement_#{@reservation.id}.pdf")
-        #File.open(save_path, 'wb') do |file|
-        #  file << pdf
-        #end
-        #@reservation.agreement = File.open("pdfs/agreement_#{@reservation.id}.pdf")
-        #@reservation.save!
+    if @reservation.update_attributes(
+        respolicy_accepted: params[:reservation][:respolicy_accepted], 
+        user_response: 1, 
+        user_accepts_date: Time.now)
+      # Update or Create stripe customer
+      if @user.stripe_customer_id?
+        customer = Stripe::Customer.retrieve(@user.stripe_customer_id)
+        customer.card = params[:reservation][:stripe_card_token]
+        binding.pry
+        customer.save
+      else
+        customer = Stripe::Customer.create(
+          :card => params[:reservation][:stripe_card_token],
+          :email => @user.email,
+          :description => @user.name)
+        @user.stripe_customer_id = customer.id
+        @user.save
+      end
       # Delete same night reservations still pending at other bars
       @user.reservations.each do |reservation|
-        if reservation.date == @reservation.date && reservation != @reservation
+        if reservation.date == @reservation.date && reservation != @reservation && reservation.user_response != 2
           reservation.update_attributes(user_response: 2)
           BarMailer.resrejected(reservation).deliver
         end
@@ -111,8 +114,7 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
       redirect_back_or_root_path
       BarMailer.resaccepted(@reservation).deliver
     else
-      #render 'reservations/user_show'
-      redirect_to root_path + "reservations/" + "#{@reservation.id}" + "/user_show#useracceptsModal-#{@reservation.id}"
+      render 'reservations/user_show'
     end
   end
 

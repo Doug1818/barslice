@@ -1,13 +1,9 @@
 class Reservation < ActiveRecord::Base
-  attr_accessible :date, :start_time, :end_time, :hdct, :room_id, :bar_response, :user_response, :bar_accepts_date, :bar_rejects_date, :user_accepts_date, :user_rejects_date, :cc_required, :respolicy_accepted, :cc_number, :cc_exp_month, :cc_exp_year, :agreement
-  attr_accessor :cc_number, :cc_exp_month, :cc_exp_year
+  attr_accessible :date, :start_time, :end_time, :hdct, :room_id, :bar_response, :user_response, :bar_accepts_date, :bar_rejects_date, :user_accepts_date, :user_rejects_date, :cc_required, :respolicy_accepted, :stripe_card_token
+  attr_accessor :stripe_card_token
   belongs_to :room
   belongs_to :user
   has_many :messages, dependent: :destroy
-  has_attached_file :agreement, 
-            storage: :s3,
-            s3_credentials: "#{Rails.root}/config/s3.yml",
-            path: "agreements/:id/:filename"
 
   scope :of_bar, lambda { |bar| joins(:room).where("rooms.bar_id = ?", bar.id) }
   scope :requested, where(bar_response: nil, user_response: nil).order("created_at desc")
@@ -23,13 +19,6 @@ class Reservation < ActiveRecord::Base
   validate  :bar_date_time
   validate  :room_date_time
   validate  :respolicy_is_accepted
-  validates :cc_number, presence: true, numericality: { only_integer: true }, length: { minimum: 15, maximum: 15 }, :if => :should_validate_cc?
-  validates :cc_exp_month, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 13 }, :if => :should_validate_cc?
-  validates :cc_exp_year, presence: true, numericality: { only_integer: true }, length: { minimum: 4, maximum: 4 }, :if => :should_validate_cc?
-
-  def should_validate_cc?
-    cc_required == true && :bar_response == 1
-  end
 
   def respolicy_is_accepted
     if self.user_response == 1 && self.respolicy_accepted == false

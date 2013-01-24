@@ -18,6 +18,7 @@ gem 'mail'
 gem 'rufus-mnemo'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+gem 'stripe'
 
 group :development do
   gem 'rspec-rails', '2.9.0'
