@@ -93,7 +93,6 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
       if @user.stripe_customer_id?
         customer = Stripe::Customer.retrieve(@user.stripe_customer_id)
         customer.card = params[:reservation][:stripe_card_token]
-        binding.pry
         customer.save
       else
         customer = Stripe::Customer.create(
