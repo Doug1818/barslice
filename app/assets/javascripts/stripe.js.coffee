@@ -6,7 +6,7 @@ subscription =
   setupForm: ->
     $('.edit_reservation').submit ->
       $('input[type=submit]').attr('disabled', true)
-      if $('#editcard').length > 0 && !$("#card_number").val().length
+      if ($('#edit_card').length > 0 && !$("#card_number").val().length) || $('#card_required').length == 0
         if !$('#reservation_respolicy_accepted').is(":checked")
           $('#respolicy_error').text("Reservation policy must be accepted")
           $('input[type=submit]').attr('disabled', false)
