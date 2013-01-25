@@ -3,7 +3,7 @@
 <div class="modal hide" id="useracceptsModal-<%= reservation.id %>">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>You must agree to <%= "#{Bar.find(Room.find(reservation.room_id).id).name}'s" %> reservation policy before confirming your reservation</h3>
+    <h3>You must agree to <%= "#{Bar.find(Room.find(reservation.room_id).bar_id).name}'s" %> reservation policy before confirming your reservation</h3>
   </div>
   <div class="modal-body">
     <p class=strong>Reservation policy:</p>
