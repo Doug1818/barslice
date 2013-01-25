@@ -7,7 +7,7 @@
   </div>
   <div class="modal-body">
     <p class=strong>Reservation policy:</p>
-    <%= Bar.find(Room.find(reservation.room_id).id).respolicy.description.gsub(/\n/, '<br/>').html_safe %>
+    <%= Bar.find(Room.find(reservation.room_id).bar_id).respolicy.description.gsub(/\n/, '<br/>').html_safe %>
   </div>
   <div class="modal-footer">
     <%= form_for(reservation, url: user_accepts_reservation_path(reservation.id)) do |f| %>
@@ -16,7 +16,7 @@
           <div>
             <%= render 'shared/error_messages', object: f.object %>
             <%= f.check_box :respolicy_accepted, style: "float:left;margin-right:10px;" %>
-            <%= f.label :respolicy_accepted, "I agree to #{Bar.find(Room.find(reservation.room_id).id).name}'s reservation policy",
+            <%= f.label :respolicy_accepted, "I agree to #{Bar.find(Room.find(reservation.room_id).bar_id).name}'s reservation policy",
               class: "strong", style: "float:left;font-weight:bold;cursor:pointer;" %>
           </div>
           <div id="respolicy_error" class="jquery_validation" style="text-align:left;">
@@ -25,7 +25,7 @@
         </div>
         <div style="float:right;text-align:left;">
           <% if reservation.cc_required == true %>
-            <div class="strong" style="margin-bottom:10px;"><%= "#{Bar.find(Room.find(reservation.room_id).id).name} requires a credit card number to confirm this reservation" %></div>
+            <div class="strong" style="margin-bottom:10px;"><%= "#{Bar.find(Room.find(reservation.room_id).bar_id).name} requires a credit card number to confirm this reservation" %></div>
             <% if current_user.stripe_customer_id? %>
               <%= "Your #{current_user.stripe_card_type}: xxxxxx#{current_user.stripe_card_last4}" %> |
               <a href="javascript:void(0);" id="togglediv">Edit card info</a>
