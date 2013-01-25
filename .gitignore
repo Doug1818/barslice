@@ -14,8 +14,7 @@
 /log/*.log
 /tmp
 
-# Ignore keys files
+# Ignore s3 configuration
 /config/s3.yml
-/config/initializers/stripe.rb
 # Ignore application configuration
 /config/application.yml

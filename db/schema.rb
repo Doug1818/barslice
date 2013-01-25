@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123170704) do
+ActiveRecord::Schema.define(:version => 20130125001522) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -281,6 +281,8 @@ ActiveRecord::Schema.define(:version => 20130123170704) do
     t.string   "name"
     t.string   "phone"
     t.string   "stripe_customer_id"
+    t.string   "stripe_card_type"
+    t.string   "stripe_card_last4"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

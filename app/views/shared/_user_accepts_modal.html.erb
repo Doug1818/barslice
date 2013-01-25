@@ -27,7 +27,7 @@
           <% if reservation.cc_required == true %>
             <div class="strong" style="margin-bottom:10px;"><%= "#{Bar.find(Room.find(reservation.room_id).id).name} requires a credit card number to confirm this reservation" %></div>
             <% if current_user.stripe_customer_id? %>
-              <%= "Your #{@customer.active_card.type}: xxxxxx#{@customer.active_card.last4}" %> |
+              <%= "Your #{current_user.stripe_card_type}: xxxxxx#{current_user.stripe_card_last4}" %> |
               <a href="javascript:void(0);" id="togglediv">Edit card info</a>
               <div id="editcard" style="display:none;margin-top:10px;">
                 <div style="float:left;margin-right:25px;">

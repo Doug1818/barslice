@@ -59,7 +59,8 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
     @message = current_user.messages.build
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    @customer = Stripe::Customer.retrieve(current_user.stripe_customer_id) if current_user.stripe_customer_id?
+    #@user = User.find(@reservation.user_id)
+    #@customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
   end
 
   def bar_accepts
@@ -94,12 +95,17 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
         customer = Stripe::Customer.retrieve(@user.stripe_customer_id)
         customer.card = params[:reservation][:stripe_card_token]
         customer.save
+        @user.stripe_card_type = customer.active_card.type
+        @user.stripe_card_last4 = customer.active_card.last4
+        @user.save
       else
         customer = Stripe::Customer.create(
           :card => params[:reservation][:stripe_card_token],
           :email => @user.email,
           :description => @user.name)
         @user.stripe_customer_id = customer.id
+        @user.stripe_card_type = customer.active_card.type
+        @user.stripe_card_last4 = customer.active_card.last4
         @user.save
       end
       # Delete same night reservations still pending at other bars
