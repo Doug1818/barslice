@@ -11,6 +11,11 @@
     access_key_id: AKIAJ5GOOLEVIVUV36ZA
     secret_access_key: 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
 
+  staging:
+    bucket: barslice
+    access_key_id: AKIAJ5GOOLEVIVUV36ZA
+    secret_access_key: 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
+
   production:
     bucket: barslice
     access_key_id: AKIAJ5GOOLEVIVUV36ZA
