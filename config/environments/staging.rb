@@ -89,5 +89,5 @@ BarSlice::Application.configure do
   #:enable_starttls_auto => true  }
 
   # Specify what domain to use for mailer URLs (also required for Devise)
-  config.action_mailer.default_url_options = { :host => 'http://barslice-staging.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'barslice-staging.herokuapp.com' }
 end
