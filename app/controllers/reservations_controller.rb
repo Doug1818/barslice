@@ -59,8 +59,6 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
     @message = current_user.messages.build
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    #@user = User.find(@reservation.user_id)
-    #@customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
   end
 
   def bar_accepts
