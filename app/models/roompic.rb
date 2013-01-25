@@ -6,7 +6,10 @@ class Roompic < ActiveRecord::Base
   						   medium: { geometry: "500x500>", convert_options: "-auto-orient" }, 
   						   large:  { geometry: "900x900>", convert_options: "-auto-orient" } },
   					storage: :s3,
-  					s3_credentials: "#{Rails.root}/config/s3.yml",
+  					s3_credentials: { 
+              access_key_id: ENV['S3_ID'], 
+              secret_access_key: ENV['S3_SECRET'], 
+              bucket: ENV['S3_BUCKET'] },
   					path: ":style/:id/:filename"
 
   #validates_attachment_presence :pic

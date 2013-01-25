@@ -5,7 +5,10 @@ class Message < ActiveRecord::Base
   belongs_to :user
   has_attached_file :attachment, 
   					storage: :s3,
-  					s3_credentials: "#{Rails.root}/config/s3.yml",
+  					s3_credentials: { 
+              access_key_id: ENV['S3_ID'], 
+              secret_access_key: ENV['S3_SECRET'], 
+              bucket: ENV['S3_BUCKET'] },
   					path: "files/:id/:filename"
 
   validates_attachment_size :attachment, less_than: 5.megabytes
