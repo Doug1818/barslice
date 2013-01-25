@@ -89,7 +89,6 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
         user_response: 1, 
         user_accepts_date: Time.now)
       # Update or Create stripe customer
-      Stripe.api_key = ENV['STRIPE_SECRET_KEY']
       if @user.stripe_customer_id?
         customer = Stripe::Customer.retrieve(@user.stripe_customer_id)
         customer.card = params[:reservation][:stripe_card_token]
