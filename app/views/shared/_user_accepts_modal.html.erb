@@ -27,12 +27,12 @@
           <% if reservation.cc_required == true %>
             <div class="strong" style="margin-bottom:10px;"><%= "#{Bar.find(Room.find(reservation.room_id).id).name} requires a credit card number to confirm this reservation" %></div>
             <% if current_user.stripe_customer_id? %>
-              <%= "Your #{current_user.stripe_card_type}: xxxxxx#{current_user.stripe_card_last4}" %> |
+              stripe current type and last4
+              stripe edit card fields
               <a href="javascript:void(0);" id="togglediv">Edit card info</a>
-              <div id="editcard" style="display:none;margin-top:10px;">
-                stripe edit fields
+              <div id="editcard" style="display:none;margin-top:10px;">test</div>
             <% else %>
-              stripe create fields
+              stripe create card fields
             <% end %>
           <% end %>
           <div style="float:right;margin-top:30px;">
