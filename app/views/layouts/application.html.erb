@@ -7,7 +7,7 @@
 	  <%= csrf_meta_tags %>
 	  <%= render 'layouts/shim' %>
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+	  <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
 	</head>
 	<body>
 		<%= render 'layouts/header' %>

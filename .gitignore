@@ -16,5 +16,6 @@
 
 # Ignore s3 configuration
 /config/s3.yml
+
 # Ignore application configuration
 /config/application.yml
