@@ -47,8 +47,7 @@
 	    	<td>
 	    		<% if @reservation.bar_response != 1 %>
 	    			<%= render 'shared/bar_accepts_modal', reservation: @reservation %> |
-					<%= link_to 'Reject', bar_rejects_reservation_path(@reservation.id), 
-					rel: "tooltip", title: "Organizer will be automotically notifed by email" %>
+					<%= render 'shared/bar_rejects_modal', reservation: @reservation %>
 	    		<% elsif @reservation.bar_response == 1 %>
 	    			<%= @reservation.bar_accepts_date.strftime("%a, %b %e, %l:%M%P")%>
     			<% else %>

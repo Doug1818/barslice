@@ -2,6 +2,14 @@ class ReservationsController < ApplicationController
 before_filter :authenticate_bar!, only: [:bar_accepts, :bar_rejects, :bar_show, :bar_index]
 before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_rejects, :user_show, :user_index]
 
+  def show
+    @reservation = Reservation.find(params[:id])
+    redirect_to user_show_reservation_path(@reservation)
+    #respond_to do |format|            
+    #  format.js    
+    #end
+  end
+
   def new
   	@reservation = Reservation.new
     @room = Room.find(params[:format])
@@ -90,14 +98,14 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
         user_accepts_date: Time.now)
       # Update or Create stripe customer
       Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-      if @user.stripe_customer_id?
+      if @user.stripe_customer_id? && params[:reservation][:stripe_card_token] != ""
         customer = Stripe::Customer.retrieve(@user.stripe_customer_id)
         customer.card = params[:reservation][:stripe_card_token]
         customer.save
         @user.stripe_card_type = customer.active_card.type
         @user.stripe_card_last4 = customer.active_card.last4
         @user.save
-      else
+      elsif @user.stripe_customer_id == nil
         customer = Stripe::Customer.create(
           :card => params[:reservation][:stripe_card_token],
           :email => @user.email,

@@ -63,9 +63,14 @@
 	    	<td>Confirmed by <%= current_user.name %></td>
 	    	<td>
 	    		<% if @reservation.bar_response == 1 && @reservation.user_response != 1 %>
-	    			<%= render 'shared/user_accepts_modal', reservation: @reservation %> |
-					<%= link_to 'Cancel', user_rejects_reservation_path(@reservation.id), 
-					rel: "tooltip", title: "Bar will be automotically notifed by email" %>
+	    			<% if @bar.respolicy %>
+	    				<%= render 'shared/user_accepts_modal_1', reservation: @reservation %> |
+    				<% elsif @reservation.cc_required? %>
+    					<%= render 'shared/user_accepts_modal_2', reservation: @reservation %> |
+    				<% else %>
+    					<%= render 'shared/user_accepts_modal_3', reservation: @reservation %> |
+    				<% end %>
+					<%= render 'shared/user_rejects_modal', reservation: @reservation %>
 	    		<% elsif @reservation.user_response == 1 %>
 	    			<%= @reservation.user_accepts_date.strftime("%a, %b %e, %l:%M%P")%>
     			<% else %>

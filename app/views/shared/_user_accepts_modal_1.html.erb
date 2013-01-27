@@ -1,9 +1,9 @@
 <a data-toggle="modal" href="#useracceptsModal-<%= reservation.id %>">Confirm</a>
+<% bar = Bar.find(Room.find(reservation.room_id).bar_id) %>
 
 <div class="modal hide" id="useracceptsModal-<%= reservation.id %>">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
-    <% bar = Bar.find(Room.find(reservation.room_id).bar_id) %>
     <h3>You must agree to <%= "#{bar.name}'s" %> reservation policy before confirming your reservation</h3>
   </div>
   <div class="modal-body">
@@ -17,7 +17,6 @@
       <div>
         <div style="float:left;">
           <div>
-            <%= render 'shared/error_messages', object: f.object %>
             <%= f.check_box :respolicy_accepted, style: "float:left;margin-right:10px;" %>
             <%= f.label :respolicy_accepted, "I agree to #{bar.name}'s reservation policy",
               class: "strong", style: "float:left;font-weight:bold;cursor:pointer;" %>
@@ -32,8 +31,8 @@
               <div class="strong" style="margin-bottom:10px;"><%= "#{bar.name} requires a credit card number to confirm this reservation" %></div>
               <% if current_user.stripe_customer_id? %>
                 <%= "Your #{current_user.stripe_card_type}: xxxxxx#{current_user.stripe_card_last4}" %> |
-                <a href="javascript:void(0);" id="togglediv">Edit card info</a>
-                <div id="edit_card" style="display:none;margin-top:10px;">
+                <a href="javascript:void(0);" class="togglediv">Edit card info</a>
+                <div class="edit_card" style="display:none;margin-top:10px;">
                   <div style="float:left;margin-right:25px;">
                     <%= label_tag :card_number, "Credit Card Number" %>
                     <%= text_field_tag :card_number, nil, name: nil %>
@@ -83,14 +82,6 @@
   }
   #useracceptsModal-<%= reservation.id %> {
     width: 900px; /* SET THE WIDTH OF THE MODAL */
-    margin: -250px 0 0 -450px; /* CHANGE MARGINS TO ACCOMODATE THE NEW WIDTH (original = margin: -250px 0 0 -280px;) */
+    margin: -300px 0 0 -450px; /* CHANGE MARGINS TO ACCOMODATE THE NEW WIDTH (original = margin: -250px 0 0 -280px;) */
   }
 </style>
-
-<script type="text/javascript">
-  $(function(){
-    $('#togglediv').click(function(){
-       $('#edit_card').toggle();
-    });
-  });
-</script>

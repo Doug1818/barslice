@@ -1,0 +1,15 @@
+<a data-toggle="modal" href="#barrejectsModal-<%= reservation.id %>">Reject</a>
+
+<div class="modal hide" id="barrejectsModal-<%= reservation.id %>">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3><%= "Reject this reservation" %></h3>
+  </div>
+  <div class="modal-body">
+    <p><%= "By clicking, 'Reject reservation', the event organizer will be notified of your response." %></p>
+  </div>
+  <div class="modal-footer">
+    <%= link_to 'Reject reservation', bar_rejects_reservation_path(reservation.id), class: "btn", method: :put %>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>

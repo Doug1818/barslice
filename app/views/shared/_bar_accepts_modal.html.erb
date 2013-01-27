@@ -6,7 +6,7 @@
     <h3>Accept this reservation?</h3>
   </div>
   <div class="modal-body">
-    <p>If you require a credit card number to hold the reservation, please check the box below before clicking accept. The organizer will be automatically notifed by email.</p>
+    <p>If you require a credit card number to hold the reservation, please check the box below before clicking accept. The organizer will be automatically notifed of your response.</p>
     <p>
       <%= form_for(reservation, remote: true, html: { class: "ajax_check_box" }) do |f| %>
         <%= f.check_box :cc_required, style: "float:left;margin-right:5px;" %>
@@ -16,7 +16,7 @@
     </p>
   </div>
   <div class="modal-footer">
-    <%= link_to "Accept", bar_accepts_reservation_path(reservation.id), class: "btn" %>
+    <%= link_to "Accept reservation", bar_accepts_reservation_path(reservation.id), class: "btn", method: :put %>
     <a href="#" class="btn" data-dismiss="modal">Close</a>
   </div>
 </div>

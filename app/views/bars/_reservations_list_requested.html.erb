@@ -46,8 +46,7 @@
           <%= reservation.created_at.strftime("%b %d") %></td>
         <td class="action">
           <%= render 'shared/bar_accepts_modal', reservation: reservation %> |
-          <%= link_to 'Reject', bar_rejects_reservation_path(reservation.id), 
-          rel: "tooltip", title: "Organizer will be automotically notifed by email" %> |
+          <%= render 'shared/bar_rejects_modal', reservation: reservation %> |
           <%= link_to 'Message', bar_show_reservation_path(reservation) %>
         </td>
       </tr>

@@ -1,0 +1,16 @@
+<a data-toggle="modal" href="#useracceptsModal-<%= reservation.id %>">Confirm</a>
+<% bar = Bar.find(Room.find(reservation.room_id).bar_id) %>
+
+<div class="modal hide" id="useracceptsModal-<%= reservation.id %>">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3><%= "Confirm your reservation with #{bar.name}" %></h3>
+  </div>
+  <div class="modal-body">
+    <p><%= "By clicking, 'Confirm reservation' #{bar.name} will be notified of your response" %></p>
+  </div>
+  <div class="modal-footer">
+    <%= link_to "Confirm reservation", user_accepts_reservation_path(reservation.id), class: "btn", method: :put %>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>
