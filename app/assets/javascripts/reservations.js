@@ -4,9 +4,3 @@ $(function () {
     $(this).parent('form').submit();
   });  
 });
-
-$(function () {
-  $('.togglediv').click(function(){
-  	$('.edit_card').toggle();
-  });
-});

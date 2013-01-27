@@ -53,13 +53,7 @@
           style="cursor: pointer;">
           <%= reservation.created_at.strftime("%b %d") %></td>
         <td class="action">
-          <% if bar.respolicy %>
-            <%= render 'shared/user_accepts_modal_1', reservation: reservation %> |
-          <% elsif reservation.cc_required? %>
-            <%= render 'shared/user_accepts_modal_2', reservation: reservation %> |
-          <% else %>
-            <%= render 'shared/user_accepts_modal_3', reservation: reservation %> |
-          <% end %>
+          <%= render 'shared/user_accepts_modal', reservation: reservation %> |
           <%= render 'shared/user_rejects_modal', reservation: reservation %> |
           <%= link_to 'Message', user_show_reservation_path(reservation) %>
         </td>
