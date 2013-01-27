@@ -1,0 +1,23 @@
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#tab-u1" data-toggle="tab">My Reservations</a></li>
+  <li><a href="#tab-u2" data-toggle="tab">Find Bars</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane active" id="tab-u1">
+    <ul class="nav nav-list" style="float:left;margin:0 15px 0 0;">
+      <li><%= link_to "All", root_path %></li>
+      <li><%= link_to "Requested", requested_reservations_path %></li>
+      <li class="active"><a href="#">Accepted</a></li>
+      <li><%= link_to "Confirmed", confirmed_reservations_path %></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="requested">
+        <%= render 'users/reservations_list_accepted', object: current_user %>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="tab-u2">
+    <%= render 'searches/new_search' %>
+  </div>
+</div>

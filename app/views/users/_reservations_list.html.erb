@@ -1,8 +1,8 @@
 <ul class="nav nav-list" style="float:left;margin:0 15px 0 0;">
-  <li class="active"><a href="#all" data-toggle="tab">All</a></li>
-  <li><a href="#requested" data-toggle="tab">Requested</a></li>
-  <li><a href="#accepted" data-toggle="tab">Accepted</a></li>
-  <li><a href="#confirmed" data-toggle="tab">Confirmed</a></li>
+  <li class="active"><a href="#">All</a></li>
+  <li><%= link_to "Requested", requested_reservations_path %></li>
+  <li><%= link_to "Accepted", accepted_reservations_path %></li>
+  <li><%= link_to "Confirmed", confirmed_reservations_path %></li>
 </ul>
 
 <div class="tab-content">
@@ -10,14 +10,5 @@
     <%= render 'users/reservations_list_requested', object: current_user %>
     <%= render 'users/reservations_list_accepted', object: current_user %>
     <%= render 'users/reservations_list_confirmed', object: current_user %>
-  </div>
-  <div class="tab-pane" id="requested">
-
-  </div>
-  <div class="tab-pane" id="accepted">
-
-  </div>
-  <div class="tab-pane" id="confirmed">
-
   </div>
 </div>

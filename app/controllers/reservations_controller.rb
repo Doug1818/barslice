@@ -1,13 +1,18 @@
 class ReservationsController < ApplicationController
 before_filter :authenticate_bar!, only: [:bar_accepts, :bar_rejects, :bar_show, :bar_index]
-before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_rejects, :user_show, :user_index]
+before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_rejects, :user_show, 
+  :user_index, :requested, :accepted, :confirmed]
 
-  def show
-    @reservation = Reservation.find(params[:id])
-    redirect_to user_show_reservation_path(@reservation)
-    #respond_to do |format|            
-    #  format.js    
-    #end
+  def requested
+    @search = Search.new
+  end
+
+  def accepted
+    @search = Search.new
+  end
+
+  def confirmed
+    @search = Search.new
   end
 
   def new
