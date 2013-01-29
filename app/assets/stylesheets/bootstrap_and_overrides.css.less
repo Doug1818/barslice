@@ -59,7 +59,11 @@ textarea {
 
 .center {
 	text-align: center;
-	margin: 25px 0 50px 0;
+	margin-top: 25px;
+	margin-bottom: 50px;
+	margin-left:auto;
+	margin-right:auto;
+	width:80%;
 	.welcome {
 		font-size:4em;
 		margin-bottom:0;
@@ -325,9 +329,12 @@ footer {
 		&:nth-child(even) {
 			background: #F8F8F8;
 			}
+		&:first-child{
+			border-top: 1px solid @grayMediumLight;
+		}
 		&:last-child {
 			margin-bottom: 20px;
-			border-bottom: none;
+			/*border-bottom: none;*/
 		}
 		.title {
 			font-size: 1.15em;
@@ -397,12 +404,18 @@ footer {
 	margin: 0;
 	.bar {
 		overflow: auto;
-		padding: 20px 7px 10px 7px;
+		width: 90%;
+		border: 1px solid @grayMediumLight;
+		border-radius:10px;
+		background: #F8F8F8;
+		padding: 10px;
+		margin-bottom: 20px;
+		/*padding: 20px 7px 10px 7px;
 		border-bottom: 1px solid #61b0df;
 		&:last-child {
 			margin-bottom: 10px;
 			border-bottom: none;
-		}
+		}*/
 		.title {
 			font-size: 1.15em;
 		}
@@ -412,7 +425,7 @@ footer {
 		.nofl {
 			clear:both;
 		}
-		ul.rooms {
+		ul.brooms {
 			list-style: none;
 			margin: 0;
 			li.room {

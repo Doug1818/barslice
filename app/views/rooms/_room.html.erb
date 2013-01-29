@@ -1,4 +1,4 @@
-<li class="room span8">
+<li class="room span9">
 	
 	<% if !bar_signed_in? %>	
 		<span style="float:right;margin-top:5px;">
@@ -27,9 +27,9 @@
 	  </span><br>
   	<%= render 'shared/deets', room: room %>
   </span>
-	<div class="nofl">
+	<div class="nofl" style="width:83%;">
 		<strong>Description: </strong>
-		<%= room.description.truncate(180) %>
+		<%= room.description.truncate(220) %>
 	</div>
 	<div>
 		<% if !@sfiltered.nil? %>

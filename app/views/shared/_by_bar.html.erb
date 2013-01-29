@@ -1,4 +1,4 @@
-<ul class="bars span8">
+<ul class="bars">
   <% Bar.all.each do |bar| %>
       <li class="bar">
         <span class="title">
@@ -8,7 +8,7 @@
             <%= render 'shared/claim_bar_modal', object: bar, room: bar %>
           <% end %>
         </span>
-        <ul class="rooms">
+        <ul class="brooms">
           <% bar.rooms.each do |room| %>
             <li class="room">
               <% if !bar_signed_in? %>
@@ -28,9 +28,9 @@
                 <% end %>
                 <%= render 'shared/deets', room: room %>
               </span>
-              <div class="nofl">
+              <div class="nofl" style="width:80%;">
                 <strong>Description: </strong>
-                <%= room.description.truncate(190) %>
+                <%= room.description.truncate(210) %>
               </div>
             </li>
           <% end %>
