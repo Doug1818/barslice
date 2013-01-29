@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-	<div style="text-align:right;"><%= link_to "Back to My Reservations", user_index_reservations_path %></div>
+	<div style="text-align:right;position:relative;left:70px;margin-bottom:10px;"><%= link_to "Back to My Reservations", user_index_reservations_path %></div>
 <% end %>
 <h1><%= @bar.name %></h1>
 
@@ -21,10 +21,10 @@
 		<%= render 'bars/respolicy_tab_signedin' %>
 	<% else %>
 		<% if @bar.respolicy %>
-			<strong>Description:</strong><br>
+			<strong>Reservation policy:</strong><br>
 	    	<%= render 'bars/respolicy', object: @bar %>
 	  	<% else %>
-			<p>No reservation policy currently available</p>
+			<h3 style="text-align:center;margin-bottom:100px;">No reservation policy currently available</h3>
 		<% end %>
 	<% end %>
 	</div>

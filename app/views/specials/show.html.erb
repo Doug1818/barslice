@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-	<div style="text-align:right;"><%= link_to "Back to My Reservations", user_index_reservations_path %></div>
+	<div style="text-align:right;position:relative;left:70px;margin-bottom:10px;"><%= link_to "Back to My Reservations", user_index_reservations_path %></div>
 <% end %>
 <h1>Special at <%= link_to Bar.find(@special.bar_id).name, bar_path(@special.bar_id) %>: <%= @special.name %></h1>
 

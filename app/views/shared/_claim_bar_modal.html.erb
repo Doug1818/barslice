@@ -1,10 +1,10 @@
 <div class="modal hide" id="claimbarModal-<%= room.id %>">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
-    <h3>Is this your bar?</h3>
+    <h3 style="font-size:16pt;">Is this your bar?</h3>
   </div>
   <div class="modal-body">
-    <p>Click yes to claim your bar and have your identity confirmed via email.</p>
+    <p style="text-align:left;font-size:12pt;">Click yes to claim your bar and have your identity confirmed via email.</p>
   </div>
   <div class="modal-footer">
     <%= link_to "Yes", confirm_bar_bar_path(object.id), class: "btn" %>

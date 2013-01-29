@@ -13,7 +13,7 @@
 		<span class="title">
 		    <span class="strong"><%= link_to Bar.find(room.bar_id).name, bar_path(Bar.find(room.bar_id)) %></span> |
 	    	<%= Bar.find(room.bar_id).neighborhood %>
-	    	<% if Bar.find(room.bar_id).claimed == false %>
+	    	<% if Bar.find(room.bar_id).claimed == false && !user_signed_in? %>
 	    		<a data-toggle="modal" style="font-size:0.7em" href="#claimbarModal-<%= room.id %>">(Your bar?)</a>
 	    		<%= render 'shared/claim_bar_modal', object: Bar.find(room.bar_id), room: room %>
 	    	<% end %>

@@ -1,16 +1,16 @@
 <%= render 'shared/error_messages', object: f.object %>
 
 <div class="hform strong">Confirm event details</div>
-<div class="hform">
-	<span>Date:</span>
+<div>
+	<%= f.label :date, class: "hform" %>
 	<% if f.object.date? %>
-		<%= f.text_field :date, class: "datepicker", style: "width: 100px", value: f.object.date.strftime("%m/%d/%Y") %>
+		<%= f.text_field :date, class: "datepicker", value: f.object.date.strftime("%m/%d/%Y") %>
 	<% else %>
-		<%= f.text_field :date, class: "datepicker", style: "width: 100px" %>
+		<%= f.text_field :date, class: "datepicker" %>
 	<% end %>
 </div>
-<div class="hform">
-	Time:
+<div>
+	<%= f.label :time, class: "hform" %>
 	<% if f.object.start_time? %>
 		<%= f.select :start_time, TIMES.keys, { selected: TIMES.key(f.object.start_time) }, class: "time" %> to
 	<% else %>
@@ -23,7 +23,7 @@
 		<%= f.select :end_time, TIMES.keys, { selected: "1:00am" }, class: "time" %>
 	<% end %>
 </div>
-<div class="hform">Number of people: <%= f.text_field :hdct, style:"width:100px" %></div>
+<div><%= f.label :number_of_people, class: "hform" %><%= f.text_field :hdct %></div>
 <div><%= f.hidden_field :room_id, value: @room.id %></div>
 
 <script type="text/javascript">
