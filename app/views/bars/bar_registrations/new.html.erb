@@ -5,31 +5,37 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true } ) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
-  <div><%= f.label :name, "Bar name", class: "hform" %>
-  <%= f.text_field :name %></div>  
+  <div class="row">
+    <div class="span4">
+      <div><%= f.label :name, "Bar name", class: "hform" %>
+      <%= f.text_field :name %></div>  
 
-  <div><%= f.label :email, class: "hform" %>
-  <%= f.email_field :email %></div>
+      <div><%= f.label :email, class: "hform" %>
+      <%= f.email_field :email %></div>
 
-  <div><%= f.label :password, class: "hform" %>
-  <%= f.password_field :password %></div>
+      <div><%= f.label :password, class: "hform" %>
+      <%= f.password_field :password %></div>
 
-  <div><%= f.label :password_confirmation, class: "hform" %>
-  <%= f.password_field :password_confirmation %></div>
+      <div><%= f.label :password_confirmation, class: "hform" %>
+      <%= f.password_field :password_confirmation %></div>
+    </div>
 
-  <div><%= f.label :address, "Bar address", class: "hform" %>
-  <%= f.text_field :address %></div>
+    <div class="span4">
+      <div><%= f.label :address, "Bar address", class: "hform" %>
+      <%= f.text_field :address %></div>
 
-  <div><%= f.label :neighborhood, class: "hform" %>
-  <%= f.select :neighborhood, Bar::NEIGHBORHOODS %></div>
+      <div><%= f.label :neighborhood, class: "hform" %>
+      <%= f.select :neighborhood, Bar::NEIGHBORHOODS %></div>
 
-  <div><%= f.label :phone, "Phone number", class: "hform" %>
-  <%= f.text_field :phone %></div>
+      <div><%= f.label :phone, "Phone number", class: "hform" %>
+      <%= f.text_field :phone %></div>
 
-  <div><%= f.label :website, "Website", class: "hform" %>
-  <%= f.text_field :website %></div>
+      <div><%= f.label :website, "Website", class: "hform" %>
+      <%= f.text_field :website %></div>
+    </div>
+  </div>
 
-  <div class="hform">Hours of operation</div>
+  <div class="hform" style="border-bottom: 1px solid #E0E0E0;padding-bottom:10px;width:582px;">Hours of operation</div>
   <div>
     <%= f.fields_for :hrsranges do |builder| %>
       <%= render 'hrsrange_fields', f: builder %>
