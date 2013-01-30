@@ -6,6 +6,7 @@ en:
     attributes:
       bar:
         phone: "Phone number"
+        hrsranges: ""
       search:
         hdct: "Number of people"
       "room/hdctranges":
@@ -14,7 +15,6 @@ en:
       "room/fees":
         amount: "Reservation fee"
       "room/spendmins": "Spend minimum"
-      "bar/hrsranges": ""
       "user/reservations":
         hdct: "Number of people"
         date: "Date"
@@ -22,7 +22,7 @@ en:
         date_and_time: "Date and time"
         number_of_people: "Number of people"
       reservation:
-        hdct: "Number of people"  
+        hdct: "Number of people"
     errors:
       models:
         bar:
