@@ -13,7 +13,7 @@ class Room < ActiveRecord::Base
   has_many :reservations, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 50 }
-  validate :name_uniqueness, on: :create #need to add different validation for update action
+  validate  :name_uniqueness, on: :create #need to add different validation for update action
   validates :privacy, presence: true
   validates :description, presence: true
   validate  :week_days

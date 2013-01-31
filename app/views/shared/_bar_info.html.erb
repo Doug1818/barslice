@@ -31,7 +31,9 @@ Hours of operation:
 	<%= link_to "Edit", edit_bar_registration_path %>
 <% end %>
 
-<% if object.claimed == false && !user_signed_in? %>
-	<a data-toggle="modal" href="#claimbarModal-<%= object.id %>">Your bar?</a>
-	<%= render 'shared/claim_bar_modal', object: object, room: object %>
+<% if object.claimed == false && !user_signed_in? && !bar_signed_in? %>
+	<div>
+		<a data-toggle="modal" href="#claimbarModal-<%= object.id %>">Your bar?</a>
+		<%= render 'shared/claim_bar_modal', object: object, room: object %>
+	</div>
 <% end %>

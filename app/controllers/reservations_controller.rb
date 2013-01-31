@@ -63,8 +63,9 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
 
   def bar_show
     @reservation = Reservation.find(params[:id])
-    @user = User.find(@reservation.user_id)
     @message = current_bar.messages.build
+    @room = Room.find(@reservation.room_id)
+    @user = User.find(@reservation.user_id)
   end
 
   def user_show

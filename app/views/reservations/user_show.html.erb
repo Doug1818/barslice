@@ -27,7 +27,7 @@
 	  </table>
 	</div>
 
-	<div class="span6">
+	<div class="span5">
 		<h3>Reservation status:</h3>
 		<table class="pretty_table">
 	    <tr>
@@ -73,6 +73,28 @@
 	    	</td>
 	    </tr>
 	  </table>
+
+		<% if @room.specials.filtered(@reservation) != [] %>
+			<h3 style="margin-bottom:2px;">Available specials:</h3>
+			<div style="margin-bottom:5px;"><%= "Message #{@bar.name} if you want to take advantage of a special" %></div>
+			<ul style="margin-left:16px;">
+				<% if @room.specials.filtered(@reservation).count <= 3 %>
+					<% @room.specials.filtered(@reservation).each do |special| %>
+						<li><%= link_to special.name, special_path(special.id), target: "_blank" %></li>
+					<% end %>
+				<% else %>
+					<% @room.specials.filtered(@reservation)[0..1].each_with_index do |special, i| %>
+						<li><%= link_to special.name, special_path(special.id), target: "_blank" %></li>
+					<% end %>
+					<div id="more_specials" style="display:none;">
+          	<% @room.specials.filtered(@reservation)[2..-1].each_with_index do |special, i| %>
+							<li><%= link_to special.name, special_path(special.id), target: "_blank" %></li>
+						<% end %>
+          </div>
+          <li><a href="javascript:void(0);" id="togglediv">More</a></li>
+        <% end %>
+			</ul>
+		<% end %>
 	</div>
 </div>
 

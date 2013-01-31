@@ -18,6 +18,21 @@ class Special < ActiveRecord::Base
   validate  :room_selected
   validate  :special_separator
 
+  def self.filtered(reservation)
+    specials = []
+    good_time = where("specials.from <= ? AND specials.until >= ? AND specials.#{Date::DAYNAMES[reservation.date.wday].downcase} = ?
+      AND specials.start_date IS NULL AND specials.end_date IS NULL", reservation.start_time, reservation.end_time, true)
+    good_date = where("specials.start_date <= ? AND specials.end_date >= ?
+      AND specials.#{Date::DAYNAMES[reservation.date.wday].downcase} = ? AND specials.from IS NULL AND specials.until IS NULL", reservation.date, reservation.date, true)
+    good_date_and_time = where("specials.from <= ? AND specials.until >= ? AND specials.start_date <= ? AND specials.end_date >= ?
+      AND specials.#{Date::DAYNAMES[reservation.date.wday].downcase} = ?", reservation.start_time, reservation.end_time, reservation.date, reservation.date, true)
+    good_day = where("specials.#{Date::DAYNAMES[reservation.date.wday].downcase} = ?
+      AND specials.start_date IS NULL AND specials.end_date IS NULL AND specials.from IS NULL AND specials.until IS NULL", true)
+    specials = good_time + good_date + good_date_and_time + good_day if !good_time.nil? && !good_date.nil? && !good_date_and_time.nil? && !good_day.nil?
+    specials = specials.to_a.uniq if specials.any?
+    specials
+  end
+  
   def room_selected
     if !self.rooms.any?
       self.errors[:applicable_rooms] = "must have at least one room selected"

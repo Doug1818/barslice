@@ -4,3 +4,10 @@ $(function () {
     $(this).parent('form').submit();
   });  
 });
+
+$(function () {
+	$('#togglediv').click(function(){
+	  $('#more_specials').toggle();
+	  $(this).text($(this).text() == 'More' ? 'Fewer' : 'More');
+	});
+});
