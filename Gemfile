@@ -20,6 +20,7 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem 'stripe'
 gem 'figaro'
+gem 'omniauth-stripe-connect'
 
 group :development do
   gem 'rspec-rails', '2.9.0'

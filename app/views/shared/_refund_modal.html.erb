@@ -1,0 +1,15 @@
+<a data-toggle="modal" href="#refundModal-<%= charge.id %>">Refund</a>
+
+<div class="modal hide" id="refundModal-<%= charge.id %>">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3><%= "Refund #{user.name} $#{charge.amount}.00" %></h3>
+  </div>
+  <div class="modal-body">
+    <p>Click "Refund" to reverse your earlier charge of $<%= charge.amount %>.00</p>
+  </div>
+  <div class="modal-footer">
+    <%= link_to "Refund", refund_charge_path(charge.id), method: :put, class: "btn" %>
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</div>

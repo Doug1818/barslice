@@ -5,16 +5,17 @@
 	<li class="<%= 'active' if params[:tab] == 'tab2' %>"><a href="#tab2" data-toggle="tab">Rooms</a></li>
 	<li class="<%= 'active' if params[:tab] == 'tab3' %>"><a href="#tab3" data-toggle="tab">Reservation Policy</a></li>
   <li class="<%= 'active' if params[:tab] == 'tab4' %>"><a href="#tab4" data-toggle="tab">Specials</a></li>
-  <li class="<%= 'active' if params[:tab] == 'tab5' %>"><a href="#tab5" data-toggle="tab">Bar Info</a></li>
+  <li class="<%= 'active' if params[:tab] == 'tab5' %>"><a href="#tab5" data-toggle="tab">Payments</a></li>
+  <li class="<%= 'active' if params[:tab] == 'tab6' %>"><a href="#tab6" data-toggle="tab">Bar Info</a></li>
 </ul>
 
 <div class="tab-content">
 	<div class="<%= if (params[:tab] == 'tab1' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end %>" id="tab1">
-      <%= render 'bars/reservations_list', object: current_bar %>
+    <%= render 'bars/reservations_list', object: current_bar %>
 	</div>
 
 	<div class="<%= if (params[:tab] == 'tab2')then 'tab-pane active'  else 'tab-pane' end %>" id="tab2">
-      <%= render 'bars/room', object: current_bar %>
+    <%= render 'bars/room', object: current_bar %>
 	</div>
 	
 	<div class="<%= if (params[:tab] == 'tab3')then 'tab-pane active'  else 'tab-pane' end %>" id="tab3" style="margin-left:20px">
@@ -24,8 +25,12 @@
 	<div class="<%= if (params[:tab] == 'tab4')then 'tab-pane active'  else 'tab-pane' end %>" id="tab4">
 		<%= render 'bars/specials_list', object: current_bar %>
 	</div>
-	
+
 	<div class="<%= if (params[:tab] == 'tab5')then 'tab-pane active'  else 'tab-pane' end %> bar_info_left" id="tab5">
-    	<%= render 'shared/bar_info', object: current_bar %>
+    <%= render 'bars/payments', object: current_bar %>
+	</div>
+
+	<div class="<%= if (params[:tab] == 'tab6')then 'tab-pane active'  else 'tab-pane' end %> bar_info_left" id="tab6">
+    <div style="font-size: 1.1em;"><%= render 'shared/bar_info', object: current_bar %></div>
 	</div>
 </div>

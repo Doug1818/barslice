@@ -22,3 +22,4 @@
 //= require jquery.fileupload-ui
 //= require rooms
 //= require reservations
+//= require charges

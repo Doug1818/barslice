@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-before_filter :authenticate_bar!, only: [:bar_accepts, :bar_rejects, :bar_show, :bar_index]
+before_filter :authenticate_bar!, only: [:bar_accepts, :bar_rejects, :bar_show, :bar_index, :charge_user]
 before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_rejects, :user_show, 
   :user_index, :requested, :accepted, :confirmed]
 
@@ -66,6 +66,7 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
     @message = current_bar.messages.build
     @room = Room.find(@reservation.room_id)
     @user = User.find(@reservation.user_id)
+    @charge = Charge.new
   end
 
   def user_show

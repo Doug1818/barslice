@@ -28,4 +28,4 @@ en:
         bar:
           attributes:
             email:
-              taken: "has already been taken.  If this is the email address for your bar, you can claim it by going to the BarSlice homepage, searching for your bar, and clicking the 'Your bar? Claim it' link"
+              taken: "has already been taken.  If this is the email address for your bar, you can claim it by going to the BarSlice homepage, searching for your bar, and clicking the 'Your bar? Claim it' link."

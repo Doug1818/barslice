@@ -33,4 +33,22 @@ class UserMailer < ActionMailer::Base
     @bar = Bar.find(@room.bar_id)
     mail from:"contact@barslice.com", to: @user.email, subject: "#{@bar.name} sent you a message"
   end
+
+  def charge_notice(charge)
+    @charge = charge
+    @reservation = Reservation.find(@charge.reservation_id)
+    @room = Room.find(@reservation.room_id)
+    @bar = Bar.find(@room.bar_id)
+    @user = User.find(@reservation.user_id)
+    mail from:"payments@barslice.com", to: @user.email, subject: "#{@bar.name} has charged your card"
+  end
+
+  def refund_notice(charge)
+    @charge = charge
+    @reservation = Reservation.find(@charge.reservation_id)
+    @room = Room.find(@reservation.room_id)
+    @bar = Bar.find(@room.bar_id)
+    @user = User.find(@reservation.user_id)
+    mail from:"payments@barslice.com", to: @user.email, subject: "#{@bar.name} has refunded you"
+  end
 end

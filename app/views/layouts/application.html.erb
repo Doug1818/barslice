@@ -5,6 +5,7 @@
 	  <%= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css", "application" %>
 	  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "https://js.stripe.com/v1/", "application" %>
 	  <%= csrf_meta_tags %>
+	  <%= favicon_link_tag "/favicon.ico" %>
 	  <%= render 'layouts/shim' %>
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	  <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>

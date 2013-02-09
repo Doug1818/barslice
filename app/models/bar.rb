@@ -16,6 +16,7 @@ class Bar < ActiveRecord::Base
   has_one  :respolicy, dependent: :destroy
   has_many :specials, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :charges
   
   validates :name, presence: true, length: { maximum: 100 }, uniqueness: true
   validates :address, presence: true, length: { maximum: 150 }

@@ -1,0 +1,59 @@
+<a data-toggle="modal" href="#chargeccModal-<%= reservation.id %>" class="btn", style="margin-top:10px;">Charge Organizer credit card</a>
+
+<div class="modal hide" id="chargeccModal-<%= reservation.id %>">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3><%= "Charge #{user.name}'s credit card" %></h3>
+  </div>
+  <%= form_for(charge, html: {style:"margin-bottom:0;"}) do |f| %>
+    <div class="modal-body">
+      <% if !current_bar.stripe_access_token? %>
+        <p>You do not yet have a Stripe account on file. You can set one up by clicking on the "Connect with Stripe" button below. If you chose not to connect to Stripe, you can still make a charge - BarSlice will collect the payment on your behalf and mail you a check. Read more about BarSlice's Stripe integration <%= link_to 'here', root_path(tab: "tab5"), target: "_blank" %>.</p>
+        <%= link_to "/auth/stripe_connect", class: "stripe-connect", style: "margin-bottom:10px;" do %>
+          <span>Connect with Stripe</span>
+        <% end %>
+      <% end %>
+
+      <p>Note: You should only be charging an event organizer from the BarSlice platform in one of the following two cases:</p>
+      <ul>
+        <li><p style="margin:0;">The room or space reserved requires a reservation fee</p></li>
+        <li><p style="margin:0;">The event organizer has violated your reservation policy</p></li>
+      </ul>
+      <div style="float:left;margin-right:30px;">
+        <div>
+          <%= f.label :amount, "Charge amount", class: "hform" %>
+          $ <%= f.text_field :amount %>
+        </div>
+        <div id="amount_error" class="jquery_validation" style="text-align:left;">
+          <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+        </div>
+      </div>
+      <div style="float:left;">
+        <div>
+          <%= f.label :reason, class: "hform" %>
+          <%= f.select :reason, Charge::REASONS, { include_blank: true } %>
+        </div>
+        <div id="reason_error" class="jquery_validation" style="text-align:left;">
+          <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+        </div>
+      </div>
+      <%= f.hidden_field :reservation_id, value: reservation.id %>
+      <%= f.hidden_field :user_id, value: user.id %>
+    </div>
+    <div class="modal-footer">
+      <%= f.submit "Make charge", class: "btn" %>
+      <a href="#" class="btn" data-dismiss="modal">Close</a>
+    </div>
+  <% end %>
+</div>
+
+<style type="text/css">
+  #chargeccModal-<%= reservation.id %> .modal-body {
+    max-height: 600px;
+  }
+  #chargeccModal-<%= reservation.id %> {
+    width: 600px; /* SET THE WIDTH OF THE MODAL*/
+    /* DR: change "max-width" to "width" to increase pic size once images are loaded directly and not taken from internet */
+    /*margin: -250px 0 0 -450px; /* CHANGE MARGINS TO ACCOMODATE THE NEW WIDTH (original = margin: -250px 0 0 -280px;)*/
+  }
+</style>

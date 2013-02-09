@@ -1,0 +1,73 @@
+<% if current_bar.charges.count > 0 %>
+	<h3>Customer charges</h3>
+  <table class="pretty_table" style="margin-bottom:40px;">
+    <tr>
+      <th class="rm">Organizer</th>
+      <th class="date">Charge</th>
+      <th style="width:200px;">Reason</th>
+      <th class="rm">Charge date</th>
+      <th class="rm">Event date</th>
+      <th>Action</th>
+    </tr>
+    <% current_bar.charges.order("created_at desc").each do |charge| %>
+      <% user = User.find(charge.user_id) %>
+      <% reservation = Reservation.find(charge.reservation_id) %>
+      <tr>
+        <td class="rm"
+        		onmouseover="this.style.cursor='pointer';"
+          	onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
+          	style="cursor: pointer;">
+          	<%= user.name.truncate(17) %>
+        </td>
+        <td class="date"
+        		onmouseover="this.style.cursor='pointer';"
+	          onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
+	          style="cursor: pointer;">
+	          <%= "$#{charge.amount}.00" %>
+        </td>
+        <td onmouseover="this.style.cursor='pointer';"
+	          onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
+	          style="cursor:pointer;width:200px;">
+	          <%= charge.reason %>
+        </td>
+        <td class="rm"
+        		onmouseover="this.style.cursor='pointer';"
+	          onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
+	          style="cursor: pointer;">
+	          <%= charge.created_at.strftime("%a, %b %e") %>
+        </td>
+        <td class="rm"
+        		onmouseover="this.style.cursor='pointer';"
+	          onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
+	          style="cursor: pointer;">
+	          <%= reservation.created_at.strftime("%a, %b %e") %>
+        </td>
+        <% if charge.refunded == true %>
+        	<td><%= "Refunded #{charge.refunded_date.strftime("%a, %b %e")}" %></td>
+      	<% else %>
+        	<td><%= render 'shared/refund_modal', charge: charge, user: user %></td>
+      	<% end %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<% if current_bar.stripe_access_token? %>
+	<%= link_to "https://manage.stripe.com/login", class: "stripe-connect", target: "_blank", style: "margin: 10px 0;" do %>
+    <span>Manage your Stripe account</span>
+  <% end %>
+<% else %>
+	<h3>BarSlice is integrated with Stripe to handle customer credit card information</h3>
+
+	<p>If you require customer credit card information to take a reservation or charge a reservation fee, BarSlice's Stripe integration makes it easy.  When accepting a reservation request, you can select whether you require a credit card.  Whenever you require a credit card, the event organizer will then provide his or her information when confirming the reservation.  At this point, you'll be able to charge the organizer's card with just a couple clicks, whether to charge a reservation fee or in the event that the organizer violates your cancellation policy.</p>
+
+	<p>By connecting your bar's bank account to Stripe, charge's made through BarSlice will be deposited directly to your bank account on a seven day rolling basis. At 2.9% + 30 cents per transaction, Stripe is priced competitively with other major payments providers.  You can set up a Stripe account (or connect an existing Stripe account) in just a few minutes by clicking on the "Connect with Stripe" button bellow.</p>
+
+	<p>Don't want to set up a Stripe account? No problem. The process works the same way but all charges you make will go to us, and we'll mail you a check within a week.</p>
+
+	<p>Have a question about how BarSlice handles payments? Email us at <a href="mailto:payments@barslice.com">payments@barslice.com</a></p>
+
+	<%= link_to "/auth/stripe_connect", class: "stripe-connect", style: "margin: 10px 0;" do %>
+    <span>Connect with Stripe</span>
+  <% end %>
+<% end %>

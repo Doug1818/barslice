@@ -29,7 +29,7 @@ en:
         signed_in: 'Signed in successfully.'
         signed_out: 'Signed out successfully.'
     bar_sessions:
-      user:
+      bar:
         signed_in: 'Signed in successfully.'
         signed_out: 'Signed out successfully.'
     passwords:

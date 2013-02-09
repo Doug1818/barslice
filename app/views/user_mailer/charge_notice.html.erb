@@ -1,0 +1,15 @@
+<p><%= @user.name %>,</p>
+
+<p><%= "#{@bar.name} charged you $#{@charge.amount}.00 related to the following reservation:" %> </p>
+<ul>
+	<li>Room: <%= @room.name %></li>
+	<li>Date: <%= @reservation.date.strftime("%A, %B %d") %></li>
+	<li>Time: <%= TIMES.key(@reservation.start_time) %>-<%= TIMES.key(@reservation.end_time) %></li>
+	<li>Number of people: <%= @reservation.hdct %></li>
+</ul>
+
+<p>If you want to dispute this charge, please <%= link_to "message #{@bar.name}", user_show_reservation_url(@reservation), target: "_blank" %>.  If you cannot come to an agreement with <%= @bar.name %>, email us at <a href="mailto:payments@barslice.com">payments@barslice.com</a> and we will help you resolve the issue.
+</p>
+
+<p>Cheers,<br>
+The BarSlice Team</p>

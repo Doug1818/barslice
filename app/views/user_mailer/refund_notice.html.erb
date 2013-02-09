@@ -1,0 +1,17 @@
+<p><%= @user.name %>,</p>
+
+<p><%= "#{@bar.name} refunded you $#{@charge.amount}.00 related to the following reservation:" %> </p>
+<ul>
+	<li>Room: <%= @room.name %></li>
+	<li>Date: <%= @reservation.date.strftime("%A, %B %d") %></li>
+	<li>Time: <%= TIMES.key(@reservation.start_time) %>-<%= TIMES.key(@reservation.end_time) %></li>
+	<li>Number of people: <%= @reservation.hdct %></li>
+</ul>
+
+<p>
+	<%= link_to "Contact #{@bar.name}", user_show_reservation_url(@reservation), target: "_blank" %> |
+	<a href="mailto:payments@barslice.com">Contact BarSlice</a>
+</p>
+
+<p>Cheers,<br>
+The BarSlice Team</p>

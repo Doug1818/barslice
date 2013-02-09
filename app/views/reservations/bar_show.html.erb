@@ -25,6 +25,10 @@
 	    	<td><%= pluralize(@reservation.hdct, "person") %></td>
 	    </tr>
 	  </table>
+
+	  <% if @reservation.user_response == 1 && @reservation.cc_required == true %>
+	  	<%= render 'shared/charge_cc_modal', reservation: @reservation, user: @user, charge: @charge %>
+	  <% end %>
 	</div>
 
 	<div class="span5">

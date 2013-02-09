@@ -33,11 +33,18 @@ BarSlice::Application.routes.draw do
       get :bar_index, :user_index, :requested, :accepted, :confirmed
     end
   end
+  resources :charges do
+    member do
+      put :refund      
+    end    
+  end
 
   root              to: 'static_pages#home'
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  match '/auth/stripe_connect/callback', to: 'bars#stripe_create'
+  match 'auth/failure', to: redirect('/')
 
   unless Rails.application.config.consider_all_requests_local
     match '*not_found', to: 'errors#error_404'

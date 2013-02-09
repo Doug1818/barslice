@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125001522) do
+ActiveRecord::Schema.define(:version => 20130209043443) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -66,10 +66,27 @@ ActiveRecord::Schema.define(:version => 20130125001522) do
     t.string   "website"
     t.boolean  "claimed",                :default => false
     t.integer  "click_count",            :default => 0
+    t.string   "stripe_access_token"
+    t.string   "stripe_publishable_key"
+    t.string   "stripe_user_id"
   end
 
   add_index "bars", ["email"], :name => "index_bars_on_email", :unique => true
   add_index "bars", ["reset_password_token"], :name => "index_bars_on_reset_password_token", :unique => true
+
+  create_table "charges", :force => true do |t|
+    t.integer  "amount"
+    t.integer  "bar_id"
+    t.integer  "reservation_id"
+    t.integer  "user_id"
+    t.boolean  "direct_to_bar"
+    t.string   "reason"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "stripe_charge_id"
+    t.boolean  "refunded",         :default => false
+    t.date     "refunded_date"
+  end
 
   create_table "fees", :force => true do |t|
     t.integer  "room_id"
