@@ -5,15 +5,14 @@
 <div class="tab-content">
   <div class="tab-pane active" id="tab-u1">
     <ul class="nav nav-list" style="float:left;margin:0 15px 0 0;">
-      <li><%= link_to "All", root_path %></li>
-      <li class="active"><a href="#">Requested</a></li>
-      <li><%= link_to "Accepted", accepted_reservations_path %></li>
-      <li><%= link_to "Confirmed", confirmed_reservations_path %></li>
+      <li><%= link_to "Upcomming", root_path %></li>
+      <li class="active"><a href="#">Past Events</a></li>
+      <li><%= link_to "Never Were", user_never_were_reservations_path %></li>
     </ul>
 
     <div class="tab-content">
-      <div class="tab-pane active" id="requested">
-        <%= render 'users/reservations_list_requested', object: current_user %>
+      <div class="tab-pane active">
+        <%= render 'users/reservations_list_past_events', object: current_user %>
       </div>
     </div>
   </div>

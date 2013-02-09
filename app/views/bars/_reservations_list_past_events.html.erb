@@ -1,30 +1,28 @@
-<h3>Upcomming Confirmed Reservations</h3>
-<% if object.reservations.confirmed.future.count == 0 %>
+<h3>Past Events</h3>
+<% if Reservation.of_bar(object).past_events.count == 0 %>
   <span style="margin-left:10px">None</span>
 <% else %>
   <table class="pretty_table">
     <tr>
-      <th class="user">Bar</th>
-      <th class="rm">Room</th>
       <th class="date">Date</th>
       <th class="tm">Time</th>
+      <th class="rm">Room</th>
       <th class="hdct">Event size</th>
+      <th class="user">Organizer</th>
       <th class="reqdate">Requested</th>
       <th class="action">Action</th>
     </tr>
-    <% object.reservations.confirmed.future.each do |reservation| %>
-      <% room = Room.find(reservation.room_id) %>
-      <% bar = Bar.find(room.bar_id) %>
+    <% Reservation.of_bar(object).past_events.each do |reservation| %>
       <tr onmouseover="this.style.cursor='pointer';"
-          onclick="location.href='<%= user_show_reservation_path(reservation) %>';"
+          onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
           style="cursor: pointer;">
-        <td class="user"><%= link_to bar.name.truncate(17), bar_path(bar) %></td>
-        <td class="rm"><%= link_to room.name.truncate(18), room_path(room) %></td>
         <td class="date"><%= reservation.date.strftime("%a, %b %e") %></td>
         <td class="tm"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
+        <td class="rm"><%= Room.find(reservation.room_id).name.truncate(28) %></td>
         <td class="hdct"><%= pluralize(reservation.hdct, "person") %></td>
+        <td class="user"><%= User.find(reservation.user_id).name.truncate(20) %></td>
         <td class="reqdate"><%= reservation.created_at.strftime("%b %d") %></td>
-        <td class="action"><%= link_to 'Message', user_show_reservation_path(reservation) %></td>
+        <td class="action"><%= link_to 'Message', bar_show_reservation_path(reservation) %></td>
       </tr>
     <% end %>
   </table>

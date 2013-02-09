@@ -1,17 +1,20 @@
 class ReservationsController < ApplicationController
-before_filter :authenticate_bar!, only: [:bar_accepts, :bar_rejects, :bar_show, :bar_index, :charge_user]
+before_filter :authenticate_bar!, only: [:bar_accepts, :bar_rejects, :bar_show, :bar_index, 
+  :charge_user, :bar_past_events, :bar_never_were]
 before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_rejects, :user_show, 
-  :user_index, :requested, :accepted, :confirmed]
+  :user_index, :user_past_events, :user_never_were]
 
-  def requested
+  def bar_past_events
+  end
+
+  def bar_never_were
+  end
+  
+  def user_past_events
     @search = Search.new
   end
 
-  def accepted
-    @search = Search.new
-  end
-
-  def confirmed
+  def user_never_were
     @search = Search.new
   end
 
@@ -125,7 +128,7 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
       # Delete same night reservations still pending at other bars
       @user.reservations.each do |reservation|
         if reservation.date == @reservation.date && reservation != @reservation && reservation.user_response != 2
-          reservation.update_attributes(user_response: 2)
+          reservation.update_attributes(user_response: 2, user_rejects_date: Time.now)
           BarMailer.resrejected(reservation).deliver
         end
       end

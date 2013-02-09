@@ -9,7 +9,20 @@ class Reservation < ActiveRecord::Base
   scope :requested, where(bar_response: nil, user_response: nil).order("created_at desc")
   scope :accepted, where(bar_response: 1, user_response: nil).order("date")
   scope :confirmed, where(bar_response: 1, user_response: 1).order("date")
+  scope :past_events, where("date < ? AND user_response = ?", Time.now.to_date, 1).order("date desc")
   scope :future, where("date >= ?", Time.now.to_date)
+  scope :cancelled, where(user_response: 2)
+  scope :rejected, where(bar_response: 2)
+
+  def self.never_were
+    reservations = []
+    rejected = where(bar_response: 2)
+    cancelled = where(user_response: 2)
+    unfinishished = where("user_response IS NULL AND date < ?", Time.now.to_date)
+    reservations = rejected + cancelled + unfinishished
+    reservations = reservations.to_a.uniq if reservations.any?
+    reservations
+  end
 
   validates :date, presence: true
   validates :hdct, presence: true, numericality: { only_integer: true }

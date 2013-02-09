@@ -1,12 +1,11 @@
-<ul class="nav nav-list" style="float:left;margin:0 15px 0 0;">
-  <li class="active"><a href="#">All</a></li>
-  <li><%= link_to "Requested", requested_reservations_path %></li>
-  <li><%= link_to "Accepted", accepted_reservations_path %></li>
-  <li><%= link_to "Confirmed", confirmed_reservations_path %></li>
+<ul class="nav nav-list" style="float:left;margin:0 10px 0 0;">
+  <li class="active"><a href="#">Upcomming</a></li>
+  <li><%= link_to "Past Events", user_past_events_reservations_path %></li>
+  <li><%= link_to "Never Were", user_never_were_reservations_path %></li>
 </ul>
 
 <div class="tab-content">
-  <div class="tab-pane active" id="all">
+  <div class="tab-pane active">
     <%= render 'users/reservations_list_requested', object: current_user %>
     <%= render 'users/reservations_list_accepted', object: current_user %>
     <%= render 'users/reservations_list_confirmed', object: current_user %>

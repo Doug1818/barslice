@@ -30,7 +30,7 @@ BarSlice::Application.routes.draw do
       put :bar_accepts, :bar_rejects, :user_accepts, :user_rejects
     end
     collection do
-      get :bar_index, :user_index, :requested, :accepted, :confirmed
+      get :bar_index, :user_index, :bar_past_events, :bar_never_were, :user_past_events, :user_never_were
     end
   end
   resources :charges do

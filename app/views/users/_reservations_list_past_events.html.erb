@@ -1,5 +1,5 @@
-<h3>Upcomming Confirmed Reservations</h3>
-<% if object.reservations.confirmed.future.count == 0 %>
+<h3>Past Events</h3>
+<% if object.reservations.past_events.count == 0 %>
   <span style="margin-left:10px">None</span>
 <% else %>
   <table class="pretty_table">
@@ -12,7 +12,7 @@
       <th class="reqdate">Requested</th>
       <th class="action">Action</th>
     </tr>
-    <% object.reservations.confirmed.future.each do |reservation| %>
+    <% object.reservations.past_events.each do |reservation| %>
       <% room = Room.find(reservation.room_id) %>
       <% bar = Bar.find(room.bar_id) %>
       <tr onmouseover="this.style.cursor='pointer';"

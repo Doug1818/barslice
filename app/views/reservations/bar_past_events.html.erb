@@ -11,7 +11,16 @@
 
 <div class="tab-content">
 	<div class="<%= if (params[:tab] == 'tab1' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end %>" id="tab1">
-		<%= render 'bars/reservations_list', object: current_bar %>
+		<ul class="nav nav-list" style="float:left;margin:0 15px 0 0;">
+		  <li><%= link_to "Upcomming", root_path %></li>
+		  <li class="active"><a href="#">Past Events</a></li>
+		  <li><%= link_to "Never Were", bar_never_were_reservations_path %></li>
+		</ul>
+		<div class="tab-content">
+		  <div class="tab-pane active">
+		    <%= render 'bars/reservations_list_past_events', object: current_bar %>
+		  </div>
+		</div>
 	</div>
 
 	<div class="<%= if (params[:tab] == 'tab2')then 'tab-pane active'  else 'tab-pane' end %>" id="tab2">
