@@ -18,9 +18,9 @@
           style="cursor: pointer;">
         <td class="date"><%= reservation.date.strftime("%a, %b %e") %></td>
         <td class="tm"><%= TIMES.key(reservation.start_time) %>-<%= TIMES.key(reservation.end_time) %></td>
-        <td class="rm"><%= Room.find(reservation.room_id).name.truncate(28) %></td>
+        <td class="rm"><%= reservation.room_name.truncate(28) %></td>
         <td class="hdct"><%= pluralize(reservation.hdct, "person") %></td>
-        <td class="user"><%= User.find(reservation.user_id).name.truncate(20) %></td>
+        <td class="user"><%= reservation.user_name.truncate(20) %></td>
         <td class="reqdate"><%= reservation.created_at.strftime("%b %d") %></td>
         <td class="action"><%= link_to 'Message', bar_show_reservation_path(reservation) %></td>
       </tr>

@@ -33,6 +33,9 @@ before_filter :authenticate_user!, only: [:new, :create, :user_accepts, :user_re
     @reservation.start_time = TIMES[params[:reservation][:start_time]]
     @reservation.end_time = TIMES[params[:reservation][:end_time]]
     @reservation.user_id = @user.id
+    @reservation.user_name = @user.name
+    @reservation.room_name = @room.name
+    @reservation.bar_name = @bar.name
     if @reservation.save
       if @bar.claimed == true
         flash[:success] = "Your reservation request has been sent to #{@bar.name}. You will be notified of their availability by email as soon as possible."

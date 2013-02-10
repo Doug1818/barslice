@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :phone, :reservations_attributes
   # attr_accessible :title, :body
 
-  has_many :reservations, dependent: :destroy
+  has_many :reservations
   has_many :messages, dependent: :destroy
   accepts_nested_attributes_for :reservations, allow_destroy: true
 

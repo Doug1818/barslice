@@ -43,7 +43,7 @@
 	          <%= reservation.created_at.strftime("%a, %b %e") %>
         </td>
         <% if charge.refunded == true %>
-        	<td><%= "Refunded #{charge.refunded_date.strftime("%a, %b %e")}" %></td>
+        	<td><i>Refunded</i> - <%= charge.refunded_date.strftime("%a, %b %e") %></td>
       	<% else %>
         	<td><%= render 'shared/refund_modal', charge: charge, user: user %></td>
       	<% end %>

@@ -19,19 +19,19 @@
       <th class="action">Action</th>
     </tr>
     <% object.reservations.accepted.future.each do |reservation| %>
-      <% room = Room.find(reservation.room_id) %>
-      <% bar = Bar.find(room.bar_id) %>
+      <% Room.find_by_name(reservation.room_name) != nil ? room = Room.find_by_name(reservation.room_name) : room = "unknown" %>
+      <% Bar.find_by_name(reservation.bar_name)   != nil ? bar  = Bar.find_by_name(reservation.bar_name)   : bar  = "unknown" %>
       <tr>
         <td class="user"
           onmouseover="this.style.cursor='pointer';"
           onclick="location.href='<%= user_show_reservation_path(reservation) %>';"
           style="cursor: pointer;">
-          <%= link_to bar.name.truncate(17), bar_path(bar) %></td>
+          <%= link_to reservation.bar_name.truncate(17), bar_path(bar) %></td>
         <td class="rm"
           onmouseover="this.style.cursor='pointer';"
           onclick="location.href='<%= user_show_reservation_path(reservation) %>';"
           style="cursor: pointer;">
-          <%= link_to room.name.truncate(18), room_path(room) %></td>
+          <%= link_to reservation.room_name.truncate(18), room_path(room) %></td>
         <td class="date"
           onmouseover="this.style.cursor='pointer';"
           onclick="location.href='<%= user_show_reservation_path(reservation) %>';"

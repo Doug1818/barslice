@@ -25,4 +25,7 @@ before_filter :authenticate_bar!, only: [:stripe_create]
     current_bar.save
     redirect_to root_url, notice: "Stripe account successfully connected to BarSlice."
   end
+
+  def unknown
+  end
 end

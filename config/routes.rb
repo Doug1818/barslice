@@ -13,8 +13,15 @@ BarSlice::Application.routes.draw do
     member do
       get :confirm_bar, :add_click
     end
+    collection do
+      get :unknown
+    end
   end
-  resources :rooms
+  resources :rooms do
+    collection do
+      get :unknown
+    end    
+  end
   resources :messages do
     member do
       get :bar_view_attachment, :user_view_attachment

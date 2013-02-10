@@ -28,7 +28,7 @@
           onmouseover="this.style.cursor='pointer';"
           onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
           style="cursor: pointer;">
-          <%= Room.find(reservation.room_id).name.truncate(28) %></td>
+          <%= reservation.room_name.truncate(28) %></td>
         <td class="hdct"
           onmouseover="this.style.cursor='pointer';"
           onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
@@ -38,7 +38,7 @@
           onmouseover="this.style.cursor='pointer';"
           onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"
           style="cursor: pointer;">
-          <%= User.find(reservation.user_id).name.truncate(20) %></td>
+          <%= reservation.user_name.truncate(20) %></td>
         <td class="reqdate"
           onmouseover="this.style.cursor='pointer';"
           onclick="location.href='<%= bar_show_reservation_path(reservation) %>';"

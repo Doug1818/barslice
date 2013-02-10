@@ -1,5 +1,8 @@
 class Reservation < ActiveRecord::Base
-  attr_accessible :date, :start_time, :end_time, :hdct, :room_id, :bar_response, :user_response, :bar_accepts_date, :bar_rejects_date, :user_accepts_date, :user_rejects_date, :cc_required, :respolicy_accepted, :stripe_card_token, :stripe_card_type, :stripe_card_last4
+  attr_accessible :date, :start_time, :end_time, :hdct, :room_id, :bar_response, :user_response, 
+    :bar_accepts_date, :bar_rejects_date, :user_accepts_date, :user_rejects_date, :cc_required, 
+    :respolicy_accepted, :stripe_card_token, :stripe_card_type, :stripe_card_last4, :user_name,
+    :bar_name, :room_name
   attr_accessor :stripe_card_token
   belongs_to :room
   belongs_to :user

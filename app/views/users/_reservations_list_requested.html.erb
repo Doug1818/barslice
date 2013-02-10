@@ -13,8 +13,8 @@
       <th class="action">Action</th>
     </tr>
     <% object.reservations.requested.future.each do |reservation| %>
-      <% room = Room.find(reservation.room_id) %>
-      <% bar = Bar.find(room.bar_id) %>
+      <% Room.find_by_name(reservation.room_name) != nil ? room = Room.find_by_name(reservation.room_name) : room = "unknown" %>
+      <% Bar.find_by_name(reservation.bar_name)   != nil ? bar  = Bar.find_by_name(reservation.bar_name)   : bar  = "unknown" %>
       <tr onmouseover="this.style.cursor='pointer';"
           onclick="location.href='<%= user_show_reservation_path(reservation) %>';"
           style="cursor: pointer;">
