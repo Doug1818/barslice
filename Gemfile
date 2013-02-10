@@ -6,7 +6,7 @@ gem 'pg', '0.12.2'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
 gem 'devise'
-gem "paperclip", "~> 3.0"
+gem "paperclip", "3.4.0"
 gem 'kumade'
 gem 'aws-sdk'
 gem 'aws-s3'
