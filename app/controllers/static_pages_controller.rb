@@ -4,6 +4,10 @@ class StaticPagesController < ApplicationController
   	@search = Search.new
   end
 
+  def by_bar
+  	@search = Search.new
+  end
+
   def help
   end
 

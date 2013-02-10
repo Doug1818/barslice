@@ -6,14 +6,11 @@
 <% end %><br />
 
 <ul class="nav nav-pills">
-  <li class="active"><a href="#tab1" data-toggle="tab">View by Room</a></li>
-  <li><a href="#tab2" data-toggle="tab">View by Bar</a></li>
+  <li class="active"><a href="#">View by Room</a></li>
+  <li><%= link_to "View by Bar", by_bar_path %></li>
 </ul>
 <div class="tab-content">
-  <div class="tab-pane active" id="tab1">
+  <div class="tab-pane active">
     <%= render 'shared/by_room' %>
-  </div>
-  <div class="tab-pane" id="tab2">
-    <%= render 'shared/by_bar' %>
   </div>
 </div>

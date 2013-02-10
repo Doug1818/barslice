@@ -1,0 +1,27 @@
+<% if bar_signed_in? %>
+  <%= render 'bars/home' %>
+<% elsif user_signed_in? %>
+  <%= render 'users/home' %>
+<% else %>
+  <div class="center">
+    <h1 class="welcome">Welcome to BarSlice</h1>
+    <h2>Booking event space at bars should be easier. BarSlice lets you find the right space to fit your event needs and book it online. <%= link_to 'Learn more here', about_path %></h2>
+  </div>
+  <div>
+		<h2>Find a bar for your event</h2>
+		<%= form_for @search do |f| %>
+			<%= render 'searches/fields', f: f %>
+			<%= f.submit "Search", class: "btn btn-large" %>
+		<% end %><br />
+
+		<ul class="nav nav-pills">
+		  <li><%= link_to "View by Room", root_path %></li>
+		  <li class="active"><a href="#">View by Bar</a></li>
+		</ul>
+		<div class="tab-content">
+		  <div class="tab-pane active">
+		    <%= render 'shared/by_bar' %>
+		  </div>
+		</div>
+  </div>
+<% end %>
