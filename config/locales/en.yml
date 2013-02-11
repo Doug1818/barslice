@@ -14,7 +14,8 @@ en:
         max: "Number of people maximum"
       "room/fees":
         amount: "Reservation fee"
-      "room/spendmins": "Spend minimum"
+      room:
+        spendmins: "Spend minimum"
       "user/reservations":
         hdct: "Number of people"
         date: "Date"

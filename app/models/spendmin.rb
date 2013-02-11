@@ -12,7 +12,7 @@ class Spendmin < ActiveRecord::Base
   validate :total_or_per_person
 
   def total_or_per_person
-  	if self.min && !self.per_person
+  	if self.min && self.per_person == nil
   		self.errors[""] << "choice of total or per person can't be blank"
 	end
   end
