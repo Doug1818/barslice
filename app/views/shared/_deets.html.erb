@@ -38,9 +38,9 @@
 						No minimum spend
 					<% else %>
 						$<%= spendmin.min %>
+						<% if spendmin.per_person == true %> per person <% end %>
 						<% if spendmin.sunday && spendmin.monday && spendmin.tuesday && spendmin.wednesday && spendmin.thursday && spendmin.friday && spendmin.saturday %>
 						<% else %>
-							<% if spendmin.per_person == true %> per person <% end %>
 							<% range = [] %>
 							<% range.push("Monday") if spendmin.monday %>
 							<% range.push("Tuesday") if spendmin.tuesday %>
