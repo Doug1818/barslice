@@ -1,12 +1,11 @@
 <div class="content">
-	<%= object.respolicy.description.gsub(/\n/, '<br/>').html_safe %><br /><br />
-
-	<% if bar_signed_in? %>
-		<strong>Attachment:</strong>
-		<% if object.respolicy.policydoc_file_name %>
-			<%= link_to object.respolicy.policydoc_file_name, object.respolicy.policydoc.url %>
-		<% else %>
-			<div>No attachment uploaded</div>
-		<% end %><br /><br />
-	<% end %>
-</div>
+	<%= object.respolicy.description.gsub(/\n/, '<br/>').html_safe %>
+</div><br>
+<% if bar_signed_in? %>
+	<strong>Attachment:</strong>
+	<% if object.respolicy.policydoc_file_name %>
+		<%= link_to object.respolicy.policydoc_file_name, object.respolicy.policydoc.url %>
+	<% else %>
+		<div>No attachment uploaded</div>
+	<% end %><br>
+<% end %>
