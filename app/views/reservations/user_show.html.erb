@@ -44,15 +44,6 @@
 				<td style="position:relative;right:2px;"><%= image_tag("iconmonstr-x-mark-3-icon.png") %></td>
     			<td>Declined by <%= @bar.name %></td>
     			<td><%= @reservation.user_rejects_date.strftime("%a, %b %e, %l:%M%P")%></td>
-			<% elsif @reservation.bar_response == nil %>
-				<td><%= image_tag("glyphicons_153_unchecked.png") %></td>
-				<td>Accepted by <%= @bar.name %></td>
-				<td>
-					<% unless @reservation.user_response == 2 || @reservation.date < Time.now.to_date %>
-						<%= render 'shared/bar_accepts_modal', reservation: @reservation %> |
-						<%= render 'shared/bar_rejects_modal', reservation: @reservation %>
-					<% end %>
-				</td>
 			<% else %>
     			<td><%= image_tag("glyphicons_153_unchecked.png") %></td>
     			<td>Accepted by <%= @bar.name %></td>
@@ -68,6 +59,15 @@
     			<td style="position:relative;right:2px;"><%= image_tag("iconmonstr-x-mark-3-icon.png") %></td>
     			<td>Cancelled by <%= current_user.name %></td>
     			<td><%= @reservation.user_rejects_date.strftime("%a, %b %e, %l:%M%P")%></td>
+			<% elsif @reservation.user_response == nil && @reservation.bar_response == 1 %>
+				<td><%= image_tag("glyphicons_153_unchecked.png") %></td>
+				<td>Confirmed by <%= current_user.name %></td>
+				<td>
+					<% unless @reservation.bar_response == 2 || @reservation.date < Time.now.to_date %>
+						<%= render 'shared/user_accepts_modal', reservation: @reservation %> |
+						<%= render 'shared/user_rejects_modal', reservation: @reservation %>
+					<% end %>
+				</td>
 			<% else %>
     			<td><%= image_tag("glyphicons_153_unchecked.png") %></td>
     			<td>Confirmed by <%= current_user.name %></td>
