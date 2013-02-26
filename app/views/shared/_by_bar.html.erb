@@ -1,5 +1,5 @@
 <ul class="bars">
-  <% Bar.all.each do |bar| %>
+  <% Bar.order("updated_at desc").all.each do |bar| %>
       <li class="bar">
         <span class="title">
           <span class="strong"><%= link_to bar.name, bar_path(bar) %></span> | <%= bar.neighborhood %>
@@ -9,7 +9,7 @@
           <% end %>
         </span>
         <ul class="brooms">
-          <% bar.rooms.each do |room| %>
+          <% bar.rooms.order("updated_at").each do |room| %>
             <li class="room">
               <% if !bar_signed_in? %>
                 <span style="float:right;margin-top:5px;">

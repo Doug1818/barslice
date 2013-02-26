@@ -1,6 +1,6 @@
 <ul class="rooms">
   <% Bar.all.each do |bar| %>
-    <% bar.rooms.each do |room| %>
+    <% bar.rooms.order("updated_at").each do |room| %>
       <%= render room, bar: bar, room: room %>
     <% end %>
   <% end %>
