@@ -6,7 +6,7 @@ class UserMailer < ActionMailer::Base
     @reservation = @user.reservations.last
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    mail from:"contact@barslice.com", to: user.email, subject: @bar.claimed == true ? "#{@bar.name} has received your reservation request" : "A reservation request is being sent to #{@bar.name}"
+    mail from:"BarSlice <contact@barslice.com>", to: user.email, subject: @bar.claimed == true ? "#{@bar.name} has received your reservation request" : "A reservation request is being sent to #{@bar.name}"
   end
 
   def resaccepted(reservation)
@@ -14,7 +14,7 @@ class UserMailer < ActionMailer::Base
     @user = User.find(@reservation.user_id)
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    mail from:"contact@barslice.com", to: @user.email, subject: "#{@bar.name} accepted your reservation request"
+    mail from:"BarSlice <contact@barslice.com>", to: @user.email, subject: "#{@bar.name} accepted your reservation request"
   end
 
   def resrejected(reservation)
@@ -22,7 +22,7 @@ class UserMailer < ActionMailer::Base
     @user = User.find(@reservation.user_id)
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    mail from:"contact@barslice.com", to: @user.email, subject: "#{@bar.name} is unable to accept your reservation request"
+    mail from:"BarSlice <contact@barslice.com>", to: @user.email, subject: "#{@bar.name} is unable to accept your reservation request"
   end
 
   def message_received(message)
@@ -31,7 +31,7 @@ class UserMailer < ActionMailer::Base
     @user = User.find(@reservation.user_id)
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
-    mail from:"contact@barslice.com", to: @user.email, subject: "#{@bar.name} sent you a message"
+    mail from:"BarSlice <contact@barslice.com>", to: @user.email, subject: "#{@bar.name} sent you a message"
   end
 
   def charge_notice(charge)
@@ -40,7 +40,7 @@ class UserMailer < ActionMailer::Base
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
     @user = User.find(@reservation.user_id)
-    mail from:"payments@barslice.com", to: @user.email, subject: "#{@bar.name} has charged your card"
+    mail from:"BarSlice <payments@barslice.com>", to: @user.email, subject: "#{@bar.name} has charged your card"
   end
 
   def refund_notice(charge)
@@ -49,6 +49,6 @@ class UserMailer < ActionMailer::Base
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
     @user = User.find(@reservation.user_id)
-    mail from:"payments@barslice.com", to: @user.email, subject: "#{@bar.name} has refunded you"
+    mail from:"BarSlice <payments@barslice.com>", to: @user.email, subject: "#{@bar.name} has refunded you"
   end
 end

@@ -9,17 +9,17 @@ class BarMailer < ActionMailer::Base
   def identity_confirmation(bar)
     @bar = bar
     @temp_pass = Rufus::Mnemo::from_integer(@bar.id*10000)[0..5]
-    mail from:"contact@barslice.com", to: bar.email, subject: "Identity Confirmation"
+    mail from:"BarSlice <contact@barslice.com>", to: bar.email, subject: "Identity Confirmation"
   end
 
   def identity_confirmation_alert(bar)
     @bar = bar
-    mail from:"contact@barslice.com", to: "doug@barslice.com", subject: "[Identity Confirmation]#{bar.name}"
+    mail from:"BarSlice <contact@barslice.com>", to: "doug@barslice.com", subject: "[Identity Confirmation]#{bar.name}"
   end
 
   def claimed_bar_alert(bar)
     @bar = bar
-    mail from:"contact@barslice.com", to: "doug@barslice.com", subject: "[Claimed Bar]#{bar.name}"
+    mail from:"BarSlice <contact@barslice.com>", to: "doug@barslice.com", subject: "[Claimed Bar]#{bar.name}"
   end
 
   def resrequest(room, bar, user)
@@ -28,7 +28,7 @@ class BarMailer < ActionMailer::Base
     @user = user
     @reservation = @user.reservations.last
     
-    mail from:"contact@barslice.com", 
+    mail from:"BarSlice <contact@barslice.com>", 
     to: bar.claimed == true ? bar.email : "doug@barslice.com",
     subject: "You have a new reservation request"
   end
@@ -39,7 +39,7 @@ class BarMailer < ActionMailer::Base
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
     
-    mail from:"contact@barslice.com", 
+    mail from:"BarSlice <contact@barslice.com>", 
     to: @bar.claimed == true ? @bar.email : "doug@barslice.com",
     subject: "#{@user.name} confirmed a reservation"
   end
@@ -50,7 +50,7 @@ class BarMailer < ActionMailer::Base
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
     
-    mail from:"contact@barslice.com",
+    mail from:"BarSlice <contact@barslice.com>",
     to: @bar.claimed == true ? @bar.email : "doug@barslice.com",
     subject: "#{@user.name} cancelled a reservation"
   end
@@ -62,7 +62,7 @@ class BarMailer < ActionMailer::Base
     @room = Room.find(@reservation.room_id)
     @bar = Bar.find(@room.bar_id)
     
-    mail from:"contact@barslice.com", 
+    mail from:"BarSlice <contact@barslice.com>", 
     to: @bar.claimed == true ? @bar.email : "doug@barslice.com",
     subject: "#{@user.name} sent you a message"
   end
