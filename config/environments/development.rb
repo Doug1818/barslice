@@ -23,8 +23,8 @@ BarSlice::Application.configure do
   #:address              => "smtp.gmail.com",
   #:port                 => 587,
   #:domain               => 'barslice.com',
-  #:user_name            => 'doug@barslice.com',
-  #:password             => '44203905',
+  #:user_name            => 'contact@barslice.com',
+  #:password             => 'nycity2012',
   #:authentication       => 'plain',
   #:enable_starttls_auto => true  }
 
