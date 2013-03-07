@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130209223024) do
+ActiveRecord::Schema.define(:version => 20130307174936) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20130209223024) do
     t.string   "stripe_access_token"
     t.string   "stripe_publishable_key"
     t.string   "stripe_user_id"
+    t.boolean  "hidden",                 :default => false
   end
 
   add_index "bars", ["email"], :name => "index_bars_on_email", :unique => true

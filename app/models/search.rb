@@ -44,6 +44,7 @@ private
 
   def find_rooms
   	rooms = Room.order(:name)
+    rooms = rooms.joins(:bar).where("hidden != ?", true)
   	rooms = rooms.joins(:bar).where("neighborhood = ?", location) if location.present?
   	rooms = rooms.joins(:bar).where("lower(bars.name) like ?", "%#{bar_name.downcase}%") if bar_name.present?
   	rooms = rooms.joins(:bar).joins(:bar => :hrsranges).where("open <= ? AND close >= ? 

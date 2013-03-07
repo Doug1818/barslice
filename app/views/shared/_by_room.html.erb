@@ -1,5 +1,5 @@
 <ul class="rooms">
-  <% Bar.all.each do |bar| %>
+  <% Bar.not_hidden.all.each do |bar| %>
     <% bar.rooms.order("updated_at").each do |room| %>
       <%= render room, bar: bar, room: room %>
     <% end %>

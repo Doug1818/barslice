@@ -1,5 +1,5 @@
 <ul class="bars">
-  <% Bar.order("updated_at desc").all.each do |bar| %>
+  <% Bar.not_hidden.order("updated_at desc").all.each do |bar| %>
       <li class="bar">
         <span class="title">
           <span class="strong"><%= link_to bar.name, bar_path(bar) %></span> | <%= bar.neighborhood %>
