@@ -3,7 +3,7 @@
       <li class="bar">
         <span class="title">
           <span class="strong"><%= link_to bar.name, bar_path(bar) %></span> | <%= bar.neighborhood %>
-          <% if bar.claimed == false && !user_signed_in? %>
+          <% if bar.claimed != true && !user_signed_in? %>
             <a data-toggle="modal" style="font-size:0.7em" href="#claimbarModal-<%= bar.id %>">(Your bar?)</a>
             <%= render 'shared/claim_bar_modal', object: bar, room: bar %>
           <% end %>
