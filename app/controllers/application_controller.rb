@@ -5,9 +5,17 @@ class ApplicationController < ActionController::Base
     x = session[:return_to]
     if resource.is_a?(Bar)
 	    if resource.claimed != true && resource.sign_in_count > 1
-	    	BarMailer.claimed_bar_alert(resource).deliver
-		  end
-		  super
+        if request.referrer.include?("/tac")
+          BarMailer.claimed_bar_alert(resource).deliver
+          root_path
+        else
+          sign_out resource
+          #binding.pry
+          tac_bar_path(resource.id)
+        end
+		  else
+		    super
+      end
   	elsif resource.is_a?(User)
   		if x != nil && x.include?("/users/sign_up.")
 	  		root_path + "reservations/new." + x[x.index(".") + 1, x.length - x.index(".")]

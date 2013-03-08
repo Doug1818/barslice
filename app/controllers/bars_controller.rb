@@ -28,4 +28,16 @@ before_filter :authenticate_bar!, only: [:stripe_create]
 
   def unknown
   end
+
+  def tac
+    @bar = Bar.find(params[:id])
+  end
+
+  def accept_tac
+    @bar = Bar.find(params[:id])
+    sign_in @bar
+    BarMailer.claimed_bar_alert(@bar).deliver
+    flash[:success] = "Signed in successfully."
+    redirect_to root_path
+  end
 end

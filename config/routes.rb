@@ -11,7 +11,8 @@ BarSlice::Application.routes.draw do
   resources :users
   resources :bars do 
     member do
-      get :confirm_bar, :add_click
+      get :confirm_bar, :add_click, :tac
+      put :accept_tac
     end
     collection do
       get :unknown
@@ -51,6 +52,7 @@ BarSlice::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
+  match '/client_tac', to: 'static_pages#client_tac'
   match '/auth/stripe_connect/callback', to: 'bars#stripe_create'
   match 'auth/failure', to: redirect('/')
 

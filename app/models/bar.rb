@@ -8,7 +8,8 @@ class Bar < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
-  attr_accessible :name, :address, :neighborhood, :phone, :website, :hrsranges_attributes, :click_count
+  attr_accessible :name, :address, :neighborhood, :phone, :website, :hrsranges_attributes, :click_count, :tos_accepted
+  attr_accessor :tos_accepted
 
   has_many :rooms, dependent: :destroy
   has_many :hrsranges, dependent: :destroy

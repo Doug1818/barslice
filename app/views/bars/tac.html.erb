@@ -1,0 +1,19 @@
+<h2>You have successfully claimed your bar!</h2>
+
+<div class="hform" style="margin:10px 0 20px 0;">Please accept our Terms and Conditions and re-enter your password in order to continue.</div>
+
+<%= form_for(@bar, url: session_path(@bar), method: :post) do |f| %>
+  <div class="hform"><%= f.label :email %></div>
+  <div><%= f.email_field :email %></div>
+
+  <div class="hform"><%= f.label :password %></div>
+  <div><%= f.password_field :password %></div>
+
+  <div style="float:left;margin:20px 0;">
+    <%= f.check_box :tos_accepted, required: true, style: "float:left;margin-right:5px;" %>
+    <%= f.label :tos_accepted, "I agree to the #{link_to 'BarSlice Terms and Conditions', client_tac_path, 
+      target: '_blank'}".html_safe, style: "float:left;cursor:pointer;" %>
+    <%= f.hidden_field :id, value: @bar.id %>
+  </div>
+  <div style="clear:both;"><%= f.submit "Continue" %></div>
+<% end %>
