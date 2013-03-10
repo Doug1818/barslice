@@ -31,4 +31,8 @@ class RespoliciesController < ApplicationController
     flash[:notice] = "Reservation policy deleted"
     redirect_to root_path(tab: "tab3")
   end
+
+  def index
+    redirect_to root_path(tab: "tab3")
+  end
 end

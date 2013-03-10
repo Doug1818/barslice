@@ -5,13 +5,12 @@ class ApplicationController < ActionController::Base
     x = session[:return_to]
     if resource.is_a?(Bar)
 	    if resource.claimed != true && resource.sign_in_count > 1
-        if request.referrer.include?("/tac")
+        if request.referrer.include?("/claim_bar")
           BarMailer.claimed_bar_alert(resource).deliver
           root_path
         else
           sign_out resource
-          #binding.pry
-          tac_bar_path(resource.id)
+          claim_bar_bar_path(resource.id)
         end
 		  else
 		    super

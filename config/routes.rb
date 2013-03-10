@@ -11,8 +11,7 @@ BarSlice::Application.routes.draw do
   resources :users
   resources :bars do 
     member do
-      get :confirm_bar, :add_click, :tac
-      put :accept_tac
+      get :confirm_bar, :add_click, :claim_bar
     end
     collection do
       get :unknown
