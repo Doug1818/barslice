@@ -9,6 +9,7 @@
 	  <%= render 'layouts/shim' %>
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	  <%= tag :meta, :name => "stripe-key", :content => ENV['STRIPE_PUBLIC_KEY'] %>
+	  <%= analytics_init if Rails.env.production? %>
 	</head>
 	<body>
 		<%= render 'layouts/header' %>

@@ -22,6 +22,10 @@ gem 'stripe'
 gem 'figaro'
 gem 'omniauth-stripe-connect'
 
+group :production do
+  gem 'google-analytics-rails'
+end
+
 group :development do
   gem 'rspec-rails', '2.9.0'
   gem 'guard-rspec', '0.5.5'

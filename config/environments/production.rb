@@ -90,4 +90,7 @@ BarSlice::Application.configure do
 
   # Specify what domain to use for mailer URLs (also required for Devise)
   config.action_mailer.default_url_options = { host: 'barslice.herokuapp.com' }
+
+  # Google Analytics tracker code
+  GA.tracker = "UA-39301481-1"
 end
