@@ -44,8 +44,8 @@
   </div><br /><br />
 
   <div style="float:left;margin-bottom:10px;">
-    <%= f.check_box :tos_accepted, required: true, style: "float:left;margin-right:5px;" %>
-    <%= f.label :tos_accepted, "I agree to the #{link_to 'BarSlice Terms and Conditions', client_tac_path, 
+    <%= f.check_box :tac_accepted, required: true, style: "float:left;margin-right:5px;" %>
+    <%= f.label :tac_accepted, "I agree to the #{link_to 'BarSlice Terms and Conditions', client_tac_path, 
       target: '_blank'}".html_safe, style: "float:left;cursor:pointer;" %>
   </div>
   <div style="clear:both;"><%= f.submit "Sign Up" %></div>
