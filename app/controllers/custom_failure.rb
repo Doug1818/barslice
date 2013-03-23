@@ -1,8 +1,12 @@
 class CustomFailure < Devise::FailureApp
   def redirect_url
-    if request.referrer.include?("/claim_bar")
-      bar_id = request.referrer.split("/")[4].to_i
-      claim_bar_bar_path(bar_id)
+    if request.referrer != nil
+      if request.referrer.include?("/claim_bar")
+        bar_id = request.referrer.split("/")[4].to_i
+        claim_bar_bar_path(bar_id)
+      else
+        super
+      end
     else
       super
     end
