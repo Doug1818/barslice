@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
       end
   	elsif resource.is_a?(User)
   		if x != nil && x.include?("/users/sign_up.")
-	  		root_path + "reservations/new." + x[x.index(".") + 1, x.length - x.index(".")]
+	  		root_path + "reservations/new." + x[x.index("sign_up.") + 8, x.length - x.index("sign_up.")]
   		else
   			super
   		end
