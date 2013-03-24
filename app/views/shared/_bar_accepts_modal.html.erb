@@ -9,8 +9,8 @@
     <p>If you require a credit card number to hold the reservation, please check the box below before clicking accept. The organizer will be automatically notifed of your response.</p>
     <p>
       <%= form_for(reservation, remote: true, html: { class: "ajax_check_box" }) do |f| %>
-        <%= f.check_box :cc_required, style: "float:left;margin-right:5px;" %>
-        <%= f.label :cc_required, "Credit card required to hold reservation", style: "float:left;cursor:pointer;" %>
+        <%= f.check_box :cc_required, id: "reservation_cc_required_#{reservation.id}", style: "float:left;margin-right:5px;" %>
+        <%= f.label :cc_required, "Credit card required to hold reservation", value: "#{reservation.id}", style: "float:left;cursor:pointer;" %>
         <%= f.submit %>
       <% end %>
     </p>
