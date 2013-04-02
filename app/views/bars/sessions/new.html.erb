@@ -16,4 +16,6 @@
   <div><%= f.submit "Sign in" %></div>
 <% end %>
 
+<div>If you are a bar-goer, Sign In <%= link_to 'here', new_user_session_path %></div>
+
 <%= render :partial => "devise/shared/links" %>
