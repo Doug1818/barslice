@@ -15,6 +15,7 @@ class BarRegistrationsController < Devise::RegistrationsController
     if @bar.save
       sign_in @bar
       flash[:success] = "Welcome! You have signed up successfully."
+      BarMailer.signed_up_bar_alert(resource).deliver
       if current_bar.rooms.count == 0
         redirect_to new_room_path
       else

@@ -22,6 +22,11 @@ class BarMailer < ActionMailer::Base
     mail from:"BarSlice <contact@barslice.com>", to: "doug@barslice.com", subject: "[Claimed Bar]#{bar.name}"
   end
 
+  def signed_up_bar_alert(bar)
+    @bar = bar
+    mail from:"BarSlice <contact@barslice.com>", to: "doug@barslice.com", subject: "[Signed Up Bar]#{bar.name}"
+  end
+
   def resrequest(room, bar, user)
     @room = room
     @bar = bar
